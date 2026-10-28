@@ -16,8 +16,9 @@
     href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
 
-  <!-- Biblioteca html2pdf para exportar os slides em PDF de alta resolução -->
+  <!-- Biblioteca html2pdf e dados em Base64 da capa para exportação PDF sem bloqueio CORS (file://) -->
   <script src="assets/html2pdf.bundle.min.js"></script>
+  <script src="assets/cover-illustration-data.js"></script>
 
   <style>
     /* ==========================================================================
@@ -2568,6 +2569,28 @@
       return curY;
     }
 
+    // Imagem da capa pré-carregada em Base64 (nunca causa bloqueio CORS em file://)
+    const pdfCoverImg = new Image();
+    if (window.COVER_ILLUSTRATION_DATA_URL) {
+      pdfCoverImg.src = window.COVER_ILLUSTRATION_DATA_URL;
+    }
+
+    function ensureCoverImageReady() {
+      return new Promise((resolve) => {
+        if (pdfCoverImg.complete && pdfCoverImg.naturalWidth > 0) {
+          resolve(pdfCoverImg);
+          return;
+        }
+        if (window.COVER_ILLUSTRATION_DATA_URL) {
+          pdfCoverImg.onload = () => resolve(pdfCoverImg);
+          pdfCoverImg.onerror = () => resolve(null);
+          pdfCoverImg.src = window.COVER_ILLUSTRATION_DATA_URL;
+        } else {
+          resolve(null);
+        }
+      });
+    }
+
     function canDrawImgUntainted(imgEl) {
       if (!imgEl || !imgEl.complete || !imgEl.naturalWidth) return false;
       try {
@@ -2595,34 +2618,34 @@
       const imgH = h - 115;
 
       const domImg = document.querySelector('.cover-image-card img');
-      if (canDrawImgUntainted(domImg)) {
+      const sourceImg = (pdfCoverImg.complete && pdfCoverImg.naturalWidth > 0)
+        ? pdfCoverImg
+        : (canDrawImgUntainted(domImg) ? domImg : null);
+
+      if (sourceImg) {
         ctx.save();
         drawRoundRect(ctx, imgX, imgY, imgW, imgH, 18, false, false);
         ctx.clip();
-        ctx.drawImage(domImg, imgX, imgY, imgW, imgH);
+        // Desenha cover-illustration.jpg mantendo proporção centralizada (object-fit: cover)
+        const sRatio = sourceImg.naturalWidth / sourceImg.naturalHeight;
+        const dRatio = imgW / imgH;
+        let sx = 0, sy = 0, sw = sourceImg.naturalWidth, sh = sourceImg.naturalHeight;
+        if (sRatio > dRatio) {
+          sw = sourceImg.naturalHeight * dRatio;
+          sx = (sourceImg.naturalWidth - sw) / 2;
+        } else {
+          sh = sourceImg.naturalWidth / dRatio;
+          sy = (sourceImg.naturalHeight - sh) / 2;
+        }
+        ctx.drawImage(sourceImg, sx, sy, sw, sh, imgX, imgY, imgW, imgH);
         ctx.restore();
       } else {
-        // Ilustração vetorial nativa (segura para protocolo file:// sem erro de CORS)
+        // Fallback caso a imagem ainda não exista
         const grad = ctx.createLinearGradient(imgX, imgY, imgX + imgW, imgY + imgH);
         grad.addColorStop(0, '#1e3a8a');
         grad.addColorStop(1, '#0d223f');
         ctx.fillStyle = grad;
         drawRoundRect(ctx, imgX, imgY, imgW, imgH, 18, true, false);
-
-        // Círculo dourado central
-        ctx.fillStyle = 'rgba(245, 158, 11, 0.22)';
-        ctx.beginPath();
-        ctx.arc(imgX + imgW / 2, imgY + imgH / 2 - 15, 95, 0, Math.PI * 2);
-        ctx.fill();
-
-        ctx.font = '88px sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillStyle = '#ffffff';
-        ctx.fillText('🛡️📱', imgX + imgW / 2, imgY + imgH / 2 + 12);
-
-        ctx.font = 'bold 22px "Outfit", sans-serif';
-        ctx.fillStyle = '#fde047';
-        ctx.fillText('PROTEÇÃO DIGITAL', imgX + imgW / 2, imgY + imgH - 28);
       }
 
       ctx.textAlign = 'center';
@@ -2770,7 +2793,7 @@
           115, 745, 820, 36
         );
 
-        drawCoverIllustrationBox(ctx, 1030, 175, 480, 655, 'Guia Prático e Gratuito', 'Proteção para toda a família');
+        drawCoverIllustrationBox(ctx, 1030, 215, 480, 555, 'Guia Prático e Gratuito', 'Proteção para toda a família');
       }
 
       // --- SLIDE 2: SEM CULPA NEM VERGONHA ---
@@ -2996,7 +3019,7 @@
         ctx.font = 'bold 28px "Outfit", sans-serif';
         ctx.fillText('👏 Muito obrigado pela atenção de todos!', 80, 865);
 
-        drawCoverIllustrationBox(ctx, 1030, 175, 480, 655, 'Distribuição Gratuita', 'Imprima e compartilhe com a família');
+        drawCoverIllustrationBox(ctx, 1030, 215, 480, 555, 'Distribuição Gratuita', 'Imprima e compartilhe com a família');
       }
 
       // Rodapé de Paginação do PDF
@@ -3103,6 +3126,8 @@
           pdfStatusText.textContent = 'Preparando os 7 slides em alta definição...';
 
           const isLightTheme = document.body.classList.contains('theme-light');
+          await ensureCoverImageReady();
+
           const slideCanvas = document.createElement('canvas');
           slideCanvas.width = 1600;
           slideCanvas.height = 1131; // Proporção A4 Paisagem (297 x 210 mm)
@@ -3151,6 +3176,9 @@
 
     // 2. Baixar Apresentação Interativa Offline (.HTML Autocontido)
     async function imageToDataUrl(url) {
+      if (window.COVER_ILLUSTRATION_DATA_URL && url.includes('cover-illustration')) {
+        return window.COVER_ILLUSTRATION_DATA_URL;
+      }
       try {
         const response = await fetch(url);
         const blob = await response.blob();
