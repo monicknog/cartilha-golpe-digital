@@ -5,9 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
-    content="Banner oficial para Stories do Instagram e Status do WhatsApp: Palestra de Proteção Contra Golpes no Celular na UBS Alarico Leite.">
+    content="Gerador de Banner 100% Editável para Stories do Instagram e Status do WhatsApp: Palestra de Proteção Contra Golpes no Celular. Oculta automaticamente qualquer espaço vazio.">
   <meta name="theme-color" content="#0d223f">
-  <title>Banner Stories: Palestra na UBS Alarico Leite</title>
+  <title>Banner Stories Editável: Palestra de Proteção Contra Golpes</title>
 
   <!-- Fontes do Projeto -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +18,7 @@
 
   <style>
     /* ==========================================================================
-       ESTILOS DO GERADOR DE BANNER PARA INSTAGRAM STORIES (9:16)
+       ESTILOS DO GERADOR DE BANNER 100% EDITÁVEL PARA STORIES (9:16)
        ========================================================================== */
     :root {
       --color-primary-dark: #0d223f;
@@ -52,7 +52,7 @@
     /* Barra Superior de Ações */
     .top-bar {
       width: 100%;
-      max-width: 900px;
+      max-width: 1080px;
       background: rgba(13, 34, 63, 0.95);
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 14px;
@@ -61,7 +61,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
       flex-wrap: wrap;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     }
@@ -132,25 +132,46 @@
     /* Container de Visualização e Edição */
     .content-layout {
       width: 100%;
-      max-width: 1000px;
+      max-width: 1080px;
       display: flex;
       justify-content: center;
-      gap: 2rem;
+      gap: 1.75rem;
       align-items: flex-start;
       flex-wrap: wrap;
     }
 
     /* ==========================================================================
-       O BANNER DOS STORIES (PROPORÇÃO 9:16 - 1080 x 1920)
+       COLUNA ESQUERDA: O BANNER DOS STORIES (PROPORÇÃO 9:16)
        ========================================================================== */
+    .story-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .edit-hint-pill {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #fef08a;
+      padding: 0.4rem 0.85rem;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      text-align: center;
+    }
+
     .story-wrapper {
       position: relative;
       width: 380px;
       max-width: 95vw;
-      height: 675px; /* Exatamente 9:16 (380 x 675.5) */
+      height: 675px; /* Proporção exata 9:16 */
       border-radius: 28px;
       overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65);
       border: 4px solid #1e3a8a;
       flex-shrink: 0;
     }
@@ -160,11 +181,49 @@
       height: 100%;
       background: radial-gradient(circle at 50% 15%, #193e72 0%, #0d223f 55%, #071526 100%);
       color: #ffffff;
-      padding: 1.75rem 1.4rem 1.5rem;
+      padding: 1.4rem 1.25rem 1.25rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       position: relative;
+      user-select: text;
+      overflow: hidden;
+    }
+
+    /* ==========================================================================
+       REGRA FUNDAMENTAL: OCULTAR COMPLETAMENTE QUALQUER ELEMENTO VAZIO
+       ========================================================================== */
+    .is-empty {
+      display: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      height: 0 !important;
+      min-height: 0 !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+
+    /* ==========================================================================
+       ESTILOS PARA ELEMENTOS EDITÁVEIS DIRETAMENTE NO BANNER
+       ========================================================================== */
+    [contenteditable="true"] {
+      outline: none;
+      transition: all 0.2s ease;
+      position: relative;
+      cursor: text;
+      border-radius: 4px;
+    }
+
+    [contenteditable="true"]:hover {
+      outline: 1.5px dashed rgba(245, 158, 11, 0.8);
+      outline-offset: 2px;
+      background: rgba(245, 158, 11, 0.12);
+    }
+
+    [contenteditable="true"]:focus {
+      outline: 2px solid #f59e0b;
+      outline-offset: 3px;
+      background: rgba(245, 158, 11, 0.22);
     }
 
     /* Detalhes Decorativos de Fundo */
@@ -197,7 +256,7 @@
       gap: 0.4rem;
       background: #f59e0b;
       color: #0f172a;
-      padding: 0.35rem 0.85rem;
+      padding: 0.32rem 0.85rem;
       border-radius: 20px;
       font-family: var(--font-heading);
       font-weight: 800;
@@ -206,23 +265,23 @@
       text-transform: uppercase;
       box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
       align-self: center;
+      margin-bottom: 0.25rem;
     }
 
     .story-header {
       text-align: center;
-      margin-top: 0.6rem;
     }
 
     .story-icon-wrap {
-      width: 58px;
-      height: 58px;
+      width: 52px;
+      height: 52px;
       background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-      border-radius: 18px;
+      border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
-      margin: 0 auto 0.65rem;
+      font-size: 1.85rem;
+      margin: 0 auto 0.45rem;
       box-shadow: 0 8px 18px rgba(245, 158, 11, 0.35);
       border: 2px solid rgba(255, 255, 255, 0.3);
     }
@@ -234,15 +293,15 @@
       line-height: 1.15;
       letter-spacing: -0.02em;
       color: #ffffff;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.35rem;
     }
 
-    .story-title span {
+    .story-title .title-accent {
       color: #60a5fa;
     }
 
     .story-subtitle {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: #cbd5e1;
       line-height: 1.35;
       max-width: 320px;
@@ -254,51 +313,58 @@
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.25);
       border-radius: 10px;
-      padding: 0.4rem 0.75rem;
+      padding: 0.38rem 0.75rem;
       text-align: center;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 600;
       color: #fef08a;
-      margin: 0.6rem 0;
+      margin: 0.35rem 0;
     }
 
-    /* Cartões com Informações da Palestra */
+    /* Cartão com Informações da Palestra */
     .story-details-card {
       background: rgba(255, 255, 255, 0.96);
       color: #0f172a;
       border-radius: 16px;
-      padding: 0.95rem 1rem;
+      padding: 0.85rem 0.95rem;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
       display: flex;
       flex-direction: column;
-      gap: 0.7rem;
+      gap: 0.6rem;
     }
 
     .story-info-item {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.7rem;
+    }
+
+    /* Divisória inteligente: só aparece entre itens visíveis */
+    .story-details-card > .story-info-item:not(.is-empty) ~ .story-info-item:not(.is-empty) {
+      border-top: 1px solid #e2e8f0;
+      padding-top: 0.55rem;
     }
 
     .story-info-icon {
-      width: 36px;
-      height: 36px;
+      width: 34px;
+      height: 34px;
       background: #eff6ff;
-      border-radius: 10px;
+      border-radius: 9px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.25rem;
+      font-size: 1.2rem;
       flex-shrink: 0;
       border: 1px solid #bfdbfe;
     }
 
     .story-info-text {
       flex: 1;
+      min-width: 0;
     }
 
     .story-info-label {
-      font-size: 0.68rem;
+      font-size: 0.66rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -308,7 +374,7 @@
 
     .story-info-value {
       font-family: var(--font-heading);
-      font-size: 1rem;
+      font-size: 0.98rem;
       font-weight: 800;
       color: #0f2347;
       line-height: 1.2;
@@ -316,7 +382,7 @@
 
     .story-info-value.highlight-loc {
       color: #1e3a8a;
-      font-size: 1.05rem;
+      font-size: 1.02rem;
     }
 
     /* Bônus / Cartilha Gratuita */
@@ -324,36 +390,36 @@
       background: #ecfdf5;
       border: 1px solid #a7f3d0;
       border-radius: 10px;
-      padding: 0.5rem 0.75rem;
+      padding: 0.45rem 0.7rem;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.45rem;
       color: #065f46;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 700;
     }
 
     /* Rodapé do Story */
     .story-footer {
       text-align: center;
-      margin-top: 0.5rem;
+      margin-top: 0.35rem;
     }
 
     .story-golden-rule-pill {
       background: rgba(220, 38, 38, 0.2);
       border: 1px solid rgba(239, 68, 68, 0.5);
       border-radius: 20px;
-      padding: 0.35rem 0.85rem;
+      padding: 0.32rem 0.8rem;
       color: #fca5a5;
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       font-weight: 700;
       display: inline-block;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.35rem;
     }
 
     .story-call-action {
       font-family: var(--font-heading);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: #94a3b8;
     }
 
@@ -361,61 +427,110 @@
       color: #ffffff;
     }
 
-    /* Painel Lateral com Editor e Legenda Pronta */
+    /* ==========================================================================
+       COLUNA DIREITA: PAINEL DE CONTROLE DE TEXTOS (EDITOR COMPLETO)
+       ========================================================================== */
     .side-panel {
       flex: 1;
-      min-width: 300px;
-      max-width: 450px;
+      min-width: 320px;
+      max-width: 500px;
       display: flex;
       flex-direction: column;
-      gap: 1.25rem;
+      gap: 1.15rem;
     }
 
     .panel-card {
       background: #0f223f;
       border: 1px solid rgba(255, 255, 255, 0.15);
       border-radius: 16px;
-      padding: 1.25rem;
+      padding: 1.2rem;
       box-shadow: 0 4px 15px rgba(0,0,0,0.25);
     }
 
     .panel-card h2 {
       font-family: var(--font-heading);
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: #f59e0b;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.6rem;
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
 
+    .panel-help-box {
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 8px;
+      padding: 0.55rem 0.75rem;
+      font-size: 0.76rem;
+      color: #fef08a;
+      margin-bottom: 0.85rem;
+      line-height: 1.4;
+    }
+
+    .panel-section-title {
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #60a5fa;
+      margin-top: 0.85rem;
+      margin-bottom: 0.45rem;
+      padding-bottom: 0.25rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .form-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.65rem;
+    }
+
     .form-group {
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.65rem;
     }
 
     .form-group label {
       display: block;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: #cbd5e1;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.2rem;
       font-weight: 600;
     }
 
-    .form-group input {
+    .form-group input,
+    .form-group textarea {
       width: 100%;
-      padding: 0.55rem 0.75rem;
+      padding: 0.5rem 0.7rem;
       background: #081325;
       border: 1px solid rgba(255, 255, 255, 0.25);
       border-radius: 8px;
       color: #ffffff;
       font-family: var(--font-body);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
+      transition: border-color 0.2s;
     }
 
-    .form-group input:focus {
+    .form-group textarea {
+      resize: vertical;
+      min-height: 52px;
+      line-height: 1.35;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
       outline: none;
       border-color: #f59e0b;
+      background: #0b1a33;
+    }
+
+    .panel-btn-row {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+      flex-wrap: wrap;
     }
 
     .caption-box {
@@ -423,10 +538,10 @@
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 10px;
       padding: 0.85rem;
-      font-size: 0.84rem;
+      font-size: 0.82rem;
       line-height: 1.5;
       color: #e2e8f0;
-      max-height: 180px;
+      max-height: 160px;
       overflow-y: auto;
       white-space: pre-wrap;
       user-select: all;
@@ -468,7 +583,7 @@
       <span class="top-brand-icon">📱</span>
       <div class="top-brand-text">
         <h1>Divulgação nos Stories: Palestra na UBS Alarico Leite</h1>
-        <p>Formato Oficial 9:16 para Instagram Stories e Status do WhatsApp</p>
+        <p>Banner 100% Editável • Oculta automaticamente qualquer espaço vazio</p>
       </div>
     </div>
 
@@ -496,149 +611,225 @@
   </header>
 
   <!-- ======================================================================
-       CONTEÚDO PRINCIPAL (BANNER + EDITOR LATERAL)
+       CONTEÚDO PRINCIPAL (BANNER + EDITOR COMPLETO)
        ====================================================================== -->
   <main class="content-layout">
 
-    <!-- BANNER INTERATIVO COM PROPORÇÃO 9:16 -->
-    <div class="story-wrapper" id="storyWrapper">
-      <div class="story-canvas-dom" id="storyDom">
+    <!-- COLUNA DO BANNER -->
+    <div class="story-column">
+      <div class="edit-hint-pill">
+        <span>✨ <strong>Dica:</strong> Se apagar qualquer texto, o espaço dele é ocultado automaticamente!</span>
+      </div>
 
-        <!-- Círculos decorativos de iluminação -->
-        <div class="bg-circle-1"></div>
-        <div class="bg-circle-2"></div>
+      <!-- BANNER INTERATIVO COM PROPORÇÃO 9:16 -->
+      <div class="story-wrapper" id="storyWrapper">
+        <div class="story-canvas-dom" id="storyDom">
 
-        <!-- Topo: Selo Chamativo -->
-        <div class="story-top-badge">
-          <span>📢 PALESTRA GRATUITA</span>
-        </div>
+          <!-- Círculos decorativos de iluminação -->
+          <div class="bg-circle-1"></div>
+          <div class="bg-circle-2"></div>
 
-        <!-- Cabeçalho Principal -->
-        <div class="story-header">
-          <div class="story-icon-wrap">
-            🛡️
+          <!-- Topo: Selo Chamativo -->
+          <div class="story-top-badge" id="cardBadge" contenteditable="true" spellcheck="false" title="Clique para editar este selo">
+            📢 PALESTRA GRATUITA
           </div>
-          <h2 class="story-title">
-            Proteção Contra<br><span>Golpes no Celular</span>
-          </h2>
-          <p class="story-subtitle">
-            Aprenda a reconhecer mensagens falsas no WhatsApp e ligações suspeitas do banco.
-          </p>
-        </div>
 
-        <!-- Alvo / Público -->
-        <div class="story-target-badge">
-          🤝 Encontro especial para <strong>idosos, aposentados e familiares</strong>
-        </div>
+          <!-- Cabeçalho Principal -->
+          <div class="story-header" id="storyHeader">
+            <div class="story-icon-wrap" id="cardIcon" contenteditable="true" spellcheck="false" title="Clique para trocar o emoji">
+              🛡️
+            </div>
+            <h2 class="story-title" id="cardTitleWrap">
+              <span id="cardTitle1" contenteditable="true" spellcheck="false" title="Clique para editar o título linha 1">Proteção Contra</span><span id="titleBr"><br></span>
+              <span id="cardTitle2" class="title-accent" contenteditable="true" spellcheck="false" title="Clique para editar o título em destaque">Golpes no Celular</span>
+            </h2>
+            <p class="story-subtitle" id="cardSubtitle" contenteditable="true" spellcheck="false" title="Clique para editar o subtítulo">
+              Aprenda a reconhecer mensagens falsas no WhatsApp e ligações suspeitas do banco.
+            </p>
+          </div>
 
-        <!-- Cartão com Informações do Encontro -->
-        <div class="story-details-card">
-          <!-- Data -->
-          <div class="story-info-item">
-            <div class="story-info-icon">📅</div>
-            <div class="story-info-text">
-              <span class="story-info-label">Data do Encontro:</span>
-              <div class="story-info-value" id="cardDate">10 de Novembro</div>
+          <!-- Alvo / Público -->
+          <div class="story-target-badge" id="cardTarget" contenteditable="true" spellcheck="false" title="Clique para editar o público-alvo">
+            🤝 Encontro especial para idosos e familiares
+          </div>
+
+          <!-- Cartão com Informações do Encontro -->
+          <div class="story-details-card" id="detailsCard">
+            <!-- Data -->
+            <div class="story-info-item" id="rowDate">
+              <div class="story-info-icon">📅</div>
+              <div class="story-info-text">
+                <span class="story-info-label">Data do Encontro:</span>
+                <div class="story-info-value" id="cardDate" contenteditable="true" spellcheck="false" title="Clique para editar a data">10 de Novembro</div>
+              </div>
+            </div>
+
+            <!-- Horário -->
+            <div class="story-info-item" id="rowTime">
+              <div class="story-info-icon">⏰</div>
+              <div class="story-info-text">
+                <span class="story-info-label">Horário:</span>
+                <div class="story-info-value">
+                  <span id="cardTime" contenteditable="true" spellcheck="false" title="Clique para editar o horário">14h00</span>
+                  <span id="cardTimeSub" contenteditable="true" spellcheck="false" title="Clique para editar a duração" style="font-size: 0.78rem; font-weight: normal; color: #64748b;">(Duração rápida: 15 min)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Local -->
+            <div class="story-info-item" id="rowLocation">
+              <div class="story-info-icon">📍</div>
+              <div class="story-info-text">
+                <span class="story-info-label">Local:</span>
+                <div class="story-info-value highlight-loc" id="cardLocation" contenteditable="true" spellcheck="false" title="Clique para editar o local">UBS Alarico Leite</div>
+              </div>
+            </div>
+
+            <!-- Bônus / Cartilha -->
+            <div class="story-free-gift" id="cardGift" contenteditable="true" spellcheck="false" title="Clique para editar o brinde">
+              🎁 Entrega gratuita da Cartilha Impressa para todos!
             </div>
           </div>
 
-          <!-- Horário -->
-          <div class="story-info-item">
-            <div class="story-info-icon">⏰</div>
-            <div class="story-info-text">
-              <span class="story-info-label">Horário:</span>
-              <div class="story-info-value" id="cardTime">14h00 <span style="font-size: 0.8rem; font-weight: normal; color: #64748b;">(Duração rápida: 15 min)</span></div>
+          <!-- Rodapé do Banner -->
+          <div class="story-footer" id="storyFooter">
+            <div class="story-golden-rule-pill" id="cardGoldenRule" contenteditable="true" spellcheck="false" title="Clique para editar a frase de impacto">
+              🛑 "Na dúvida: Pare, Confira e Peça Ajuda!"
             </div>
+            <p class="story-call-action" id="cardCallAction" contenteditable="true" spellcheck="false" title="Clique para editar a chamada">
+              Venha participar e traga sua família! Entrada Franca.
+            </p>
           </div>
 
-          <!-- Local -->
-          <div class="story-info-item">
-            <div class="story-info-icon">📍</div>
-            <div class="story-info-text">
-              <span class="story-info-label">Local:</span>
-              <div class="story-info-value highlight-loc" id="cardLocation">UBS Alarico Leite</div>
-            </div>
-          </div>
-
-          <!-- Bônus -->
-          <div class="story-free-gift">
-            <span style="font-size: 1.15rem;">🎁</span>
-            <span>Entrega gratuita da <strong>Cartilha Impressa</strong> para todos!</span>
-          </div>
         </div>
-
-        <!-- Rodapé do Banner -->
-        <div class="story-footer">
-          <div class="story-golden-rule-pill">
-            🛑 "Na dúvida: Pare, Confira e Peça Ajuda!"
-          </div>
-          <p class="story-call-action">
-            Venha participar e traga sua família! <strong>Entrada Franca.</strong>
-          </p>
-        </div>
-
       </div>
     </div>
 
-    <!-- PAINEL LATERAL: CUSTOMIZADOR & LEGENDA PRONTA -->
+    <!-- PAINEL LATERAL: EDITOR COMPLETO DE TEXTOS & LEGENDA -->
     <aside class="side-panel">
-      <!-- Painel de Edição -->
+
+      <!-- Painel de Edição de Textos -->
       <div class="panel-card">
-        <h2><span>✏️</span> Ajustar Informações do Banner</h2>
+        <h2><span>✏️</span> Editar Textos do Banner</h2>
 
-        <div class="form-group">
-          <label for="inputDate">Data:</label>
-          <input type="text" id="inputDate" value="10 de Novembro">
+        <div class="panel-help-box">
+          💡 <strong>Ocultamento Inteligente:</strong> Qualquer campo que você deixar <strong>vazio</strong> terá o seu espaço completamente ocultado do banner e do PNG baixado!
+        </div>
+
+        <!-- SEÇÃO 1: CABEÇALHO & TÍTULOS -->
+        <div class="panel-section-title">1. Cabeçalho e Títulos</div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="inputBadge">Selo do Topo:</label>
+            <input type="text" id="inputBadge" value="📢 PALESTRA GRATUITA" placeholder="Vazio para ocultar">
+          </div>
+          <div class="form-group">
+            <label for="inputIcon">Ícone (Emoji):</label>
+            <input type="text" id="inputIcon" value="🛡️" placeholder="Vazio para ocultar">
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="inputTitle1">Título Linha 1:</label>
+            <input type="text" id="inputTitle1" value="Proteção Contra" placeholder="Vazio para ocultar">
+          </div>
+          <div class="form-group">
+            <label for="inputTitle2">Título Linha 2 (Destaque):</label>
+            <input type="text" id="inputTitle2" value="Golpes no Celular" placeholder="Vazio para ocultar">
+          </div>
         </div>
 
         <div class="form-group">
-          <label for="inputTime">Horário:</label>
-          <input type="text" id="inputTime" value="14h00">
+          <label for="inputSubtitle">Subtítulo Explicativo:</label>
+          <textarea id="inputSubtitle" rows="2" placeholder="Deixe em branco para ocultar o subtítulo">Aprenda a reconhecer mensagens falsas no WhatsApp e ligações suspeitas do banco.</textarea>
         </div>
 
         <div class="form-group">
-          <label for="inputLocation">Local:</label>
-          <input type="text" id="inputLocation" value="UBS Alarico Leite">
+          <label for="inputTarget">Público-Alvo / Faixa:</label>
+          <input type="text" id="inputTarget" value="🤝 Encontro especial para idosos e familiares" placeholder="Vazio para ocultar faixa">
+        </div>
+
+        <!-- SEÇÃO 2: DADOS DO EVENTO -->
+        <div class="panel-section-title">2. Informações do Encontro</div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="inputDate">Data:</label>
+            <input type="text" id="inputDate" value="10 de Novembro" placeholder="Vazio para ocultar data">
+          </div>
+          <div class="form-group">
+            <label for="inputTime">Horário:</label>
+            <input type="text" id="inputTime" value="14h00" placeholder="Vazio para ocultar horário">
+          </div>
+        </div>
+
+        <div class="form-row-2">
+          <div class="form-group">
+            <label for="inputTimeSub">Duração / Obs:</label>
+            <input type="text" id="inputTimeSub" value="(Duração rápida: 15 min)" placeholder="Vazio para ocultar">
+          </div>
+          <div class="form-group">
+            <label for="inputLocation">Local do Encontro:</label>
+            <input type="text" id="inputLocation" value="UBS Alarico Leite" placeholder="Vazio para ocultar local">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inputGift">Brinde / Cartilha Gratuita:</label>
+          <input type="text" id="inputGift" value="🎁 Entrega gratuita da Cartilha Impressa para todos!" placeholder="Vazio para ocultar brinde">
+        </div>
+
+        <!-- SEÇÃO 3: RODAPÉ & CHAMADA -->
+        <div class="panel-section-title">3. Rodapé e Chamada Final</div>
+
+        <div class="form-group">
+          <label for="inputGoldenRule">Frase de Impacto:</label>
+          <input type="text" id="inputGoldenRule" value="🛑 &quot;Na dúvida: Pare, Confira e Peça Ajuda!&quot;" placeholder="Vazio para ocultar frase">
+        </div>
+
+        <div class="form-group">
+          <label for="inputCallAction">Chamada Final:</label>
+          <input type="text" id="inputCallAction" value="Venha participar e traga sua família! Entrada Franca." placeholder="Vazio para ocultar chamada">
+        </div>
+
+        <!-- BOTÕES DO EDITOR -->
+        <div class="panel-btn-row">
+          <button id="btnDownloadSide" class="btn-action" style="flex: 1; justify-content: center;">
+            📥 Baixar Imagem PNG
+          </button>
+          <button id="btnResetDefaults" class="btn-action btn-secondary" title="Voltar para os textos originais da UBS Alarico Leite">
+            🔄 Restaurar Padrão
+          </button>
         </div>
       </div>
 
       <!-- Painel da Legenda Pronta -->
       <div class="panel-card">
-        <h2><span>📝</span> Legenda Pronta para Redes Sociais</h2>
-        <p style="font-size: 0.8rem; color: #cbd5e1; margin-bottom: 0.6rem;">
-          Copie e cole na descrição do post, grupo de WhatsApp ou mensagem da UBS:
+        <h2><span>📝</span> Legenda Sincronizada</h2>
+        <p style="font-size: 0.78rem; color: #cbd5e1; margin-bottom: 0.6rem;">
+          Atualiza automaticamente com os campos que você preencher:
         </p>
 
-        <div class="caption-box" id="captionText">🛡️ PALESTRA GRATUITA: PROTEÇÃO CONTRA GOLPES NO CELULAR!
-
-Você ou sua família já receberam mensagens estranhas no WhatsApp pedindo dinheiro ou ligações falsas do banco?
-
-Venha participar de um bate-papo rápido e acolhedor (apenas 15 minutos) para aprender como se proteger de forma simples e sem medo!
-
-📅 Data: 10 de Novembro
-⏰ Horário: 14h00
-📍 Local: UBS Alarico Leite
-🎁 Todos os participantes receberão uma Cartilha Impressa de brinde!
-
-Entrada totalmente gratuita! Convide seus pais, avós e vizinhos. Quem tem informação se protege melhor! 🤝❤️
-
-#SegurancaDigital #MelhorIdade #UBSAlaricoLeite #PrevençãoDeGolpes #SaudeEBemEstar #PalestraGratuita</div>
+        <div class="caption-box" id="captionText"></div>
 
         <button id="btnCopyCaptionSide" class="btn-action" style="width: 100%; margin-top: 0.75rem; justify-content: center;">
-          📋 Copiar Texto Completo
+          📋 Copiar Legenda Completa
         </button>
       </div>
 
-      <!-- Pré-visualização da imagem gerada -->
+      <!-- Arte Alternativa -->
       <div class="panel-card" style="text-align: center;">
         <h2><span>🖼️</span> Arte Alternativa Ilustrada</h2>
-        <p style="font-size: 0.8rem; color: #cbd5e1; margin-bottom: 0.75rem;">
-          Você também tem à disposição a imagem artística 9:16 gerada para o evento:
+        <p style="font-size: 0.78rem; color: #cbd5e1; margin-bottom: 0.75rem;">
+          Você também pode baixar a arte ilustrada pré-renderizada para o evento:
         </p>
         <a href="assets/banner-stories.jpg" download="banner-stories-ilustrado.jpg" class="btn-action btn-secondary" style="font-size: 0.82rem; padding: 0.45rem 0.9rem;">
           📷 Baixar Arte Ilustrada (JPG)
         </a>
       </div>
+
     </aside>
 
   </main>
@@ -652,47 +843,202 @@ Entrada totalmente gratuita! Convide seus pais, avós e vizinhos. Quem tem infor
   <canvas id="exportCanvas" width="1080" height="1920" style="display: none;"></canvas>
 
   <script>
-    // --- 1. Sincronização em Tempo Real dos Campos ---
-    const inputDate = document.getElementById('inputDate');
-    const inputTime = document.getElementById('inputTime');
-    const inputLocation = document.getElementById('inputLocation');
+    // ========================================================================
+    // 1. MAPEAMENTO DOS ELEMENTOS DO BANNER E DO FORMULÁRIO
+    // ========================================================================
+    const fields = [
+      { domId: 'cardBadge', inputId: 'inputBadge', defaultVal: '📢 PALESTRA GRATUITA' },
+      { domId: 'cardIcon', inputId: 'inputIcon', defaultVal: '🛡️' },
+      { domId: 'cardTitle1', inputId: 'inputTitle1', defaultVal: 'Proteção Contra' },
+      { domId: 'cardTitle2', inputId: 'inputTitle2', defaultVal: 'Golpes no Celular' },
+      { domId: 'cardSubtitle', inputId: 'inputSubtitle', defaultVal: 'Aprenda a reconhecer mensagens falsas no WhatsApp e ligações suspeitas do banco.' },
+      { domId: 'cardTarget', inputId: 'inputTarget', defaultVal: '🤝 Encontro especial para idosos e familiares' },
+      { domId: 'cardDate', inputId: 'inputDate', defaultVal: '10 de Novembro' },
+      { domId: 'cardTime', inputId: 'inputTime', defaultVal: '14h00' },
+      { domId: 'cardTimeSub', inputId: 'inputTimeSub', defaultVal: '(Duração rápida: 15 min)' },
+      { domId: 'cardLocation', inputId: 'inputLocation', defaultVal: 'UBS Alarico Leite' },
+      { domId: 'cardGift', inputId: 'inputGift', defaultVal: '🎁 Entrega gratuita da Cartilha Impressa para todos!' },
+      { domId: 'cardGoldenRule', inputId: 'inputGoldenRule', defaultVal: '🛑 "Na dúvida: Pare, Confira e Peça Ajuda!"' },
+      { domId: 'cardCallAction', inputId: 'inputCallAction', defaultVal: 'Venha participar e traga sua família! Entrada Franca.' }
+    ];
 
-    const cardDate = document.getElementById('cardDate');
-    const cardTime = document.getElementById('cardTime');
-    const cardLocation = document.getElementById('cardLocation');
     const captionText = document.getElementById('captionText');
 
-    function updateCard() {
-      const d = inputDate.value.trim() || '10 de Novembro';
-      const t = inputTime.value.trim() || '14h00';
-      const loc = inputLocation.value.trim() || 'UBS Alarico Leite';
+    // Elementos Estruturais do DOM do Banner
+    const cardBadge = document.getElementById('cardBadge');
+    const cardIcon = document.getElementById('cardIcon');
+    const storyHeader = document.getElementById('storyHeader');
+    const cardTitleWrap = document.getElementById('cardTitleWrap');
+    const cardTitle1 = document.getElementById('cardTitle1');
+    const cardTitle2 = document.getElementById('cardTitle2');
+    const titleBr = document.getElementById('titleBr');
+    const cardSubtitle = document.getElementById('cardSubtitle');
+    const cardTarget = document.getElementById('cardTarget');
 
-      cardDate.textContent = d;
-      cardTime.innerHTML = `${t} <span style="font-size: 0.8rem; font-weight: normal; color: #64748b;">(Duração rápida: 15 min)</span>`;
-      cardLocation.textContent = loc;
+    const detailsCard = document.getElementById('detailsCard');
+    const rowDate = document.getElementById('rowDate');
+    const rowTime = document.getElementById('rowTime');
+    const cardTime = document.getElementById('cardTime');
+    const cardTimeSub = document.getElementById('cardTimeSub');
+    const rowLocation = document.getElementById('rowLocation');
+    const cardGift = document.getElementById('cardGift');
 
-      // Atualizar legenda
-      captionText.textContent = `🛡️ PALESTRA GRATUITA: PROTEÇÃO CONTRA GOLPES NO CELULAR!
+    const storyFooter = document.getElementById('storyFooter');
+    const cardGoldenRule = document.getElementById('cardGoldenRule');
+    const cardCallAction = document.getElementById('cardCallAction');
 
-Você ou sua família já receberam mensagens estranhas no WhatsApp pedindo dinheiro ou ligações falsas do banco?
+    // ========================================================================
+    // 2. CONTROLE DE VISIBILIDADE E OCULTAÇÃO DE ESPAÇOS VAZIOS
+    // ========================================================================
+    function syncVisibilityAndState() {
+      const badge = (document.getElementById('inputBadge').value || '').trim();
+      const icon = (document.getElementById('inputIcon').value || '').trim();
+      const t1 = (document.getElementById('inputTitle1').value || '').trim();
+      const t2 = (document.getElementById('inputTitle2').value || '').trim();
+      const sub = (document.getElementById('inputSubtitle').value || '').trim();
+      const target = (document.getElementById('inputTarget').value || '').trim();
 
-Venha participar de um bate-papo rápido e acolhedor (apenas 15 minutos) para aprender como se proteger de forma simples e sem medo!
+      const d = (document.getElementById('inputDate').value || '').trim();
+      const t = (document.getElementById('inputTime').value || '').trim();
+      const timeSub = (document.getElementById('inputTimeSub').value || '').trim();
+      const loc = (document.getElementById('inputLocation').value || '').trim();
+      const gift = (document.getElementById('inputGift').value || '').trim();
 
-📅 Data: ${d}
-⏰ Horário: ${t}
-📍 Local: ${loc}
-🎁 Todos os participantes receberão uma Cartilha Impressa de brinde!
+      const golden = (document.getElementById('inputGoldenRule').value || '').trim();
+      const call = (document.getElementById('inputCallAction').value || '').trim();
 
-Entrada totalmente gratuita! Convide seus pais, avós e vizinhos. Quem tem informação se protege melhor! 🤝❤️
+      // Top Badge
+      cardBadge.classList.toggle('is-empty', !badge);
 
-#SegurancaDigital #MelhorIdade #UBSAlaricoLeite #PrevençãoDeGolpes #SaudeEBemEstar #PalestraGratuita`;
+      // Icon
+      cardIcon.classList.toggle('is-empty', !icon);
+
+      // Título
+      const hasT1 = !!t1;
+      const hasT2 = !!t2;
+      cardTitle1.classList.toggle('is-empty', !hasT1);
+      cardTitle2.classList.toggle('is-empty', !hasT2);
+      titleBr.style.display = (hasT1 && hasT2) ? 'inline' : 'none';
+      cardTitleWrap.classList.toggle('is-empty', !hasT1 && !hasT2);
+
+      // Subtítulo
+      cardSubtitle.classList.toggle('is-empty', !sub);
+
+      // Header Geral
+      const hasHeaderContent = !!icon || hasT1 || hasT2 || !!sub;
+      storyHeader.classList.toggle('is-empty', !hasHeaderContent);
+
+      // Público-Alvo
+      cardTarget.classList.toggle('is-empty', !target);
+
+      // Linhas do Cartão Branco
+      rowDate.classList.toggle('is-empty', !d);
+
+      const hasTime = !!t;
+      const hasTimeSub = !!timeSub;
+      cardTime.classList.toggle('is-empty', !hasTime);
+      cardTimeSub.classList.toggle('is-empty', !hasTimeSub);
+      rowTime.classList.toggle('is-empty', !hasTime && !hasTimeSub);
+
+      rowLocation.classList.toggle('is-empty', !loc);
+      cardGift.classList.toggle('is-empty', !gift);
+
+      // Cartão Branco Inteiro
+      const hasAnyInCard = !d ? (!hasTime && !hasTimeSub && !loc && !gift ? false : true) : true;
+      detailsCard.classList.toggle('is-empty', !hasAnyInCard);
+
+      // Rodapé
+      cardGoldenRule.classList.toggle('is-empty', !golden);
+      cardCallAction.classList.toggle('is-empty', !call);
+      storyFooter.classList.toggle('is-empty', !golden && !call);
+
+      // Atualizar a legenda com os campos ativos
+      updateCaption(badge, t1, t2, sub, target, d, t, timeSub, loc, gift, golden, call);
     }
 
-    inputDate.addEventListener('input', updateCard);
-    inputTime.addEventListener('input', updateCard);
-    inputLocation.addEventListener('input', updateCard);
+    // Função de Atualização da Legenda Dinâmica (Só inclui o que não estiver vazio)
+    function updateCaption(badge, t1, t2, sub, target, d, t, timeSub, loc, gift, golden, call) {
+      const parts = [];
 
-    // --- 2. Copiar Legenda ---
+      const titleLine = [t1, t2].filter(Boolean).join(' ');
+      if (badge && titleLine) {
+        parts.push(`${badge}: ${titleLine}!`);
+      } else if (titleLine) {
+        parts.push(`🛡️ ${titleLine}!`);
+      } else if (badge) {
+        parts.push(badge);
+      }
+
+      if (sub) parts.push(`\n${sub}`);
+
+      const infoLines = [];
+      if (d) infoLines.push(`📅 Data: ${d}`);
+      if (t) {
+        const timeFull = timeSub ? `${t} ${timeSub}` : t;
+        infoLines.push(`⏰ Horário: ${timeFull}`);
+      } else if (timeSub) {
+        infoLines.push(`⏰ ${timeSub}`);
+      }
+      if (loc) infoLines.push(`📍 Local: ${loc}`);
+      if (gift) infoLines.push(gift);
+
+      if (infoLines.length > 0) {
+        parts.push('\n' + infoLines.join('\n'));
+      }
+
+      if (target) parts.push(`\n${target}`);
+      if (golden) parts.push(`\n${golden}`);
+      if (call) parts.push(`\n${call} Quem tem informação se protege melhor! 🤝❤️`);
+
+      parts.push('\n#SegurancaDigital #MelhorIdade #PrevençãoDeGolpes #SaudeEBemEstar #PalestraGratuita');
+
+      captionText.textContent = parts.join('\n').trim();
+    }
+
+    // Sincronização Bidirecional (Banner <-> Inputs)
+    fields.forEach(f => {
+      const domEl = document.getElementById(f.domId);
+      const inputEl = document.getElementById(f.inputId);
+
+      // Quando digitar no Input lateral -> atualiza o Banner e checa visibilidade
+      inputEl.addEventListener('input', () => {
+        domEl.innerText = inputEl.value;
+        syncVisibilityAndState();
+      });
+
+      // Quando editar direto no Banner -> atualiza o Input lateral e checa visibilidade
+      domEl.addEventListener('input', () => {
+        inputEl.value = domEl.innerText;
+        syncVisibilityAndState();
+      });
+
+      // Quando sair do elemento no banner se estiver vazio, recolhe o espaço
+      domEl.addEventListener('blur', () => {
+        inputEl.value = domEl.innerText.trim();
+        syncVisibilityAndState();
+      });
+    });
+
+    // Inicialização da Visibilidade
+    syncVisibilityAndState();
+
+    // ========================================================================
+    // 3. BOTÃO RESTAURAR PADRÃO
+    // ========================================================================
+    document.getElementById('btnResetDefaults').addEventListener('click', () => {
+      fields.forEach(f => {
+        const domEl = document.getElementById(f.domId);
+        const inputEl = document.getElementById(f.inputId);
+        domEl.innerText = f.defaultVal;
+        inputEl.value = f.defaultVal;
+      });
+      syncVisibilityAndState();
+      showToast('Textos restaurados para o padrão original da UBS!');
+    });
+
+    // ========================================================================
+    // 4. COPIAR LEGENDA
+    // ========================================================================
     const toastMsg = document.getElementById('toastMsg');
     const toastText = document.getElementById('toastText');
 
@@ -715,13 +1061,40 @@ Entrada totalmente gratuita! Convide seus pais, avós e vizinhos. Quem tem infor
     document.getElementById('btnCopyCaption').addEventListener('click', copyCaption);
     document.getElementById('btnCopyCaptionSide').addEventListener('click', copyCaption);
 
-    // --- 3. Gerar e Baixar Imagem PNG em 1080 x 1920 (Canvas de Alta Resolução) ---
-    const btnDownloadStoryPng = document.getElementById('btnDownloadStoryPng');
+    // ========================================================================
+    // 5. RENDERIZAÇÃO INTELIGENTE EM ALTA DEFINIÇÃO (CANVAS 1080 x 1920)
+    // Oculta completamente seções vazias e centraliza perfeitamente o layout
+    // ========================================================================
     const canvas = document.getElementById('exportCanvas');
     const ctx = canvas.getContext('2d');
 
-    btnDownloadStoryPng.addEventListener('click', () => {
-      // 1. Fundo Gradiente Elegante
+    function renderAndDownload() {
+      // 1. Resgatar valores atuais editados pelo usuário
+      const badge = (document.getElementById('inputBadge').value || '').trim();
+      const icon = (document.getElementById('inputIcon').value || '').trim();
+      const t1 = (document.getElementById('inputTitle1').value || '').trim();
+      const t2 = (document.getElementById('inputTitle2').value || '').trim();
+      const sub = (document.getElementById('inputSubtitle').value || '').trim();
+      const target = (document.getElementById('inputTarget').value || '').trim();
+      const date = (document.getElementById('inputDate').value || '').trim();
+      const time = (document.getElementById('inputTime').value || '').trim();
+      const timeSub = (document.getElementById('inputTimeSub').value || '').trim();
+      const loc = (document.getElementById('inputLocation').value || '').trim();
+      const gift = (document.getElementById('inputGift').value || '').trim();
+      const golden = (document.getElementById('inputGoldenRule').value || '').trim();
+      const call = (document.getElementById('inputCallAction').value || '').trim();
+
+      const timeFull = [time, timeSub].filter(Boolean).join(' ');
+
+      // Itens ativos dentro do Cartão Branco
+      const activeRows = [];
+      if (date) activeRows.push({ icon: '📅', label: 'DATA DO ENCONTRO:', val: date, color: '#0f2347' });
+      if (timeFull) activeRows.push({ icon: '⏰', label: 'HORÁRIO:', val: timeFull, color: '#0f2347' });
+      if (loc) activeRows.push({ icon: '📍', label: 'LOCAL:', val: loc, color: '#1e3a8a' });
+
+      const hasCard = activeRows.length > 0 || !!gift;
+
+      // 2. Fundo Gradiente Elegante
       const bgGrad = ctx.createRadialGradient(540, 300, 50, 540, 960, 1000);
       bgGrad.addColorStop(0, '#193e72');
       bgGrad.addColorStop(0.55, '#0d223f');
@@ -746,133 +1119,268 @@ Entrada totalmente gratuita! Convide seus pais, avós e vizinhos. Quem tem infor
       ctx.arc(100, 1800, 350, 0, Math.PI * 2);
       ctx.fill();
 
-      // 2. Selo do Topo
-      ctx.fillStyle = '#f59e0b';
-      roundRect(ctx, 330, 120, 420, 65, 32, true, false);
-      ctx.fillStyle = '#0f172a';
-      ctx.font = 'bold 30px "Outfit", sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText('📢 PALESTRA GRATUITA', 540, 164);
+      // 3. Medição Dinâmica da Altura Total dos Conteúdos Visíveis
+      let totalH = 0;
+      if (badge) totalH += 62 + 25;
+      if (icon) totalH += 150 + 20;
+      if (t1 && t2) totalH += 165 + 20;
+      else if (t1 || t2) totalH += 80 + 20;
+      if (sub) {
+        const lines = countWrappedLines(ctx, sub, 880, '500 34px "Plus Jakarta Sans", sans-serif');
+        totalH += (lines * 46) + 25;
+      }
+      if (target) totalH += 80 + 25;
 
-      // 3. Ícone do Escudo Central
-      ctx.fillStyle = '#f59e0b';
-      roundRect(ctx, 455, 230, 170, 170, 48, true, false);
-      ctx.font = '85px sans-serif';
-      ctx.fillText('🛡️', 540, 345);
+      let cardH = 0;
+      if (hasCard) {
+        const rowHeight = 105;
+        const dividerHeight = 25;
+        const rowsHeight = activeRows.length > 0 ? (activeRows.length * rowHeight + (activeRows.length - 1) * dividerHeight) : 0;
+        const giftHeight = gift ? 85 : 0;
+        const gapBetween = (activeRows.length > 0 && gift) ? 25 : 0;
+        const cardPadding = 40;
+        cardH = cardPadding * 2 + rowsHeight + gapBetween + giftHeight;
+        totalH += cardH + 30;
+      }
 
-      // 4. Título Principal
-      ctx.fillStyle = '#ffffff';
-      ctx.font = '900 78px "Outfit", sans-serif';
-      ctx.fillText('Proteção Contra', 540, 480);
-      ctx.fillStyle = '#60a5fa';
-      ctx.fillText('Golpes no Celular', 540, 565);
+      if (golden) totalH += 80 + 25;
+      if (call) {
+        const lines = countWrappedLines(ctx, call, 920, 'bold 36px "Outfit", sans-serif');
+        totalH += (lines * 48);
+      }
 
-      // 5. Subtítulo
-      ctx.fillStyle = '#cbd5e1';
-      ctx.font = '500 36px "Plus Jakarta Sans", sans-serif';
-      ctx.fillText('Aprenda a reconhecer mensagens falsas no', 540, 640);
-      ctx.fillText('WhatsApp e ligações suspeitas do banco.', 540, 690);
+      // 4. Posição Y Inicial (Centralização Vertical Perfeita)
+      let curY = Math.max(90, Math.floor((1920 - totalH) / 2));
 
-      // 6. Faixa Especial Idosos & Família
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
-      ctx.lineWidth = 3;
-      roundRect(ctx, 120, 750, 840, 90, 24, true, true);
-      ctx.fillStyle = '#fef08a';
-      ctx.font = '600 34px "Plus Jakarta Sans", sans-serif';
-      ctx.fillText('🤝 Encontro especial para idosos e familiares', 540, 807);
+      // 5. Renderizar Top Badge (Se houver texto)
+      if (badge) {
+        ctx.font = 'bold 30px "Outfit", sans-serif';
+        const badgeMetrics = ctx.measureText(badge);
+        const badgeW = Math.min(860, Math.max(340, badgeMetrics.width + 70));
+        ctx.fillStyle = '#f59e0b';
+        roundRect(ctx, 540 - badgeW / 2, curY, badgeW, 62, 31, true, false);
+        ctx.fillStyle = '#0f172a';
+        ctx.textAlign = 'center';
+        ctx.fillText(badge, 540, curY + 42);
+        curY += 62 + 25;
+      }
 
-      // 7. Cartão Principal de Informações (Branco)
-      ctx.fillStyle = '#ffffff';
-      roundRect(ctx, 100, 880, 880, 660, 40, true, false);
+      // 6. Renderizar Ícone (Se houver texto)
+      if (icon) {
+        ctx.fillStyle = '#f59e0b';
+        roundRect(ctx, 465, curY, 150, 150, 44, true, false);
+        ctx.font = '78px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(icon, 540, curY + 104);
+        curY += 150 + 20;
+      }
 
-      // Sombra simulada suave
-      ctx.strokeStyle = 'rgba(203, 213, 225, 0.6)';
-      ctx.lineWidth = 2;
-      roundRect(ctx, 100, 880, 880, 660, 40, false, true);
+      // 7. Renderizar Título (Se houver linha 1 ou 2)
+      if (t1 || t2) {
+        ctx.textAlign = 'center';
+        if (t1 && t2) {
+          ctx.fillStyle = '#ffffff';
+          drawCenteredSingleLineOrScaled(ctx, t1, 540, curY + 65, 920, '900 74px "Outfit", sans-serif');
+          ctx.fillStyle = '#60a5fa';
+          drawCenteredSingleLineOrScaled(ctx, t2, 540, curY + 145, 920, '900 74px "Outfit", sans-serif');
+          curY += 165 + 20;
+        } else {
+          const singleTitle = t1 || t2;
+          ctx.fillStyle = t1 ? '#ffffff' : '#60a5fa';
+          drawCenteredSingleLineOrScaled(ctx, singleTitle, 540, curY + 65, 920, '900 74px "Outfit", sans-serif');
+          curY += 80 + 20;
+        }
+      }
 
-      // Item 1: Data
-      drawInfoRow(ctx, '📅', 'DATA DO ENCONTRO:', inputDate.value.trim() || '10 de Novembro', 930);
+      // 8. Renderizar Subtítulo (Se houver texto)
+      if (sub) {
+        ctx.fillStyle = '#cbd5e1';
+        ctx.font = '500 34px "Plus Jakarta Sans", sans-serif';
+        const subEndY = drawWrappedText(ctx, sub, 540, curY + 35, 880, 46, 'center');
+        curY = subEndY + 25;
+      }
 
-      // Divisória 1
-      ctx.strokeStyle = '#e2e8f0';
-      ctx.beginPath();
-      ctx.moveTo(150, 1060);
-      ctx.lineTo(930, 1060);
-      ctx.stroke();
+      // 9. Renderizar Público-Alvo (Se houver texto)
+      if (target) {
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
+        ctx.lineWidth = 3;
+        roundRect(ctx, 100, curY, 880, 80, 22, true, true);
+        ctx.fillStyle = '#fef08a';
+        drawCenteredSingleLineOrScaled(ctx, target, 540, curY + 52, 840, '600 32px "Plus Jakarta Sans", sans-serif');
+        curY += 80 + 25;
+      }
 
-      // Item 2: Horário
-      drawInfoRow(ctx, '⏰', 'HORÁRIO:', `${inputTime.value.trim() || '14h00'} (Apenas 15 minutos de palestra)`, 1100);
+      // 10. Renderizar Cartão Principal Branco (Apenas se houver itens ativos)
+      if (hasCard) {
+        ctx.fillStyle = '#ffffff';
+        roundRect(ctx, 100, curY, 880, cardH, 36, true, false);
+        ctx.strokeStyle = 'rgba(203, 213, 225, 0.6)';
+        ctx.lineWidth = 2;
+        roundRect(ctx, 100, curY, 880, cardH, 36, false, true);
 
-      // Divisória 2
-      ctx.strokeStyle = '#e2e8f0';
-      ctx.beginPath();
-      ctx.moveTo(150, 1230);
-      ctx.lineTo(930, 1230);
-      ctx.stroke();
+        let cardItemY = curY + 40;
+        const rowHeight = 105;
+        const dividerHeight = 25;
 
-      // Item 3: Local
-      drawInfoRow(ctx, '📍', 'LOCAL:', inputLocation.value.trim() || 'UBS Alarico Leite', 1270, '#1e3a8a');
+        // Desenhar Linhas Ativas (Data, Horário, Local)
+        for (let i = 0; i < activeRows.length; i++) {
+          const r = activeRows[i];
+          drawInfoRow(ctx, r.icon, r.label, r.val, cardItemY, r.color);
+          cardItemY += rowHeight;
 
-      // Faixa de Cartilha Gratuita dentro do cartão
-      ctx.fillStyle = '#ecfdf5';
-      ctx.strokeStyle = '#a7f3d0';
-      ctx.lineWidth = 2;
-      roundRect(ctx, 140, 1430, 800, 80, 20, true, true);
-      ctx.fillStyle = '#065f46';
-      ctx.font = 'bold 31px "Plus Jakarta Sans", sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText('🎁 Entrega gratuita da Cartilha Impressa para todos!', 540, 1482);
+          // Desenhar divisória somente se houver próximo item
+          if (i < activeRows.length - 1) {
+            ctx.strokeStyle = '#e2e8f0';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(140, cardItemY + 12);
+            ctx.lineTo(940, cardItemY + 12);
+            ctx.stroke();
+            cardItemY += dividerHeight;
+          }
+        }
 
-      // 8. Selo de Regra de Ouro no Rodapé
-      ctx.fillStyle = 'rgba(220, 38, 38, 0.22)';
-      ctx.strokeStyle = 'rgba(239, 68, 68, 0.6)';
-      ctx.lineWidth = 2;
-      roundRect(ctx, 160, 1590, 760, 80, 40, true, true);
-      ctx.fillStyle = '#fca5a5';
-      ctx.font = 'bold 32px "Plus Jakarta Sans", sans-serif';
-      ctx.fillText('🛑 "Na dúvida: Pare, Confira e Peça Ajuda!"', 540, 1642);
+        // Desenhar Brinde / Cartilha (se houver texto)
+        if (gift) {
+          if (activeRows.length > 0) cardItemY += 25;
+          ctx.fillStyle = '#ecfdf5';
+          ctx.strokeStyle = '#a7f3d0';
+          ctx.lineWidth = 2;
+          roundRect(ctx, 130, cardItemY, 820, 85, 20, true, true);
+          ctx.fillStyle = '#065f46';
+          drawCenteredSingleLineOrScaled(ctx, gift, 540, cardItemY + 54, 780, 'bold 31px "Plus Jakarta Sans", sans-serif');
+        }
 
-      // 9. Chamada Final
-      ctx.fillStyle = '#94a3b8';
-      ctx.font = '500 34px "Plus Jakarta Sans", sans-serif';
-      ctx.fillText('Venha participar e traga sua família!', 540, 1730);
-      ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 42px "Outfit", sans-serif';
-      ctx.fillText('ENTRADA TOTALMENTE FRANCA', 540, 1785);
+        curY += cardH + 30;
+      }
 
-      // 10. Salvar como Arquivo PNG
+      // 11. Renderizar Regra de Ouro / Frase de Impacto (Se houver texto)
+      if (golden) {
+        ctx.fillStyle = 'rgba(220, 38, 38, 0.22)';
+        ctx.strokeStyle = 'rgba(239, 68, 68, 0.6)';
+        ctx.lineWidth = 2;
+        roundRect(ctx, 130, curY, 820, 80, 40, true, true);
+        ctx.fillStyle = '#fca5a5';
+        drawCenteredSingleLineOrScaled(ctx, golden, 540, curY + 51, 780, 'bold 31px "Plus Jakarta Sans", sans-serif');
+        curY += 80 + 25;
+      }
+
+      // 12. Renderizar Chamada Final (Se houver texto)
+      if (call) {
+        ctx.fillStyle = '#ffffff';
+        drawWrappedText(ctx, call, 540, curY + 35, 920, 48, 'center', 'bold 36px "Outfit", sans-serif');
+      }
+
+      // 13. Salvar como Arquivo PNG
       const link = document.createElement('a');
-      link.download = 'story-palestra-ubs-alarico-leite.png';
+      link.download = 'story-palestra-personalizado.png';
       link.href = canvas.toDataURL('image/png');
       link.click();
 
       showToast('Imagem para Instagram Story baixada com sucesso! 📱');
-    });
+    }
 
-    // Helper: Desenhar Linha de Informações no Canvas
+    document.getElementById('btnDownloadStoryPng').addEventListener('click', renderAndDownload);
+    document.getElementById('btnDownloadSide').addEventListener('click', renderAndDownload);
+
+    // ========================================================================
+    // 6. HELPERS DE CANVAS: TEXT WRAPPING, SCALING E RETÂNGULOS ARREDONDADOS
+    // ========================================================================
+    function countWrappedLines(ctx, text, maxWidth, font) {
+      if (font) ctx.font = font;
+      const words = text.split(' ');
+      let line = '';
+      let count = 0;
+      for (let n = 0; n < words.length; n++) {
+        const testLine = line + words[n] + ' ';
+        const metrics = ctx.measureText(testLine);
+        if (metrics.width > maxWidth && n > 0) {
+          count++;
+          line = words[n] + ' ';
+        } else {
+          line = testLine;
+        }
+      }
+      count++;
+      return Math.max(1, count);
+    }
+
     function drawInfoRow(ctx, icon, label, value, startY, valColor = '#0f2347') {
-      // Quadrado do ícone
       ctx.fillStyle = '#eff6ff';
       ctx.strokeStyle = '#bfdbfe';
       ctx.lineWidth = 2;
-      roundRect(ctx, 150, startY, 90, 90, 22, true, true);
-      ctx.font = '48px sans-serif';
+      roundRect(ctx, 140, startY, 86, 86, 20, true, true);
+      ctx.font = '46px sans-serif';
       ctx.textAlign = 'center';
-      ctx.fillText(icon, 195, startY + 64);
+      ctx.fillText(icon, 183, startY + 62);
 
-      // Textos
       ctx.textAlign = 'left';
       ctx.fillStyle = '#64748b';
       ctx.font = 'bold 24px "Plus Jakarta Sans", sans-serif';
-      ctx.fillText(label, 270, startY + 36);
+      ctx.fillText(label, 255, startY + 34);
 
       ctx.fillStyle = valColor;
-      ctx.font = 'bold 44px "Outfit", sans-serif';
-      ctx.fillText(value, 270, startY + 82);
+      drawLeftSingleLineOrScaled(ctx, value, 255, startY + 78, 650, 'bold 40px "Outfit", sans-serif');
     }
 
-    // Helper: Desenhar Retângulo Arredondado
+    function drawWrappedText(ctx, text, x, y, maxWidth, lineHeight, align = 'center', font = null) {
+      if (font) ctx.font = font;
+      ctx.textAlign = align;
+      const words = text.split(' ');
+      let line = '';
+      const lines = [];
+
+      for (let n = 0; n < words.length; n++) {
+        const testLine = line + words[n] + ' ';
+        const metrics = ctx.measureText(testLine);
+        if (metrics.width > maxWidth && n > 0) {
+          lines.push(line.trim());
+          line = words[n] + ' ';
+        } else {
+          line = testLine;
+        }
+      }
+      lines.push(line.trim());
+
+      let curY = y;
+      for (let k = 0; k < lines.length; k++) {
+        ctx.fillText(lines[k], x, curY);
+        curY += lineHeight;
+      }
+      return curY;
+    }
+
+    function drawCenteredSingleLineOrScaled(ctx, text, x, y, maxW, baseFont) {
+      ctx.font = baseFont;
+      let textW = ctx.measureText(text).width;
+      if (textW > maxW) {
+        const match = baseFont.match(/(\d+)px/);
+        if (match) {
+          const origSize = parseInt(match[1]);
+          const newSize = Math.max(18, Math.floor(origSize * (maxW / textW)));
+          ctx.font = baseFont.replace(/\d+px/, newSize + 'px');
+        }
+      }
+      ctx.textAlign = 'center';
+      ctx.fillText(text, x, y);
+    }
+
+    function drawLeftSingleLineOrScaled(ctx, text, x, y, maxW, baseFont) {
+      ctx.font = baseFont;
+      let textW = ctx.measureText(text).width;
+      if (textW > maxW) {
+        const match = baseFont.match(/(\d+)px/);
+        if (match) {
+          const origSize = parseInt(match[1]);
+          const newSize = Math.max(18, Math.floor(origSize * (maxW / textW)));
+          ctx.font = baseFont.replace(/\d+px/, newSize + 'px');
+        }
+      }
+      ctx.textAlign = 'left';
+      ctx.fillText(text, x, y);
+    }
+
     function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
       ctx.beginPath();
       ctx.moveTo(x + radius, y);
