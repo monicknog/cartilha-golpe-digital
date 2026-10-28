@@ -16,6 +16,9 @@
     href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
     rel="stylesheet">
 
+  <!-- Biblioteca html2pdf para exportar os slides em PDF de alta resolução -->
+  <script src="assets/html2pdf.bundle.min.js"></script>
+
   <style>
     /* ==========================================================================
        DESIGN SYSTEM & SLIDES APRESENTAÇÃO 15 MINUTOS (PALESTRA IDOSOS)
@@ -171,6 +174,7 @@
       color: var(--theme-slide-title);
       overflow: hidden;
       height: 100vh;
+      height: 100dvh;
       width: 100vw;
       display: flex;
       flex-direction: column;
@@ -198,17 +202,19 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 1rem;
+      gap: 0.75rem;
       z-index: 100;
       backdrop-filter: blur(10px);
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
       transition: all 0.3s ease;
+      flex-shrink: 0;
     }
 
     .pres-brand {
       display: flex;
       align-items: center;
       gap: 0.75rem;
+      min-width: 0;
     }
 
     .pres-icon {
@@ -221,6 +227,11 @@
       justify-content: center;
       font-size: 1.1rem;
       color: #0f172a;
+      flex-shrink: 0;
+    }
+
+    .pres-title-wrap {
+      min-width: 0;
     }
 
     .pres-title-wrap h1 {
@@ -229,11 +240,18 @@
       font-weight: 700;
       line-height: 1.2;
       color: var(--theme-header-title);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .pres-title-wrap span {
       font-size: 0.75rem;
       color: var(--theme-header-sub);
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     /* Cronômetro de 15 Minutos (Oculto por padrão, exibido sob demanda) */
@@ -245,13 +263,14 @@
       padding: 0.35rem 0.85rem;
       display: none; /* Oculto por padrão */
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.5rem;
       font-family: var(--font-heading);
       font-weight: 700;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       letter-spacing: 0.05em;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       transition: all 0.25s ease;
+      flex-shrink: 0;
     }
 
     .timer-badge.visible {
@@ -303,24 +322,28 @@
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     .btn-top {
       background: var(--theme-btn-top-bg);
       color: var(--theme-btn-top-text);
       border: 1px solid var(--theme-btn-top-border);
-      padding: 0.4rem 0.75rem;
+      padding: 0.4rem 0.7rem;
       border-radius: 8px;
       font-family: var(--font-heading);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 600;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.35rem;
       transition: all 0.2s ease;
       text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .btn-top:hover {
@@ -334,12 +357,25 @@
       border-color: #f59e0b;
     }
 
+    .btn-top-download {
+      background: #10b981;
+      color: #ffffff;
+      border-color: #059669;
+      font-weight: 700;
+    }
+
+    .btn-top-download:hover {
+      background: #059669;
+      color: #ffffff;
+    }
+
     /* Barra de Progresso Superior */
     .progress-bar-container {
       width: 100%;
       height: 4px;
       background: rgba(255, 255, 255, 0.1);
       position: relative;
+      flex-shrink: 0;
     }
 
     .progress-bar-fill {
@@ -358,26 +394,41 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 1.5rem;
+      padding: 1.25rem;
       background: var(--theme-main-bg);
       overflow: hidden;
       transition: background 0.3s ease;
+      min-height: 0;
     }
 
     .slide {
       position: absolute;
-      width: 92%;
+      width: 94%;
       max-width: 1240px;
-      height: calc(100% - 2rem);
-      max-height: 720px;
+      height: calc(100% - 1.5rem);
+      max-height: 760px;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: safe center;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(245, 158, 11, 0.5) transparent;
+      padding: 0.5rem 0.35rem;
       opacity: 0;
       visibility: hidden;
       transform: translateY(20px) scale(0.98);
-      transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+      transition: opacity 0.35s ease, transform 0.35s ease, visibility 0.35s;
       pointer-events: none;
+    }
+
+    .slide > *:first-child {
+      margin-top: auto;
+    }
+
+    .slide > *:last-child {
+      margin-bottom: auto;
     }
 
     .slide.active {
@@ -888,32 +939,619 @@
       font-size: calc(1.05rem * var(--slide-font-scale));
     }
 
-    /* Responsividade */
-    @media (max-width: 900px) {
+    /* Dica de deslize (Swipe) visível apenas em telas touch / mobile / tablet */
+    .mobile-swipe-hint {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      color: var(--theme-footer-text);
+      text-align: center;
+      padding: 0.25rem 0.5rem;
+      background: rgba(245, 158, 11, 0.12);
+      border-top: 1px solid rgba(245, 158, 11, 0.25);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    /* ==========================================================================
+       MODAL DE DOWNLOAD DA APRESENTAÇÃO (PDF / HTML OFFLINE / IMPRESSÃO)
+       ========================================================================== */
+    .download-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 19, 37, 0.8);
+      backdrop-filter: blur(6px);
+      z-index: 400;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .download-modal-backdrop.open {
+      display: flex;
+    }
+
+    .download-modal {
+      background: #ffffff;
+      color: #0f172a;
+      width: 100%;
+      max-width: 520px;
+      border-radius: 20px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      border: 2px solid #f59e0b;
+      animation: modalFadeIn 0.25s ease;
+    }
+
+    @keyframes modalFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.97);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .download-modal-header {
+      background: #0d223f;
+      color: #ffffff;
+      padding: 1.1rem 1.35rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .download-modal-header h3 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .download-modal-close {
+      background: rgba(255, 255, 255, 0.12);
+      border: none;
+      color: #ffffff;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      font-size: 1.25rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .download-modal-body {
+      padding: 1.35rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .download-modal-desc {
+      font-size: 0.92rem;
+      color: #475569;
+      line-height: 1.45;
+    }
+
+    .download-option-btn {
+      width: 100%;
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 1rem 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      cursor: pointer;
+      text-align: left;
+      transition: all 0.2s ease;
+      font-family: var(--font-body);
+    }
+
+    .download-option-btn:hover:not(:disabled) {
+      border-color: #f59e0b;
+      background: #fffbeb;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+    }
+
+    .download-option-btn.primary {
+      background: #ecfdf5;
+      border-color: #10b981;
+    }
+
+    .download-option-btn.primary:hover:not(:disabled) {
+      background: #d1fae5;
+      border-color: #059669;
+    }
+
+    .download-option-btn:disabled {
+      opacity: 0.65;
+      cursor: wait;
+    }
+
+    .download-opt-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      flex-shrink: 0;
+    }
+
+    .download-opt-info {
+      flex: 1;
+    }
+
+    .download-opt-title {
+      font-family: var(--font-heading);
+      font-size: 1.02rem;
+      font-weight: 800;
+      color: #0f172a;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .download-opt-sub {
+      font-size: 0.82rem;
+      color: #475569;
+      line-height: 1.35;
+      display: block;
+    }
+
+    .pdf-status-banner {
+      display: none;
+      align-items: center;
+      gap: 0.65rem;
+      background: #eff6ff;
+      border: 1px solid #93c5fd;
+      color: #1e3a8a;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .pdf-status-banner.active {
+      display: flex;
+    }
+
+    /* Container oculto para renderização fiel do PDF em Widescreen/A4 Paisagem */
+    #pdfExportDeck {
+      position: fixed;
+      left: -9999px;
+      top: 0;
+      width: 1122px;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .pdf-slide-page {
+      width: 1122px;
+      height: 793px;
+      padding: 42px 54px;
+      background: radial-gradient(circle at 50% 20%, #163663 0%, #0d223f 55%, #081629 100%);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      box-sizing: border-box;
+      overflow: hidden;
+      page-break-after: always;
+      break-after: page;
+    }
+
+    .pdf-slide-page.theme-light-page {
+      background: #ffffff;
+      color: #0f2347;
+    }
+
+    .pdf-slide-page:last-child {
+      page-break-after: avoid;
+      break-after: avoid;
+    }
+
+    .pdf-slide-footer-tag {
+      position: absolute;
+      bottom: 16px;
+      right: 36px;
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.55);
+      font-weight: 600;
+    }
+
+    .pdf-slide-page.theme-light-page .pdf-slide-footer-tag {
+      color: #64748b;
+    }
+
+    /* Garante layout desktop widescreen na exportação PDF mesmo quando baixado pelo celular */
+    .pdf-slide-page #btnSlide7Download {
+      display: none !important;
+    }
+
+    .pdf-slide-page .slide-grid-4 {
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 1.25rem !important;
+    }
+
+    .pdf-slide-page .slide-grid-3 {
+      grid-template-columns: repeat(3, 1fr) !important;
+      gap: 1.5rem !important;
+    }
+
+    .pdf-slide-page .slide-grid-2 {
+      grid-template-columns: 1fr 1fr !important;
+      gap: 1.75rem !important;
+    }
+
+    .pdf-slide-page .cover-slide-content {
+      flex-direction: row !important;
+      gap: 3rem !important;
+    }
+
+    .pdf-slide-page .cover-image-card {
+      max-width: 300px !important;
+      flex-direction: column !important;
+      text-align: center !important;
+      padding: 1rem !important;
+    }
+
+    .pdf-slide-page .cover-image-card img {
+      width: 100% !important;
+      height: auto !important;
+    }
+
+    /* ==========================================================================
+       RESPONSIVIDADE COMPLETA (TABLETS, CELULARES E TELAS COMPACTAS)
+       ========================================================================== */
+    @media (max-width: 1180px) {
+      .shortcuts-hint {
+        display: none;
+      }
+
+      .hide-tablet {
+        display: none;
+      }
+    }
+
+    /* Tablets e Telas Médias (até 1024px) */
+    @media (max-width: 1024px) {
+      .pres-header {
+        flex-wrap: wrap;
+        padding: 0.5rem 0.9rem;
+        gap: 0.5rem;
+      }
+
+      .pres-title-wrap span {
+        display: none;
+      }
+
+      .header-actions {
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding-bottom: 2px;
+      }
+
+      .header-actions::-webkit-scrollbar {
+        display: none;
+      }
+
+      .pres-main {
+        padding: 0.75rem 1rem;
+      }
+
+      .slide {
+        width: 100%;
+        height: 100%;
+        max-height: none;
+        justify-content: flex-start;
+        padding: 0.5rem 0.25rem 1.25rem;
+      }
+
+      .slide > *:first-child {
+        margin-top: 0;
+      }
+
+      .slide > *:last-child {
+        margin-bottom: 0;
+      }
+
       .slide-grid-4 {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
       }
 
       .slide-grid-3 {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
       }
 
       .slide-grid-2 {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
       }
 
       .cover-slide-content {
-        flex-direction: column;
         gap: 1.5rem;
       }
 
-      .cover-right {
+      .cover-hero-title {
+        font-size: calc(2.35rem * var(--slide-font-scale));
+      }
+
+      .slide-title {
+        font-size: calc(1.85rem * var(--slide-font-scale));
+      }
+
+      .mobile-swipe-hint {
+        display: flex;
+      }
+    }
+
+    /* Celulares e Tablets em Retrato (até 768px) */
+    @media (max-width: 768px) {
+      .pres-header {
+        padding: 0.45rem 0.75rem;
+        gap: 0.4rem;
+      }
+
+      .pres-icon {
+        width: 28px;
+        height: 28px;
+        font-size: 0.95rem;
+      }
+
+      .pres-title-wrap h1 {
+        font-size: 0.88rem;
+      }
+
+      .timer-badge {
+        padding: 0.25rem 0.65rem;
+        font-size: 0.82rem;
+      }
+
+      .btn-top {
+        padding: 0.36rem 0.62rem;
+        font-size: 0.76rem;
+        border-radius: 7px;
+      }
+
+      .hide-mobile {
         display: none;
+      }
+
+      .pres-main {
+        padding: 0.65rem 0.85rem;
+      }
+
+      .slide {
+        padding: 0.35rem 0.15rem 1rem;
+      }
+
+      .slide-pill-badge {
+        font-size: calc(0.75rem * var(--slide-font-scale));
+        padding: 0.28rem 0.7rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .slide-title {
+        font-size: calc(1.45rem * var(--slide-font-scale));
+        line-height: 1.2;
+        margin-bottom: 0.4rem;
+      }
+
+      .slide-subtitle {
+        font-size: calc(0.95rem * var(--slide-font-scale));
+        margin-bottom: 0.9rem;
+      }
+
+      .banner-urgent {
+        padding: 0.75rem 0.95rem;
+        font-size: calc(0.92rem * var(--slide-font-scale));
+        margin-bottom: 0.9rem;
+        gap: 0.55rem;
+      }
+
+      .slide-grid-4,
+      .slide-grid-3,
+      .slide-grid-2 {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+      }
+
+      .slide-card {
+        padding: 1rem;
+        border-radius: 14px;
+      }
+
+      .slide-card-icon {
+        font-size: 1.45rem;
+      }
+
+      .slide-card-title {
+        font-size: calc(1.05rem * var(--slide-font-scale));
+      }
+
+      .slide-card-desc {
+        font-size: calc(0.9rem * var(--slide-font-scale));
+      }
+
+      .slide-action-box {
+        margin-top: 0.65rem;
+        padding: 0.55rem 0.7rem;
+        font-size: calc(0.84rem * var(--slide-font-scale));
+      }
+
+      /* Capa e Encerramento no Celular */
+      .cover-slide-content {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .cover-left {
+        width: 100%;
+      }
+
+      .cover-right {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      .cover-image-card {
+        max-width: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+        padding: 0.75rem;
+        border-radius: 16px;
+        text-align: left;
+      }
+
+      .cover-image-card img {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 12px;
+        flex-shrink: 0;
+      }
+
+      .cover-image-card p {
+        margin-top: 0;
+        font-size: 0.9rem;
+      }
+
+      .cover-badge-large {
+        font-size: 0.72rem;
+        padding: 0.3rem 0.7rem;
+        margin-bottom: 0.4rem;
+      }
+
+      .cover-hero-title {
+        font-size: calc(1.65rem * var(--slide-font-scale));
+        margin-bottom: 0.65rem;
+      }
+
+      .cover-hero-desc {
+        font-size: calc(0.96rem * var(--slide-font-scale));
+        margin-bottom: 0.9rem;
+      }
+
+      .cover-icebreaker {
+        padding: 0.75rem 0.9rem;
+        font-size: calc(0.88rem * var(--slide-font-scale));
+      }
+
+      .emergency-bar {
+        margin-top: 0.9rem;
+        padding: 0.85rem 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.45rem;
+        font-size: 0.9rem;
+      }
+
+      .quote-recap-box {
+        padding: 0.9rem 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .quote-title {
+        font-size: 1.05rem;
+      }
+
+      .quote-text {
+        font-size: calc(0.92rem * var(--slide-font-scale));
+      }
+
+      /* Rodapé compacto no celular */
+      .pres-footer {
+        padding: 0.55rem 0.75rem;
+        gap: 0.5rem;
+      }
+
+      .slide-counter {
+        font-size: 0.82rem;
+      }
+
+      .dot-btn {
+        width: 9px;
+        height: 9px;
+      }
+
+      .dot-btn.active {
+        width: 20px;
+      }
+
+      .nav-buttons {
+        gap: 0.45rem;
+      }
+
+      .btn-nav {
+        padding: 0.45rem 0.8rem;
+        font-size: 0.82rem;
+        border-radius: 8px;
+      }
+
+      /* Gaveta de Notas em tela cheia no celular */
+      .presenter-drawer {
+        top: 0;
+        width: 100vw;
+        max-width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+        z-index: 350;
+      }
+    }
+
+    /* Celulares Pequenos (até 420px) */
+    @media (max-width: 420px) {
+      .dots-nav {
+        gap: 0.3rem;
+      }
+
+      .dot-btn {
+        width: 7px;
+        height: 7px;
+      }
+
+      .dot-btn.active {
+        width: 16px;
+      }
+
+      .btn-nav {
+        padding: 0.42rem 0.65rem;
+        font-size: 0.78rem;
       }
     }
 
     /* Suporte a Impressão / Exportação PDF (Apostila de Slides) */
     @media print {
+      @page {
+        size: A4 landscape;
+        margin: 0;
+      }
+
       body {
         overflow: visible !important;
         height: auto !important;
@@ -923,8 +1561,11 @@
 
       .pres-header,
       .pres-footer,
+      .mobile-swipe-hint,
       .progress-bar-container,
-      .presenter-drawer {
+      .presenter-drawer,
+      .download-modal-backdrop,
+      #pdfExportDeck {
         display: none !important;
       }
 
@@ -938,7 +1579,7 @@
         position: relative !important;
         width: 100% !important;
         max-width: 100% !important;
-        height: auto !important;
+        height: 100vh !important;
         max-height: none !important;
         opacity: 1 !important;
         visibility: visible !important;
@@ -949,6 +1590,7 @@
         background: #0d223f !important;
         color: #ffffff !important;
         box-sizing: border-box;
+        overflow: hidden !important;
       }
 
       .slide:last-child {
@@ -983,25 +1625,30 @@
 
     <!-- Ações e Modos -->
     <div class="header-actions">
+      <!-- Baixar Apresentação -->
+      <button id="btnOpenDownloadModal" class="btn-top btn-top-download" title="Baixar apresentação em PDF ou arquivo Offline (Tecla D)">
+        <span>📥 Baixar Apresentação</span>
+      </button>
+
       <!-- Mostrar / Ocultar Cronômetro -->
       <button id="btnToggleTimerVisibility" class="btn-top" title="Mostrar ou ocultar o cronômetro na tela (Tecla T)">
-        <span>⏱️ Cronômetro (T)</span>
+        <span>⏱️ Cronômetro<span class="hide-mobile"> (T)</span></span>
       </button>
 
       <!-- Notas do Apresentador -->
       <button id="btnToggleNotes" class="btn-top" title="Abrir roteiro de fala e notas para o palestrante (Tecla N)">
-        <span>🎤 Roteiro de Fala (N)</span>
+        <span>🎤 Roteiro<span class="hide-mobile"> de Fala (N)</span></span>
       </button>
 
       <!-- Aumentar Fonte -->
-      <button id="btnPresFontSize" class="btn-top" title="Aumentar tamanho das letras para projetor">
+      <button id="btnPresFontSize" class="btn-top" title="Aumentar tamanho das letras para projetor ou celular">
         <strong>A+</strong>
       </button>
 
       <!-- Alternar Tema Claro / Escuro -->
       <button id="btnToggleTheme" class="btn-top" title="Alternar entre Tema Claro (Fundo Branco) e Tema Escuro (Tecla C)">
         <span id="themeBtnIcon">☀️</span>
-        <span id="themeBtnText">Tema Claro (C)</span>
+        <span id="themeBtnText">Tema Claro<span class="hide-mobile"> (C)</span></span>
       </button>
 
       <!-- Tela Cheia -->
@@ -1063,7 +1710,9 @@
         <div class="cover-right">
           <div class="cover-image-card">
             <img src="assets/cover-illustration.jpg" alt="Celular seguro com escudo de proteção digital">
-            <p>Guia Prático e Gratuito para a Família</p>
+            <div>
+              <p>Guia Prático e Gratuito para a Família</p>
+            </div>
           </div>
         </div>
       </div>
@@ -1414,9 +2063,12 @@
             </p>
           </div>
 
-          <div style="display: flex; gap: 1rem; align-items: center;">
+          <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
+            <button type="button" id="btnSlide7Download" class="btn-nav" style="background: #10b981; color: #ffffff;">
+              📥 Baixar Apresentação (PDF / Offline)
+            </button>
             <a href="index.html" class="btn-nav" style="text-decoration: none; background: #f59e0b; color: #0f172a;">
-              📄 Abrir Cartilha Completa & PDF
+              📄 Abrir Cartilha Completa
             </a>
             <span style="color: #94a3b8; font-size: 0.9rem;">
               Obrigado pela atenção de todos! 👏
@@ -1427,16 +2079,23 @@
         <div class="cover-right">
           <div class="cover-image-card" style="border: 4px solid #f59e0b;">
             <img src="assets/cover-illustration.jpg" alt="Cartilha de Proteção Digital">
-            <p style="color: #0f172a; font-size: 1.05rem; font-weight: 800;">
-              Distribuição Gratuita
-            </p>
-            <span style="font-size: 0.85rem; color: #475569;">Imprima e compartilhe</span>
+            <div>
+              <p style="color: #0f172a; font-size: 1.05rem; font-weight: 800;">
+                Distribuição Gratuita
+              </p>
+              <span style="font-size: 0.85rem; color: #475569;">Imprima e compartilhe</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
   </main>
+
+  <!-- Dica de Gesto Touch para Celular e Tablet -->
+  <div class="mobile-swipe-hint" aria-hidden="true">
+    <span>👈 Deslize para o lado para mudar de slide ou role para ler tudo 👉</span>
+  </div>
 
   <!-- ======================================================================
        RODAPÉ DE NAVEGAÇÃO DOS SLIDES
@@ -1452,7 +2111,7 @@
 
     <div class="nav-buttons">
       <div class="shortcuts-hint" title="Você também pode navegar pelas teclas de atalho">
-        <span>Teclas: <span class="kbd">◀</span> <span class="kbd">▶</span> | <span class="kbd">C</span> Tema Claro/Escuro | <span class="kbd">T</span> Cronômetro | <span class="kbd">N</span> Notas | <span class="kbd">F</span> Tela Cheia</span>
+        <span>Teclas: <span class="kbd">◀</span> <span class="kbd">▶</span> | <span class="kbd">D</span> Baixar | <span class="kbd">C</span> Tema | <span class="kbd">T</span> Cronômetro | <span class="kbd">N</span> Notas | <span class="kbd">F</span> Tela Cheia</span>
       </div>
 
       <button id="btnPrevSlide" class="btn-nav" disabled>
@@ -1478,6 +2137,59 @@
       <!-- O conteúdo é preenchido dinamicamente de acordo com o slide atual -->
     </div>
   </aside>
+
+  <!-- ======================================================================
+       MODAL DE DOWNLOAD DA APRESENTAÇÃO
+       ====================================================================== -->
+  <div id="downloadModalBackdrop" class="download-modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="downloadModalTitle">
+    <div class="download-modal">
+      <div class="download-modal-header">
+        <h3 id="downloadModalTitle"><span>📥</span> Baixar Apresentação (7 Slides)</h3>
+        <button id="btnCloseDownloadModal" class="download-modal-close" aria-label="Fechar janela de download">&times;</button>
+      </div>
+
+      <div class="download-modal-body">
+        <p class="download-modal-desc">
+          Escolha o formato ideal para salvar, enviar por WhatsApp, imprimir ou apresentar sem internet:
+        </p>
+
+        <div id="pdfStatusBanner" class="pdf-status-banner">
+          <span>⏳</span>
+          <span id="pdfStatusText">Preparando os 7 slides em alta resolução...</span>
+        </div>
+
+        <!-- Opção 1: PDF dos Slides (Alta Resolução) -->
+        <button type="button" id="btnDownloadSlidesPdf" class="download-option-btn primary">
+          <div class="download-opt-icon">📄</div>
+          <div class="download-opt-info">
+            <span class="download-opt-title">Baixar Apresentação em PDF (Recomendado)</span>
+            <span class="download-opt-sub">Gera um arquivo PDF com todos os 7 slides em formato paisagem, ótimo para celular, WhatsApp e impressão.</span>
+          </div>
+        </button>
+
+        <!-- Opção 2: Apresentação Interativa Offline (.HTML) -->
+        <button type="button" id="btnDownloadOfflineHtml" class="download-option-btn">
+          <div class="download-opt-icon">💻</div>
+          <div class="download-opt-info">
+            <span class="download-opt-title">Baixar Apresentação Interativa (.HTML Offline)</span>
+            <span class="download-opt-sub">Salva a apresentação completa em arquivo único com cronômetro e roteiro para usar no pendrive ou celular sem internet.</span>
+          </div>
+        </button>
+
+        <!-- Opção 3: Impressão / Salvar PDF Nativo -->
+        <button type="button" id="btnPrintSlidesNative" class="download-option-btn">
+          <div class="download-opt-icon">🖨️</div>
+          <div class="download-opt-info">
+            <span class="download-opt-title">Imprimir Apostila de Slides</span>
+            <span class="download-opt-sub">Abre a janela de impressão do sistema para imprimir os slides em folha A4 Paisagem.</span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Container oculto usado para gerar o PDF em alta resolução (1122x793) -->
+  <div id="pdfExportDeck" aria-hidden="true"></div>
 
   <!-- ======================================================================
        SCRIPT DA APRESENTAÇÃO
@@ -1582,6 +2294,7 @@
       slides.forEach((s, idx) => {
         if (idx + 1 === currentSlide) {
           s.classList.add('active');
+          s.scrollTop = 0;
         } else {
           s.classList.remove('active');
         }
@@ -1633,6 +2346,36 @@
 
     btnNext.addEventListener('click', nextSlide);
     btnPrev.addEventListener('click', prevSlide);
+
+    // --- Navegação por Gestos Touch (Swipe Lateral no Celular / Tablet) ---
+    const presMain = document.querySelector('.pres-main');
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    if (presMain) {
+      presMain.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+        }
+      }, { passive: true });
+
+      presMain.addEventListener('touchend', (e) => {
+        if (e.changedTouches.length === 1) {
+          const deltaX = e.changedTouches[0].clientX - touchStartX;
+          const deltaY = e.changedTouches[0].clientY - touchStartY;
+
+          // Só avança/volta slide se o movimento horizontal for maior que 55px e maior que o scroll vertical
+          if (Math.abs(deltaX) > 55 && Math.abs(deltaX) > Math.abs(deltaY) * 1.4) {
+            if (deltaX < 0) {
+              nextSlide();
+            } else {
+              prevSlide();
+            }
+          }
+        }
+      }, { passive: true });
+    }
 
     // --- Atualizar Conteúdo das Notas do Apresentador ---
     function updateNotesView() {
@@ -1742,22 +2485,747 @@
       if (btnToggleTimerVisibility) {
         btnToggleTimerVisibility.classList.toggle('active', isVisible);
         btnToggleTimerVisibility.innerHTML = isVisible
-          ? '<span>⏱️ Ocultar Cronômetro (T)</span>'
-          : '<span>⏱️ Mostrar Cronômetro (T)</span>';
+          ? '<span>⏱️ Ocultar<span class="hide-mobile"> Cronômetro (T)</span></span>'
+          : '<span>⏱️ Cronômetro<span class="hide-mobile"> (T)</span></span>';
       }
     }
     if (btnToggleTimerVisibility) {
       btnToggleTimerVisibility.addEventListener('click', toggleTimerVisibility);
     }
 
+    // --- Modal e Funções de Download da Apresentação ---
+    const downloadModalBackdrop = document.getElementById('downloadModalBackdrop');
+    const btnOpenDownloadModal = document.getElementById('btnOpenDownloadModal');
+    const btnSlide7Download = document.getElementById('btnSlide7Download');
+    const btnCloseDownloadModal = document.getElementById('btnCloseDownloadModal');
+    const btnDownloadSlidesPdf = document.getElementById('btnDownloadSlidesPdf');
+    const btnDownloadOfflineHtml = document.getElementById('btnDownloadOfflineHtml');
+    const btnPrintSlidesNative = document.getElementById('btnPrintSlidesNative');
+    const pdfStatusBanner = document.getElementById('pdfStatusBanner');
+    const pdfStatusText = document.getElementById('pdfStatusText');
+    const pdfExportDeck = document.getElementById('pdfExportDeck');
+
+    function openDownloadModal() {
+      if (downloadModalBackdrop) {
+        downloadModalBackdrop.classList.add('open');
+      }
+    }
+
+    function closeDownloadModal() {
+      if (downloadModalBackdrop) {
+        downloadModalBackdrop.classList.remove('open');
+      }
+    }
+
+    if (btnOpenDownloadModal) btnOpenDownloadModal.addEventListener('click', openDownloadModal);
+    if (btnSlide7Download) btnSlide7Download.addEventListener('click', openDownloadModal);
+    if (btnCloseDownloadModal) btnCloseDownloadModal.addEventListener('click', closeDownloadModal);
+
+    if (downloadModalBackdrop) {
+      downloadModalBackdrop.addEventListener('click', (e) => {
+        if (e.target === downloadModalBackdrop) {
+          closeDownloadModal();
+        }
+      });
+    }
+
+    // 1. Exportar todos os 7 slides para PDF em Alta Resolução (Canvas 2D + jsPDF)
+    // Funciona 100% mesmo abrindo o arquivo direto pelo Windows (file://) ou no celular/tablet!
+    function drawRoundRect(ctx, x, y, w, h, r, fill, stroke) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.lineTo(x + w - r, y);
+      ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+      ctx.lineTo(x + w, y + h - r);
+      ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+      ctx.lineTo(x + r, y + h);
+      ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+      ctx.lineTo(x, y + r);
+      ctx.quadraticCurveTo(x, y, x + r, y);
+      ctx.closePath();
+      if (fill) ctx.fill();
+      if (stroke) ctx.stroke();
+    }
+
+    function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight) {
+      const words = text.split(' ');
+      let line = '';
+      let curY = y;
+      for (let i = 0; i < words.length; i++) {
+        const testLine = line + words[i] + ' ';
+        if (ctx.measureText(testLine).width > maxWidth && i > 0) {
+          ctx.fillText(line.trim(), x, curY);
+          line = words[i] + ' ';
+          curY += lineHeight;
+        } else {
+          line = testLine;
+        }
+      }
+      if (line.trim()) {
+        ctx.fillText(line.trim(), x, curY);
+        curY += lineHeight;
+      }
+      return curY;
+    }
+
+    function canDrawImgUntainted(imgEl) {
+      if (!imgEl || !imgEl.complete || !imgEl.naturalWidth) return false;
+      try {
+        const tc = document.createElement('canvas');
+        tc.width = 2;
+        tc.height = 2;
+        tc.getContext('2d').drawImage(imgEl, 0, 0, 2, 2);
+        tc.toDataURL('image/jpeg');
+        return true;
+      } catch (e) {
+        return false;
+      }
+    }
+
+    function drawCoverIllustrationBox(ctx, x, y, w, h, captionTitle, captionSub) {
+      // Cartão branco externo
+      ctx.fillStyle = '#ffffff';
+      ctx.strokeStyle = '#f59e0b';
+      ctx.lineWidth = 4;
+      drawRoundRect(ctx, x, y, w, h, 28, true, true);
+
+      const imgX = x + 22;
+      const imgY = y + 22;
+      const imgW = w - 44;
+      const imgH = h - 115;
+
+      const domImg = document.querySelector('.cover-image-card img');
+      if (canDrawImgUntainted(domImg)) {
+        ctx.save();
+        drawRoundRect(ctx, imgX, imgY, imgW, imgH, 18, false, false);
+        ctx.clip();
+        ctx.drawImage(domImg, imgX, imgY, imgW, imgH);
+        ctx.restore();
+      } else {
+        // Ilustração vetorial nativa (segura para protocolo file:// sem erro de CORS)
+        const grad = ctx.createLinearGradient(imgX, imgY, imgX + imgW, imgY + imgH);
+        grad.addColorStop(0, '#1e3a8a');
+        grad.addColorStop(1, '#0d223f');
+        ctx.fillStyle = grad;
+        drawRoundRect(ctx, imgX, imgY, imgW, imgH, 18, true, false);
+
+        // Círculo dourado central
+        ctx.fillStyle = 'rgba(245, 158, 11, 0.22)';
+        ctx.beginPath();
+        ctx.arc(imgX + imgW / 2, imgY + imgH / 2 - 15, 95, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.font = '88px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText('🛡️📱', imgX + imgW / 2, imgY + imgH / 2 + 12);
+
+        ctx.font = 'bold 22px "Outfit", sans-serif';
+        ctx.fillStyle = '#fde047';
+        ctx.fillText('PROTEÇÃO DIGITAL', imgX + imgW / 2, imgY + imgH - 28);
+      }
+
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#0f172a';
+      ctx.font = 'bold 23px "Outfit", sans-serif';
+      ctx.fillText(captionTitle, x + w / 2, y + h - 50);
+
+      if (captionSub) {
+        ctx.fillStyle = '#475569';
+        ctx.font = '500 19px "Plus Jakarta Sans", sans-serif';
+        ctx.fillText(captionSub, x + w / 2, y + h - 22);
+      }
+      ctx.textAlign = 'left';
+    }
+
+    function renderSlideOnCanvas(ctx, slideNum, isLight) {
+      const W = 1600;
+      const H = 1131; // Proporção exata A4 Paisagem (297 x 210 mm)
+
+      // 1. Fundo do Slide
+      if (isLight) {
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, W, H);
+      } else {
+        const bgGrad = ctx.createRadialGradient(W * 0.5, H * 0.2, 60, W * 0.5, H * 0.5, 1000);
+        bgGrad.addColorStop(0, '#163663');
+        bgGrad.addColorStop(0.55, '#0d223f');
+        bgGrad.addColorStop(1, '#081629');
+        ctx.fillStyle = bgGrad;
+        ctx.fillRect(0, 0, W, H);
+      }
+
+      // Barra superior decorativa
+      const topBarGrad = ctx.createLinearGradient(0, 0, W, 0);
+      topBarGrad.addColorStop(0, '#f59e0b');
+      topBarGrad.addColorStop(1, '#3b82f6');
+      ctx.fillStyle = topBarGrad;
+      ctx.fillRect(0, 0, W, 10);
+
+      const titleColor = isLight ? '#0f2347' : '#ffffff';
+      const subColor = isLight ? '#334155' : '#cbd5e1';
+
+      // Helper para cabeçalho padrão de slide (Slides 2 a 6)
+      function drawSlideHeader(pillText, title, subtitle) {
+        ctx.textAlign = 'left';
+        ctx.font = 'bold 20px "Outfit", sans-serif';
+        const pillW = ctx.measureText(pillText).width + 44;
+        ctx.fillStyle = isLight ? '#fef3c7' : 'rgba(245, 158, 11, 0.2)';
+        ctx.strokeStyle = '#f59e0b';
+        ctx.lineWidth = 2;
+        drawRoundRect(ctx, 80, 65, pillW, 42, 21, true, true);
+        ctx.fillStyle = isLight ? '#92400e' : '#fbbf24';
+        ctx.fillText(pillText, 102, 93);
+
+        ctx.fillStyle = titleColor;
+        ctx.font = '800 46px "Outfit", sans-serif';
+        const nextY = wrapCanvasText(ctx, title, 80, 162, 1440, 54);
+
+        ctx.fillStyle = subColor;
+        ctx.font = '500 26px "Plus Jakarta Sans", sans-serif';
+        const subEndY = wrapCanvasText(ctx, subtitle, 80, nextY + 12, 1380, 36);
+        return subEndY;
+      }
+
+      // Helper para desenhar Card de Golpe/Dica
+      function drawInfoCard(x, y, w, h, icon, title, desc, actionText, actionType) {
+        ctx.fillStyle = '#ffffff';
+        ctx.strokeStyle = '#cbd5e1';
+        ctx.lineWidth = 2;
+        drawRoundRect(ctx, x, y, w, h, 22, true, isLight);
+
+        ctx.textAlign = 'left';
+        ctx.font = '38px sans-serif';
+        ctx.fillText(icon, x + 26, y + 62);
+
+        ctx.fillStyle = '#0f172a';
+        ctx.font = 'bold 27px "Outfit", sans-serif';
+        wrapCanvasText(ctx, title, x + 82, y + 58, w - 104, 32);
+
+        ctx.fillStyle = '#334155';
+        ctx.font = '500 22px "Plus Jakarta Sans", sans-serif';
+        wrapCanvasText(ctx, desc, x + 26, y + 122, w - 52, 31);
+
+        if (actionText) {
+          const actH = 62;
+          const actY = y + h - actH - 22;
+          let bg = '#fef2f2', fg = '#991b1b', bd = '#fecaca';
+          if (actionType === 'warning') { bg = '#fffbeb'; fg = '#92400e'; bd = '#fde68a'; }
+          if (actionType === 'success') { bg = '#ecfdf5'; fg = '#065f46'; bd = '#a7f3d0'; }
+
+          ctx.fillStyle = bg;
+          ctx.strokeStyle = bd;
+          ctx.lineWidth = 2;
+          drawRoundRect(ctx, x + 22, actY, w - 44, actH, 12, true, true);
+
+          ctx.fillStyle = fg;
+          ctx.font = 'bold 20px "Plus Jakarta Sans", sans-serif';
+          ctx.fillText(actionText, x + 36, actY + 38);
+        }
+      }
+
+      // --- SLIDE 1: CAPA ---
+      if (slideNum === 1) {
+        ctx.textAlign = 'left';
+        ctx.fillStyle = '#f59e0b';
+        drawRoundRect(ctx, 80, 140, 260, 44, 22, true, false);
+        ctx.fillStyle = '#0f172a';
+        ctx.font = 'bold 20px "Outfit", sans-serif';
+        ctx.fillText('SEGURANÇA DIGITAL', 104, 169);
+
+        ctx.fillStyle = isLight ? '#eff6ff' : 'rgba(37, 99, 235, 0.25)';
+        ctx.strokeStyle = '#3b82f6';
+        ctx.lineWidth = 2;
+        drawRoundRect(ctx, 355, 140, 470, 44, 22, true, true);
+        ctx.fillStyle = isLight ? '#1e3a8a' : '#93c5fd';
+        ctx.fillText('📍 UBS Alarico Leite • 10 de Novembro • 14h', 378, 169);
+
+        ctx.fillStyle = titleColor;
+        ctx.font = '900 66px "Outfit", sans-serif';
+        ctx.fillText('Proteção Contra Golpes', 80, 275);
+        ctx.fillStyle = isLight ? '#2563eb' : '#60a5fa';
+        ctx.fillText('no Celular', 80, 352);
+
+        ctx.fillStyle = subColor;
+        ctx.font = '500 29px "Plus Jakarta Sans", sans-serif';
+        wrapCanvasText(
+          ctx,
+          'O celular trouxe facilidades para falar com a família e pagar contas. Mas também atraiu pessoas mal-intencionadas. Hoje, vamos aprender como usar a tecnologia com total tranquilidade.',
+          80, 430, 880, 43
+        );
+
+        // Caixa Quebra-gelo
+        ctx.fillStyle = isLight ? '#fefce8' : 'rgba(255, 255, 255, 0.08)';
+        ctx.strokeStyle = '#eab308';
+        ctx.lineWidth = 3;
+        drawRoundRect(ctx, 80, 645, 880, 185, 20, true, true);
+
+        ctx.fillStyle = isLight ? '#854d0e' : '#fef08a';
+        ctx.font = 'bold 26px "Outfit", sans-serif';
+        ctx.fillText('🙋‍♂️ Pergunta rápida para o grupo:', 115, 700);
+        ctx.font = 'italic 25px "Plus Jakarta Sans", sans-serif';
+        wrapCanvasText(
+          ctx,
+          '"Levante a mão quem já recebeu uma mensagem estranha no WhatsApp ou uma ligação esquisita no telefone?"',
+          115, 745, 820, 36
+        );
+
+        drawCoverIllustrationBox(ctx, 1030, 175, 480, 655, 'Guia Prático e Gratuito', 'Proteção para toda a família');
+      }
+
+      // --- SLIDE 2: SEM CULPA NEM VERGONHA ---
+      else if (slideNum === 2) {
+        const afterSub = drawSlideHeader(
+          'A VERDADE SOBRE OS GOLPES',
+          'Quem cai em golpe NÃO é desatento: é vítima de profissionais!',
+          'Os criminosos estudam o dia todo para enganar pessoas honestas. O segredo deles é provocar medo, pressa e emoção.'
+        );
+
+        // Banner Urgente Vermelho
+        const bannerY = afterSub + 15;
+        ctx.fillStyle = '#dc2626';
+        drawRoundRect(ctx, 80, bannerY, 1440, 78, 16, true, false);
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 27px "Outfit", sans-serif';
+        ctx.fillText('🛑 A ARMA PRINCIPAL DO GOLPISTA: Fazer você tomar decisões correndo, sem tempo para pensar!', 110, bannerY + 49);
+
+        const cardsY = bannerY + 110;
+        const cardW = 456;
+        const cardH = 460;
+        drawInfoCard(80, cardsY, cardW, cardH, '⚡', '1. Sensação de Pressa', 'Eles dizem: "Tem que ser agora!" ou "Sua conta vai ser cancelada se você desligar!". É de propósito, para você não conversar com ninguém.', '👉 Sentiu pressa? Desligue na hora!', 'danger');
+        drawInfoCard(80 + cardW + 36, cardsY, cardW, cardH, '🎭', '2. Fingem Ser Quem Ama', 'Pegam fotos públicas do filho ou neto e mandam mensagem: "Mãe, meu telefone quebrou, me socorre com um Pix!"', '👉 Ligue no número antigo do parente!', 'warning');
+        drawInfoCard(80 + (cardW + 36) * 2, cardsY, cardW, cardH, '🤝', '3. Nunca Sinta Vergonha', 'Se alguma vez você acreditou em algo suspeito ou já caiu em golpe, conte para os filhos ou amigos. A culpa é sempre do bandido!', '👉 O diálogo em família é seu escudo!', 'success');
+      }
+
+      // --- SLIDE 3: OS 4 GOLPES MAIS COMUNS ---
+      else if (slideNum === 3) {
+        const afterSub = drawSlideHeader(
+          'ATENÇÃO REDOBRADA',
+          'Os 4 Golpes Mais Comuns no Celular',
+          'Conheça as histórias que os bandidos inventam todos os dias no WhatsApp e nas ligações:'
+        );
+
+        const cardsY = afterSub + 25;
+        const cardW = 698;
+        const cardH = 315;
+        drawInfoCard(80, cardsY, cardW, cardH, '👤', '1. Falso Parente no WhatsApp', 'Colocam a foto do filho ou neto dizendo: "Mudei de número, me manda um Pix urgente para pagar um boleto!"', '👉 Ligue para o número antigo do parente!', 'danger');
+        drawInfoCard(80 + cardW + 44, cardsY, cardW, cardH, '🏦', '2. Falsa Central do Banco', 'Uma gravação imita seu banco: "Detectamos compra de R$ 2.500 no seu cartão. Para cancelar, digite sua senha."', '👉 Desligue! O banco NUNCA pede senha.', 'danger');
+        drawInfoCard(80, cardsY + cardH + 34, cardW, cardH, '📑', '3. Falso INSS / Prova de Vida', 'Mandam mensagem ameaçando cortar aposentadoria ou pensão se não clicar num link para "recadastramento".', '👉 Vá direto à agência ou ao posto oficial.', 'warning');
+        drawInfoCard(80 + cardW + 44, cardsY + cardH + 34, cardW, cardH, '🎁', '4. Prêmios e Links Azuis', 'Mensagens de "Encomenda presa no Correios", sorteios milagrosos ou brindes com links para você clicar.', '👉 Nunca toque em links desconhecidos!', 'danger');
+      }
+
+      // --- SLIDE 4: O QUE BANCO E INSS NUNCA FAZEM ---
+      else if (slideNum === 4) {
+        const afterSub = drawSlideHeader(
+          'GRAVE ISTO PARA SEMPRE',
+          'O Banco e o INSS NUNCA fazem isso:',
+          'Se qualquer pessoa te pedir alguma dessas 3 coisas pelo telefone ou WhatsApp, é 100% GOLPE!'
+        );
+
+        const cardsY = afterSub + 25;
+        const cardW = 695;
+        const cardH = 620;
+
+        // Coluna Esquerda: O QUE NUNCA FAZEM
+        ctx.fillStyle = '#fff5f5';
+        ctx.strokeStyle = '#dc2626';
+        ctx.lineWidth = 4;
+        drawRoundRect(ctx, 80, cardsY, cardW, cardH, 24, true, true);
+
+        ctx.fillStyle = '#991b1b';
+        ctx.font = '800 32px "Outfit", sans-serif';
+        ctx.fillText('🚫 O QUE ELES NUNCA FAZEM', 120, cardsY + 72);
+
+        const neverItems = [
+          '❌ NUNCA pedem sua senha nem código SMS por ligação telefônica.',
+          '❌ NUNCA mandam motoqueiro buscar cartão na sua casa para "perícia" ou "descarte".',
+          '❌ NUNCA pedem transferência Pix para "estornar" ou "cancelar" compra suspeita.'
+        ];
+        ctx.fillStyle = '#1e293b';
+        ctx.font = '600 26px "Plus Jakarta Sans", sans-serif';
+        let ny = cardsY + 155;
+        neverItems.forEach((item) => {
+          ny = wrapCanvasText(ctx, item, 120, ny, cardW - 80, 38) + 42;
+        });
+
+        // Coluna Direita: O QUE VOCÊ DEVE FAZER
+        const rightX = 80 + cardW + 50;
+        ctx.fillStyle = '#f0fdf4';
+        ctx.strokeStyle = '#059669';
+        ctx.lineWidth = 4;
+        drawRoundRect(ctx, rightX, cardsY, cardW, cardH, 24, true, true);
+
+        ctx.fillStyle = '#065f46';
+        ctx.font = '800 32px "Outfit", sans-serif';
+        ctx.fillText('✅ O QUE VOCÊ DEVE FAZER', rightX + 40, cardsY + 72);
+
+        const doItems = [
+          '✔️ Desligue a chamada imediatamente sem medo de parecer mal-educado.',
+          '✔️ Pegue seu cartão físico e ligue no número impresso no verso dele.',
+          '✔️ Se tiver qualquer dúvida sobre aposentadoria, vá presencialmente à agência.'
+        ];
+        ctx.fillStyle = '#1e293b';
+        ctx.font = '600 26px "Plus Jakarta Sans", sans-serif';
+        let dy = cardsY + 155;
+        doItems.forEach((item) => {
+          dy = wrapCanvasText(ctx, item, rightX + 40, dy, cardW - 80, 38) + 42;
+        });
+      }
+
+      // --- SLIDE 5: A REGRA DE OURO EM 3 PASSOS ---
+      else if (slideNum === 5) {
+        const afterSub = drawSlideHeader(
+          'MÉTODO INFALÍVEL DE PROTEÇÃO',
+          'A Regra de Ouro: 3 Passos Simples',
+          'Basta memorizar estas 3 palavras quando o telefone tocar ou chegar mensagem suspeita:'
+        );
+
+        const cardsY = afterSub + 35;
+        const cardW = 456;
+        const cardH = 560;
+        const steps = [
+          { num: '1', title: '✋ PARE!', desc: 'Não tome decisões no calor da emoção nem com pressa. Respire fundo e desligue o telefone.', color: '#dc2626', bg: '#fee2e2', titleColor: '#991b1b' },
+          { num: '2', title: '🔍 CONFIRA!', desc: 'Ligue no número antigo do parente ou no telefone oficial do verso do seu cartão bancário.', color: '#d97706', bg: '#fef3c7', titleColor: '#92400e' },
+          { num: '3', title: '🗣️ PEÇA AJUDA!', desc: 'Fale com alguém de sua confiança (filho, vizinho, amigo) antes de fazer qualquer Pix ou transferência.', color: '#059669', bg: '#d1fae5', titleColor: '#065f46' }
+        ];
+
+        steps.forEach((st, idx) => {
+          const x = 80 + idx * (cardW + 36);
+          ctx.fillStyle = '#ffffff';
+          ctx.strokeStyle = st.color;
+          ctx.lineWidth = 5;
+          drawRoundRect(ctx, x, cardsY, cardW, cardH, 24, true, true);
+
+          // Círculo numerado
+          ctx.fillStyle = st.bg;
+          ctx.beginPath();
+          ctx.arc(x + cardW / 2, cardsY + 95, 48, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.textAlign = 'center';
+          ctx.fillStyle = st.color;
+          ctx.font = '900 42px "Outfit", sans-serif';
+          ctx.fillText(st.num, x + cardW / 2, cardsY + 110);
+
+          ctx.fillStyle = st.titleColor;
+          ctx.font = '800 38px "Outfit", sans-serif';
+          ctx.fillText(st.title, x + cardW / 2, cardsY + 210);
+
+          ctx.textAlign = 'left';
+          ctx.fillStyle = '#334155';
+          ctx.font = '500 26px "Plus Jakarta Sans", sans-serif';
+          wrapCanvasText(ctx, st.desc, x + 38, cardsY + 285, cardW - 76, 38);
+        });
+      }
+
+      // --- SLIDE 6: CAIU EM GOLPE? O QUE FAZER ---
+      else if (slideNum === 6) {
+        const afterSub = drawSlideHeader(
+          'PLANO DE AÇÃO IMEDIATA',
+          'Aconteceu? Mantenha a calma e aja rápido!',
+          'Não sinta vergonha. A culpa é do golpista! Siga esta ordem exata de providências:'
+        );
+
+        const cardsY = afterSub + 20;
+        const cardW = 336;
+        const cardH = 420;
+        const actions = [
+          { icon: '📞', title: '1. Avise o Banco', desc: 'Ligue no telefone atrás do cartão e peça o bloqueio imediato do Pix e de senhas.' },
+          { icon: '🚫', title: '2. Bloqueie o Número', desc: 'Não converse mais com o golpista no WhatsApp. Guarde os prints e bloqueie o contato.' },
+          { icon: '🚓', title: '3. Registre o B.O.', desc: 'Vá à delegacia com uma pessoa de confiança ou registre o Boletim online.' },
+          { icon: '👨‍👩‍👧', title: '4. Avise a Família', desc: 'Conte para os parentes para ninguém cair na mesma mentira nem enviar mais dinheiro.' }
+        ];
+
+        actions.forEach((act, idx) => {
+          const x = 80 + idx * (cardW + 32);
+          drawInfoCard(x, cardsY, cardW, cardH, act.icon, act.title, act.desc, null, null);
+        });
+
+        // Barra de Emergência
+        const barY = cardsY + cardH + 40;
+        ctx.fillStyle = isLight ? '#f8fafc' : 'rgba(255, 255, 255, 0.14)';
+        ctx.strokeStyle = isLight ? '#cbd5e1' : 'rgba(255, 255, 255, 0.3)';
+        ctx.lineWidth = 2;
+        drawRoundRect(ctx, 80, barY, 1440, 105, 18, true, true);
+
+        ctx.fillStyle = isLight ? '#0f172a' : '#fde047';
+        ctx.font = 'bold 27px "Outfit", sans-serif';
+        ctx.fillText('🚨 Telefones Importantes:   Polícia Militar: 190   |   Disque Denúncia: 181   |   Banco: Verso do Cartão', 120, barY + 62);
+      }
+
+      // --- SLIDE 7: ENCERRAMENTO ---
+      else if (slideNum === 7) {
+        ctx.textAlign = 'left';
+        ctx.fillStyle = '#f59e0b';
+        drawRoundRect(ctx, 80, 140, 240, 44, 22, true, false);
+        ctx.fillStyle = '#0f172a';
+        ctx.font = 'bold 20px "Outfit", sans-serif';
+        ctx.fillText('LEVE COM VOCÊ', 110, 169);
+
+        ctx.fillStyle = titleColor;
+        ctx.font = '900 58px "Outfit", sans-serif';
+        wrapCanvasText(ctx, 'Guarde este guia perto do telefone!', 80, 265, 880, 66);
+
+        ctx.fillStyle = subColor;
+        ctx.font = '500 28px "Plus Jakarta Sans", sans-serif';
+        wrapCanvasText(
+          ctx,
+          'A melhor proteção contra os golpes é a informação compartilhada. Leve o folheto impresso para casa, mostre para seus amigos, vizinhos e familiares!',
+          80, 420, 880, 42
+        );
+
+        // Caixa Recado no Coração
+        ctx.fillStyle = isLight ? '#ecfdf5' : 'rgba(16, 185, 129, 0.18)';
+        ctx.strokeStyle = '#10b981';
+        ctx.lineWidth = 3;
+        drawRoundRect(ctx, 80, 590, 880, 200, 22, true, true);
+
+        ctx.fillStyle = isLight ? '#065f46' : '#6ee7b7';
+        ctx.font = 'bold 28px "Outfit", sans-serif';
+        ctx.fillText('✨ Recado para levar no coração:', 115, 645);
+
+        ctx.fillStyle = isLight ? '#1e293b' : '#f1f5f9';
+        ctx.font = '600 25px "Plus Jakarta Sans", sans-serif';
+        wrapCanvasText(
+          ctx,
+          '"Na dúvida: PARE, CONFIRA e PEÇA AJUDA. Você tem o direito de desligar qualquer ligação e pensar com calma!"',
+          115, 695, 815, 36
+        );
+
+        ctx.fillStyle = '#f59e0b';
+        ctx.font = 'bold 28px "Outfit", sans-serif';
+        ctx.fillText('👏 Muito obrigado pela atenção de todos!', 80, 865);
+
+        drawCoverIllustrationBox(ctx, 1030, 175, 480, 655, 'Distribuição Gratuita', 'Imprima e compartilhe com a família');
+      }
+
+      // Rodapé de Paginação do PDF
+      ctx.textAlign = 'right';
+      ctx.fillStyle = isLight ? '#64748b' : 'rgba(255, 255, 255, 0.55)';
+      ctx.font = '600 19px "Outfit", sans-serif';
+      ctx.fillText(`Apresentação: Proteção Contra Golpes no Celular • Slide ${slideNum} de ${totalSlides}`, W - 80, H - 34);
+      ctx.textAlign = 'left';
+    }
+
+    function dataUrlToUint8Array(dataUrl) {
+      const base64 = dataUrl.split(',')[1];
+      const binaryStr = window.atob(base64);
+      const len = binaryStr.length;
+      const bytes = new Uint8Array(len);
+      for (let i = 0; i < len; i++) {
+        bytes[i] = binaryStr.charCodeAt(i);
+      }
+      return bytes;
+    }
+
+    function buildPdfBlobFromJpegs(jpegs, pageW, pageH) {
+      const enc = new TextEncoder();
+      const chunks = [];
+      let offset = 0;
+      const offsets = [0];
+
+      function pushStr(str) {
+        const b = enc.encode(str);
+        chunks.push(b);
+        offset += b.length;
+      }
+
+      function pushBytes(b) {
+        chunks.push(b);
+        offset += b.length;
+      }
+
+      pushStr('%PDF-1.4\n%\xFF\xFF\xFF\xFF\n');
+
+      // Obj 1: Catalog
+      offsets[1] = offset;
+      pushStr('1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n');
+
+      // Obj 2: Pages
+      const pageObjIds = jpegs.map((_, idx) => 3 + idx * 3);
+      offsets[2] = offset;
+      pushStr('2 0 obj\n<< /Type /Pages /Kids [' + pageObjIds.map(id => id + ' 0 R').join(' ') + '] /Count ' + jpegs.length + ' >>\nendobj\n');
+
+      jpegs.forEach((img, idx) => {
+        const pageId = 3 + idx * 3;
+        const contentId = pageId + 1;
+        const imgId = pageId + 2;
+
+        offsets[pageId] = offset;
+        pushStr(
+          pageId + ' 0 obj\n' +
+          '<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ' + pageW + ' ' + pageH + '] ' +
+          '/Resources << /XObject << /Im1 ' + imgId + ' 0 R >> >> ' +
+          '/Contents ' + contentId + ' 0 R >>\n' +
+          'endobj\n'
+        );
+
+        const streamStr = 'q ' + pageW + ' 0 0 ' + pageH + ' 0 0 cm /Im1 Do Q\n';
+        offsets[contentId] = offset;
+        pushStr(
+          contentId + ' 0 obj\n' +
+          '<< /Length ' + streamStr.length + ' >>\n' +
+          'stream\n' + streamStr + 'endstream\n' +
+          'endobj\n'
+        );
+
+        offsets[imgId] = offset;
+        pushStr(
+          imgId + ' 0 obj\n' +
+          '<< /Type /XObject /Subtype /Image /Width ' + img.width + ' /Height ' + img.height + ' ' +
+          '/ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ' + img.bytes.length + ' >>\n' +
+          'stream\n'
+        );
+        pushBytes(img.bytes);
+        pushStr('\nendstream\nendobj\n');
+      });
+
+      const xrefOffset = offset;
+      const totalObjs = offsets.length;
+      pushStr('xref\n0 ' + totalObjs + '\n');
+      pushStr('0000000000 65535 f \n');
+      for (let i = 1; i < totalObjs; i++) {
+        pushStr(String(offsets[i]).padStart(10, '0') + ' 00000 n \n');
+      }
+      pushStr(
+        'trailer\n<< /Size ' + totalObjs + ' /Root 1 0 R >>\n' +
+        'startxref\n' + xrefOffset + '\n%%EOF'
+      );
+
+      return new Blob(chunks, { type: 'application/pdf' });
+    }
+
+    if (btnDownloadSlidesPdf) {
+      btnDownloadSlidesPdf.addEventListener('click', async () => {
+        try {
+          btnDownloadSlidesPdf.disabled = true;
+          pdfStatusBanner.classList.add('active');
+          pdfStatusText.textContent = 'Preparando os 7 slides em alta definição...';
+
+          const isLightTheme = document.body.classList.contains('theme-light');
+          const slideCanvas = document.createElement('canvas');
+          slideCanvas.width = 1600;
+          slideCanvas.height = 1131; // Proporção A4 Paisagem (297 x 210 mm)
+          const ctx = slideCanvas.getContext('2d');
+
+          const jpegPages = [];
+          for (let s = 1; s <= totalSlides; s++) {
+            pdfStatusText.textContent = `Renderizando Slide ${s} de ${totalSlides}...`;
+            await new Promise(r => setTimeout(r, 25));
+            renderSlideOnCanvas(ctx, s, isLightTheme);
+            const dataUrl = slideCanvas.toDataURL('image/jpeg', 0.93);
+            jpegPages.push({
+              bytes: dataUrlToUint8Array(dataUrl),
+              width: slideCanvas.width,
+              height: slideCanvas.height
+            });
+          }
+
+          pdfStatusText.textContent = 'Montando arquivo PDF de 7 páginas...';
+          await new Promise(r => setTimeout(r, 25));
+
+          // A4 Paisagem em pontos PostScript (841.89 x 595.28 pt)
+          const pdfBlob = buildPdfBlobFromJpegs(jpegPages, 841.89, 595.28);
+          const pdfUrl = URL.createObjectURL(pdfBlob);
+          const link = document.createElement('a');
+          link.href = pdfUrl;
+          link.download = 'Apresentacao_Protecao_Contra_Golpes_Celular.pdf';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          setTimeout(() => URL.revokeObjectURL(pdfUrl), 5000);
+
+          pdfStatusText.textContent = '✅ Download do PDF concluído com sucesso!';
+          setTimeout(() => {
+            pdfStatusBanner.classList.remove('active');
+            btnDownloadSlidesPdf.disabled = false;
+            closeDownloadModal();
+          }, 1100);
+        } catch (err) {
+          console.error('Erro ao gerar PDF dos slides:', err);
+          pdfStatusText.textContent = '❌ Erro ao gerar PDF: ' + (err.message || err);
+          btnDownloadSlidesPdf.disabled = false;
+        }
+      });
+    }
+
+    // 2. Baixar Apresentação Interativa Offline (.HTML Autocontido)
+    async function imageToDataUrl(url) {
+      try {
+        const response = await fetch(url);
+        const blob = await response.blob();
+        return await new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result);
+          reader.readAsDataURL(blob);
+        });
+      } catch (e) {
+        return url;
+      }
+    }
+
+    if (btnDownloadOfflineHtml) {
+      btnDownloadOfflineHtml.addEventListener('click', async () => {
+        try {
+          btnDownloadOfflineHtml.disabled = true;
+          pdfStatusBanner.classList.add('active');
+          pdfStatusText.textContent = 'Empacotando apresentação interativa para uso offline...';
+
+          let htmlSource = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+          const coverDataUrl = await imageToDataUrl('assets/cover-illustration.jpg');
+          if (coverDataUrl && coverDataUrl.startsWith('data:')) {
+            htmlSource = htmlSource.replace(/assets\/cover-illustration\.jpg/g, coverDataUrl);
+          }
+          // Garante que o modal não venha aberto no arquivo baixado
+          htmlSource = htmlSource.replace('download-modal-backdrop open', 'download-modal-backdrop');
+
+          const blob = new Blob([htmlSource], { type: 'text/html;charset=utf-8' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'Apresentacao_Protecao_Contra_Golpes_Interativa.html';
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+
+          pdfStatusText.textContent = '✅ Arquivo HTML Offline baixado com sucesso!';
+          setTimeout(() => {
+            pdfStatusBanner.classList.remove('active');
+            btnDownloadOfflineHtml.disabled = false;
+            closeDownloadModal();
+          }, 1100);
+        } catch (err) {
+          console.error('Erro ao baixar HTML offline:', err);
+          pdfStatusBanner.classList.remove('active');
+          btnDownloadOfflineHtml.disabled = false;
+        }
+      });
+    }
+
+    // 3. Imprimir Apostila de Slides
+    if (btnPrintSlidesNative) {
+      btnPrintSlidesNative.addEventListener('click', () => {
+        closeDownloadModal();
+        setTimeout(() => window.print(), 200);
+      });
+    }
+
     // --- Atalhos de Teclado ---
     window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeDownloadModal();
+        return;
+      }
       if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
         e.preventDefault();
         nextSlide();
       } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
         e.preventDefault();
         prevSlide();
+      } else if (e.key === 'd' || e.key === 'D') {
+        e.preventDefault();
+        openDownloadModal();
       } else if (e.key === 'c' || e.key === 'C') {
         e.preventDefault();
         toggleTheme();
@@ -1813,13 +3281,13 @@
       if (theme === 'light') {
         document.body.classList.add('theme-light');
         if (themeBtnIcon) themeBtnIcon.textContent = '🌙';
-        if (themeBtnText) themeBtnText.textContent = 'Tema Escuro (C)';
+        if (themeBtnText) themeBtnText.innerHTML = 'Tema Escuro<span class="hide-mobile"> (C)</span>';
         if (btnToggleTheme) btnToggleTheme.title = 'Mudar para Tema Escuro (Tecla C)';
         localStorage.setItem('cartilha_pres_theme', 'light');
       } else {
         document.body.classList.remove('theme-light');
         if (themeBtnIcon) themeBtnIcon.textContent = '☀️';
-        if (themeBtnText) themeBtnText.textContent = 'Tema Claro (C)';
+        if (themeBtnText) themeBtnText.innerHTML = 'Tema Claro<span class="hide-mobile"> (C)</span>';
         if (btnToggleTheme) btnToggleTheme.title = 'Mudar para Tema Claro / Fundo Branco (Tecla C)';
         localStorage.setItem('cartilha_pres_theme', 'dark');
       }
