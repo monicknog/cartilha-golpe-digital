@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Apresentação de 15 minutos para palestra com idosos sobre proteção contra golpes no celular. Baseada na Cartilha de Prevenção a Fraudes.">
+  <meta name="theme-color" content="#0d223f">
+  <title>Apresentação 15 min: Proteção Contra Golpes no Celular</title>
+
+  <!-- Fontes do Projeto -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       DESIGN SYSTEM & SLIDES APRESENTAÇÃO 15 MINUTOS (PALESTRA IDOSOS)
+       ========================================================================== */
+    :root {
+      --color-primary: #1e3a8a;
+      --color-primary-dark: #0d223f;
+      --color-primary-light: #eff6ff;
+      --color-accent: #f59e0b;
+      
+      --color-danger: #dc2626;
+      --color-danger-bg: #fef2f2;
+      --color-danger-border: #fca5a5;
+
+      --color-warning: #d97706;
+      --color-warning-bg: #fffbeb;
+      --color-warning-border: #fde68a;
+
+      --color-success: #059669;
+      --color-success-bg: #ecfdf5;
+      --color-success-border: #a7f3d0;
+
+      --color-bg-slide: #0d223f;
+      --color-card-bg: #ffffff;
+      --color-text-dark: #0f172a;
+      --color-text-muted: #475569;
+      --color-border: #cbd5e1;
+
+      --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+      --slide-font-scale: 1;
+    }
+
+    /* Reset e Base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: #091528;
+      color: #ffffff;
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+    }
+
+    /* Ajustes de Acessibilidade */
+    body.font-large {
+      --slide-font-scale: 1.15;
+    }
+
+    body.font-xlarge {
+      --slide-font-scale: 1.3;
+    }
+
+    body.high-contrast {
+      background: #000000;
+      color: #ffff00;
+    }
+    body.high-contrast .slide-card,
+    body.high-contrast .glass-panel {
+      background: #111111 !important;
+      border: 2px solid #ffff00 !important;
+      color: #ffffff !important;
+    }
+    body.high-contrast .highlight-text {
+      color: #ffff00 !important;
+    }
+
+    /* ==========================================================================
+       BARRA SUPERIOR (HEADER & CONTROLES DO APRESENTADOR)
+       ========================================================================== */
+    .pres-header {
+      background: rgba(13, 34, 63, 0.95);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 0.5rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    .pres-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .pres-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--color-accent);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: #0f172a;
+    }
+
+    .pres-title-wrap h1 {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .pres-title-wrap span {
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+
+    /* Cronômetro de 15 Minutos */
+    .timer-badge {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 30px;
+      padding: 0.35rem 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+    }
+
+    .timer-badge.warning {
+      border-color: #f59e0b;
+      color: #fbbf24;
+      animation: pulse 1.5s infinite;
+    }
+
+    .timer-badge.danger {
+      border-color: #ef4444;
+      color: #f87171;
+      animation: pulse 0.8s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.85; transform: scale(1.04); }
+    }
+
+    .timer-btn {
+      background: none;
+      border: none;
+      color: #cbd5e1;
+      cursor: pointer;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      transition: color 0.2s;
+    }
+    .timer-btn:hover {
+      color: #ffffff;
+    }
+
+    /* Controles Superiores */
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-top {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 0.4rem 0.75rem;
+      border-radius: 8px;
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-top:hover {
+      background: rgba(255, 255, 255, 0.22);
+      transform: translateY(-1px);
+    }
+
+    .btn-top.active {
+      background: #f59e0b;
+      color: #0f172a;
+      border-color: #f59e0b;
+    }
+
+    /* Barra de Progresso Superior */
+    .progress-bar-container {
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #f59e0b, #3b82f6);
+      width: 14.28%;
+      transition: width 0.35s ease;
+    }
+
+    /* ==========================================================================
+       CONTAINER PRINCIPAL DOS SLIDES
+       ========================================================================== */
+    .pres-main {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      background: radial-gradient(circle at 50% 20%, #163663 0%, #0d223f 55%, #081629 100%);
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      width: 92%;
+      max-width: 1240px;
+      height: calc(100% - 2rem);
+      max-height: 720px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px) scale(0.98);
+      transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+      pointer-events: none;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    /* Header do Slide */
+    .slide-pill-badge {
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(245, 158, 11, 0.18);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #fbbf24;
+      padding: 0.35rem 0.85rem;
+      border-radius: 20px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: calc(0.85rem * var(--slide-font-scale));
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .slide-title {
+      font-family: var(--font-heading);
+      font-size: calc(2.3rem * var(--slide-font-scale));
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+    }
+
+    .slide-subtitle {
+      font-size: calc(1.15rem * var(--slide-font-scale));
+      color: #cbd5e1;
+      margin-bottom: 1.5rem;
+      line-height: 1.4;
+      max-width: 900px;
+    }
+
+    /* Grid e Cards de Conteúdo */
+    .slide-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      margin-top: 0.5rem;
+    }
+
+    .slide-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .slide-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.75rem;
+      margin-top: 0.5rem;
+    }
+
+    /* Cartão de Conteúdo Branco / Alto Contraste */
+    .slide-card {
+      background: #ffffff;
+      color: var(--color-text-dark);
+      border-radius: 16px;
+      padding: 1.35rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+      border: 2px solid transparent;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .slide-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .slide-card-header {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .slide-card-icon {
+      font-size: 1.7rem;
+      line-height: 1;
+    }
+
+    .slide-card-title {
+      font-family: var(--font-heading);
+      font-size: calc(1.15rem * var(--slide-font-scale));
+      font-weight: 700;
+      line-height: 1.25;
+      color: #0f172a;
+    }
+
+    .slide-card-desc {
+      font-size: calc(0.95rem * var(--slide-font-scale));
+      color: #334155;
+      line-height: 1.45;
+      flex: 1;
+    }
+
+    .slide-action-box {
+      margin-top: 1rem;
+      padding: 0.75rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: calc(0.88rem * var(--slide-font-scale));
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .action-danger {
+      background: #fef2f2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+
+    .action-warning {
+      background: #fffbeb;
+      color: #92400e;
+      border: 1px solid #fde68a;
+    }
+
+    .action-success {
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }
+
+    /* Banner Gigante de Atenção */
+    .banner-urgent {
+      background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+      color: #ffffff;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      font-family: var(--font-heading);
+      font-size: calc(1.15rem * var(--slide-font-scale));
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 6px 16px rgba(220, 38, 38, 0.4);
+      letter-spacing: 0.02em;
+    }
+
+    /* Slide Capa Especial */
+    .cover-slide-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 3rem;
+    }
+
+    .cover-left {
+      flex: 1.2;
+    }
+
+    .cover-right {
+      flex: 0.8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .cover-badge-large {
+      display: inline-block;
+      background: #f59e0b;
+      color: #0f172a;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 800;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .cover-hero-title {
+      font-family: var(--font-heading);
+      font-size: calc(3rem * var(--slide-font-scale));
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      color: #ffffff;
+    }
+
+    .cover-hero-title span {
+      color: #60a5fa;
+    }
+
+    .cover-hero-desc {
+      font-size: calc(1.2rem * var(--slide-font-scale));
+      color: #cbd5e1;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+
+    .cover-icebreaker {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px dashed rgba(245, 158, 11, 0.6);
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: #fef08a;
+      font-size: calc(1rem * var(--slide-font-scale));
+      font-weight: 600;
+    }
+
+    .cover-image-card {
+      background: #ffffff;
+      padding: 1rem;
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      max-width: 320px;
+      text-align: center;
+    }
+
+    .cover-image-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      display: block;
+    }
+
+    .cover-image-card p {
+      color: #0f172a;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      margin-top: 0.75rem;
+      font-size: 0.95rem;
+    }
+
+    /* ==========================================================================
+       RODAPÉ DE NAVEGAÇÃO DOS SLIDES
+       ========================================================================== */
+    .pres-footer {
+      background: rgba(13, 34, 63, 0.95);
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      z-index: 100;
+    }
+
+    .slide-counter {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #94a3b8;
+    }
+
+    .slide-counter strong {
+      color: #ffffff;
+    }
+
+    .dots-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .dot-btn {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.25);
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .dot-btn:hover {
+      background: rgba(255, 255, 255, 0.6);
+      transform: scale(1.2);
+    }
+
+    .dot-btn.active {
+      background: #f59e0b;
+      width: 28px;
+      border-radius: 10px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn-nav {
+      background: #ffffff;
+      color: #0f172a;
+      border: none;
+      padding: 0.55rem 1.15rem;
+      border-radius: 10px;
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: all 0.2s ease;
+    }
+
+    .btn-nav:hover:not(:disabled) {
+      background: #f59e0b;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn-nav:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    /* ==========================================================================
+       PAINEL LATERAL: NOTAS DO APRESENTADOR (RETRÁTIL)
+       ========================================================================== */
+    .presenter-drawer {
+      position: fixed;
+      top: 55px;
+      right: 0;
+      width: 420px;
+      max-width: 90vw;
+      height: calc(100vh - 120px);
+      background: #ffffff;
+      color: #0f172a;
+      box-shadow: -8px 0 30px rgba(0, 0, 0, 0.4);
+      z-index: 200;
+      border-left: 3px solid #f59e0b;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .presenter-drawer.open {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      background: #0d223f;
+      color: #ffffff;
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .drawer-header h3 {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .drawer-close {
+      background: none;
+      border: none;
+      color: #cbd5e1;
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    .drawer-body {
+      padding: 1.25rem;
+      overflow-y: auto;
+      flex: 1;
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .note-section {
+      margin-bottom: 1.25rem;
+      background: #f8fafc;
+      padding: 0.9rem 1rem;
+      border-radius: 10px;
+      border-left: 4px solid #3b82f6;
+    }
+
+    .note-section.tip {
+      border-left-color: #10b981;
+      background: #ecfdf5;
+    }
+
+    .note-section.ask {
+      border-left-color: #f59e0b;
+      background: #fffbeb;
+    }
+
+    .note-label {
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.35rem;
+      display: block;
+    }
+
+    .note-spoken {
+      font-style: italic;
+      color: #1e293b;
+      font-weight: 500;
+      border-left: 2px solid #cbd5e1;
+      padding-left: 0.65rem;
+      margin-top: 0.4rem;
+    }
+
+    /* Modal de Atalhos de Teclado */
+    .shortcuts-hint {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .kbd {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+      padding: 1px 5px;
+      font-family: monospace;
+      color: #ffffff;
+    }
+
+    /* Responsividade */
+    @media (max-width: 900px) {
+      .slide-grid-4 {
+        grid-template-columns: 1fr 1fr;
+      }
+      .slide-grid-3 {
+        grid-template-columns: 1fr;
+      }
+      .slide-grid-2 {
+        grid-template-columns: 1fr;
+      }
+      .cover-slide-content {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .cover-right {
+        display: none;
+      }
+    }
+
+    /* Suporte a Impressão / Exportação PDF (Apostila de Slides) */
+    @media print {
+      body {
+        overflow: visible !important;
+        height: auto !important;
+        background: #ffffff !important;
+        color: #0f172a !important;
+      }
+      .pres-header, .pres-footer, .progress-bar-container, .presenter-drawer {
+        display: none !important;
+      }
+      .pres-main {
+        display: block !important;
+        background: none !important;
+        padding: 0 !important;
+      }
+      .slide {
+        position: relative !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        max-height: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        page-break-after: always;
+        break-after: page;
+        padding: 15mm !important;
+        background: #0d223f !important;
+        color: #ffffff !important;
+        box-sizing: border-box;
+      }
+      .slide:last-child {
+        page-break-after: avoid;
+        break-after: avoid;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ======================================================================
+       HEADER SUPERIOR COM CONTROLES & CRONÔMETRO DE 15 MIN
+       ====================================================================== -->
+  <header class="pres-header">
+    <div class="pres-brand">
+      <div class="pres-icon" aria-hidden="true">🛡️</div>
+      <div class="pres-title-wrap">
+        <h1>Palestra: Segurança Digital para a Melhor Idade</h1>
+        <span>Apresentação Rápida de 15 Minutos • Baseada na Cartilha Oficial</span>
+      </div>
+    </div>
+
+    <!-- Cronômetro da Palestra -->
+    <div class="timer-badge" id="timerBadge" title="Cronômetro regressivo da palestra de 15 min">
+      <span aria-hidden="true">⏱️</span>
+      <span id="timerDisplay">15:00</span>
+      <button class="timer-btn" id="btnToggleTimer" title="Iniciar / Pausar cronômetro">▶</button>
+      <button class="timer-btn" id="btnResetTimer" title="Reiniciar cronômetro para 15:00">↺</button>
+    </div>
+
+    <!-- Ações e Modos -->
+    <div class="header-actions">
+      <!-- Notas do Apresentador -->
+      <button id="btnToggleNotes" class="btn-top" title="Abrir roteiro de fala e notas para o palestrante (Tecla N)">
+        <span>🎤 Roteiro de Fala (N)</span>
+      </button>
+
+      <!-- Aumentar Fonte -->
+      <button id="btnPresFontSize" class="btn-top" title="Aumentar tamanho das letras para projetor">
+        <strong>A+</strong>
+      </button>
+
+      <!-- Alto Contraste -->
+      <button id="btnPresContrast" class="btn-top" title="Alternar modo de alto contraste para visibilidade máxima">
+        <span>🌓</span>
+      </button>
+
+      <!-- Tela Cheia -->
+      <button id="btnFullscreen" class="btn-top" title="Alternar tela cheia para projeção (Tecla F)">
+        <span>⛶ Tela Cheia</span>
+      </button>
+
+      <!-- Voltar para Cartilha -->
+      <a href="index.html" class="btn-top" style="background: rgba(37, 99, 235, 0.6);" title="Voltar ao site da Cartilha">
+        <span>📖 Ver Cartilha</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Barra de Progresso Superior -->
+  <div class="progress-bar-container">
+    <div class="progress-bar-fill" id="progressBar"></div>
+  </div>
+
+  <!-- ======================================================================
+       ÁREA PRINCIPAL: SLIDES DA PALESTRA
+       ====================================================================== -->
+  <main class="pres-main">
+
+    <!-- ====================================================================
+         SLIDE 1: CAPA & QUEBRA-GELO (00:00 a 02:00)
+         ==================================================================== -->
+    <section class="slide active" id="slide-1" data-slide="1" data-time="0 a 2 min">
+      <div class="cover-slide-content">
+        <div class="cover-left">
+          <span class="cover-badge-large">PALESTRA INTERATIVA • 15 MINUTOS</span>
+          <h2 class="cover-hero-title">Proteção Contra Golpes no <span>Celular</span></h2>
+          <p class="cover-hero-desc">
+            O celular trouxe facilidades para falar com a família e pagar contas. Mas também atraiu pessoas mal-intencionadas. 
+            Hoje, vamos aprender <strong>como usar a tecnologia com total tranquilidade</strong>.
+          </p>
+
+          <div class="cover-icebreaker">
+            <span style="font-size: 1.5rem;" aria-hidden="true">🙋‍♂️</span>
+            <div>
+              <strong>Pergunta rápida para o grupo:</strong><br>
+              <em>"Levante a mão quem já recebeu uma mensagem estranha no WhatsApp ou uma ligação esquisita no telefone?"</em>
+            </div>
+          </div>
+        </div>
+
+        <div class="cover-right">
+          <div class="cover-image-card">
+            <img src="assets/cover-illustration.jpg" alt="Celular seguro com escudo de proteção digital">
+            <p>Guia Prático e Gratuito para a Família</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SLIDE 2: SEM CULPA NEM VERGONHA (02:00 a 04:30)
+         ==================================================================== -->
+    <section class="slide" id="slide-2" data-slide="2" data-time="2 a 4m30">
+      <div class="slide-pill-badge">A VERDADE SOBRE OS GOLPES</div>
+      <h2 class="slide-title">Quem cai em golpe NÃO é desatento: é vítima de profissionais!</h2>
+      <p class="slide-subtitle">
+        Os criminosos estudam o dia todo para enganar pessoas honestas. O segredo deles é provocar <strong>medo</strong>, <strong>pressa</strong> e <strong>emoção</strong>.
+      </p>
+
+      <div class="banner-urgent">
+        <span style="font-size: 1.4rem;" aria-hidden="true">🛑</span>
+        <span>A ARMA PRINCIPAL DO GOLPISTA: Fazer você tomar decisões correndo, sem tempo para pensar!</span>
+      </div>
+
+      <div class="slide-grid-3">
+        <div class="slide-card">
+          <div class="slide-card-header">
+            <span class="slide-card-icon">⚡</span>
+            <h3 class="slide-card-title">1. Sensação de Pressa</h3>
+          </div>
+          <p class="slide-card-desc">
+            Eles dizem: <em>"Tem que ser agora!"</em> ou <em>"Sua conta vai ser cancelada se você desligar!"</em>. É de propósito, para você não conversar com ninguém.
+          </p>
+          <div class="slide-action-box action-danger">
+            👉 Sentiu pressa? Desligue na hora!
+          </div>
+        </div>
+
+        <div class="slide-card">
+          <div class="slide-card-header">
+            <span class="slide-card-icon">🎭</span>
+            <h3 class="slide-card-title">2. Fingem Ser Quem Você Ama</h3>
+          </div>
+          <p class="slide-card-desc">
+            Pegam fotos públicas do filho ou neto e mandam mensagem: <em>"Mãe, meu telefone quebrou, me socorre com um Pix!"</em>
+          </p>
+          <div class="slide-action-box action-warning">
+            👉 Ligue no número antigo do parente!
+          </div>
+        </div>
+
+        <div class="slide-card">
+          <div class="slide-card-header">
+            <span class="slide-card-icon">🤝</span>
+            <h3 class="slide-card-title">3. Nunca Sinta Vergonha</h3>
+          </div>
+          <p class="slide-card-desc">
+            Se alguma vez você acreditou em algo suspeito ou já caiu em golpe, conte para os filhos ou amigos. <strong>A culpa é sempre do bandido!</strong>
+          </p>
+          <div class="slide-action-box action-success">
+            👉 O diálogo em família é seu escudo!
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SLIDE 3: OS 4 GOLPES MAIS COMUNS (04:30 a 08:30)
+         ==================================================================== -->
+    <section class="slide" id="slide-3" data-slide="3" data-time="4m30 a 8m30">
+      <div class="slide-pill-badge">ATENÇÃO REDOBRADA</div>
+      <h2 class="slide-title">Os 4 Golpes Mais Comuns no Celular</h2>
+      <p class="slide-subtitle">
+        Conheça as histórias que os bandidos inventam todos os dias no WhatsApp e nas ligações:
+      </p>
+
+      <div class="slide-grid-4">
+        <!-- Golpe 1 -->
+        <div class="slide-card">
+          <div class="slide-card-header">
+            <span class="slide-card-icon">👤</span>
+            <h3 class="slide-card-title">1. Falso Parente</h3>
+          </div>
+          <p class="slide-card-desc">
+            Colocam a foto do filho ou neto dizendo: <em>"Mudei de número, me manda um Pix urgente para pagar um boleto!"</em>
+          </p>
+          <div class="slide-action-box action-danger">
+            Ligue para o número antigo do parente!
+          </div>
+        </div>
+
+        <!-- Golpe 2 -->
+        <div class="slide-card">
+          <div class="slide-card-header">
+            <span class="slide-card-icon">🏦</span>
+            <h3 class="slide-card-title">2. Falsa Central do Banco</h3>
+          </div>
+          <p class="slide-card-desc">
+            Uma gravação imita seu banco: <em>"Detectamos compra de R$ 2.500 no seu cartão. Para cancelar, digite sua senha."</em>
+          </p>
+          <div class="slide-action-box action-danger">
+            Desligue! O banco NUNCA pede senha.
+          </div>
+        </div>
+
+        <!-- Golpe 3 -->
+        <div class="slide-card">
+          <div class="slide-card-header">
+            <span class="slide-card-icon">📑</span>
+            <h3 class="slide-card-title">3. Falso INSS / Prova de Vida</h3>
+          </div>
+          <p class="slide-card-desc">
+            Mandam mensagem ameaçando cortar aposentadoria ou pensão se não clicar num link para "recadastramento".
+          </p>
+          <div class="slide-action-box action-warning">
+            Vá direto à agência ou ao posto oficial.
+          </div>
+        </div>
+
+        <!-- Golpe 4 -->
+        <div class="slide-card">
+          <div class="slide-card-header">
+            <span class="slide-card-icon">🎁</span>
+            <h3 class="slide-card-title">4. Prêmios e Links Azuis</h3>
+          </div>
+          <p class="slide-card-desc">
+            Mensagens de <em>"Encomenda presa no Correios"</em>, sorteios milagrosos ou brindes com links para você clicar.
+          </p>
+          <div class="slide-action-box action-danger">
+            Nunca toque em links desconhecidos!
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SLIDE 4: O QUE BANCO E INSS NUNCA FAZEM (08:30 a 10:30)
+         ==================================================================== -->
+    <section class="slide" id="slide-4" data-slide="4" data-time="8m30 a 10m30">
+      <div class="slide-pill-badge">GRAVE ISTO PARA SEMPRE</div>
+      <h2 class="slide-title">O Banco e o INSS NUNCA fazem isso:</h2>
+      <p class="slide-subtitle">
+        Se qualquer pessoa te pedir alguma dessas 3 coisas pelo telefone ou WhatsApp, <strong>é 100% GOLPE</strong>!
+      </p>
+
+      <div class="slide-grid-2">
+        <!-- O QUE NUNCA FAZEM -->
+        <div class="slide-card" style="border-top: 6px solid #dc2626; background: #fff5f5;">
+          <div class="slide-card-header">
+            <span style="font-size: 2rem;">🚫</span>
+            <h3 class="slide-card-title" style="color: #991b1b; font-size: 1.3rem;">O QUE ELES NUNCA FAZEM</h3>
+          </div>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem; font-size: calc(1.05rem * var(--slide-font-scale));">
+            <li style="display: flex; gap: 0.6rem; align-items: flex-start;">
+              <span style="color: #dc2626; font-size: 1.2rem;">❌</span>
+              <span><strong>NUNCA pedem sua senha</strong> nem código SMS por ligação telefônica.</span>
+            </li>
+            <li style="display: flex; gap: 0.6rem; align-items: flex-start;">
+              <span style="color: #dc2626; font-size: 1.2rem;">❌</span>
+              <span><strong>NUNCA mandam motoqueiro</strong> buscar cartão na sua casa para "perícia" ou "descarte".</span>
+            </li>
+            <li style="display: flex; gap: 0.6rem; align-items: flex-start;">
+              <span style="color: #dc2626; font-size: 1.2rem;">❌</span>
+              <span><strong>NUNCA pedem transferência Pix</strong> para "estornar" ou "cancelar" compra suspeita.</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- O QUE VOCÊ DEVE FAZER -->
+        <div class="slide-card" style="border-top: 6px solid #059669; background: #f0fdf4;">
+          <div class="slide-card-header">
+            <span style="font-size: 2rem;">✅</span>
+            <h3 class="slide-card-title" style="color: #065f46; font-size: 1.3rem;">O QUE VOCÊ DEVE FAZER</h3>
+          </div>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem; font-size: calc(1.05rem * var(--slide-font-scale));">
+            <li style="display: flex; gap: 0.6rem; align-items: flex-start;">
+              <span style="color: #059669; font-size: 1.2rem;">✔️</span>
+              <span><strong>Desligue a chamada imediatamente</strong> sem medo de parecer mal-educado.</span>
+            </li>
+            <li style="display: flex; gap: 0.6rem; align-items: flex-start;">
+              <span style="color: #059669; font-size: 1.2rem;">✔️</span>
+              <span><strong>Pegue seu cartão físico</strong> e ligue no número impresso no verso dele.</span>
+            </li>
+            <li style="display: flex; gap: 0.6rem; align-items: flex-start;">
+              <span style="color: #059669; font-size: 1.2rem;">✔️</span>
+              <span>Se tiver qualquer dúvida sobre aposentadoria, <strong>vá presencialmente à agência</strong>.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SLIDE 5: A REGRA DE OURO EM 3 PASSOS (10:30 a 13:00)
+         ==================================================================== -->
+    <section class="slide" id="slide-5" data-slide="5" data-time="10m30 a 13:00">
+      <div class="slide-pill-badge">MÉTODO INFALÍVEL DE PROTEÇÃO</div>
+      <h2 class="slide-title">A Regra de Ouro: 3 Passos Simples</h2>
+      <p class="slide-subtitle">
+        Basta memorizar estas 3 palavras quando o telefone tocar ou chegar mensagem suspeita:
+      </p>
+
+      <div class="slide-grid-3">
+        <!-- Passo 1 -->
+        <div class="slide-card" style="border-bottom: 6px solid #dc2626; text-align: center; padding: 2rem 1.5rem;">
+          <div style="width: 60px; height: 60px; background: #fee2e2; color: #dc2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 900; margin: 0 auto 1rem;">
+            1
+          </div>
+          <h3 style="font-family: var(--font-heading); font-size: 1.6rem; color: #991b1b; margin-bottom: 0.75rem;">
+            ✋ PARE!
+          </h3>
+          <p style="font-size: calc(1.05rem * var(--slide-font-scale)); color: #334155; line-height: 1.5;">
+            Não tome decisões no calor da emoção nem com pressa. Respire fundo e <strong>desligue o telefone</strong>.
+          </p>
+        </div>
+
+        <!-- Passo 2 -->
+        <div class="slide-card" style="border-bottom: 6px solid #d97706; text-align: center; padding: 2rem 1.5rem;">
+          <div style="width: 60px; height: 60px; background: #fef3c7; color: #d97706; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 900; margin: 0 auto 1rem;">
+            2
+          </div>
+          <h3 style="font-family: var(--font-heading); font-size: 1.6rem; color: #92400e; margin-bottom: 0.75rem;">
+            🔍 CONFIRA!
+          </h3>
+          <p style="font-size: calc(1.05rem * var(--slide-font-scale)); color: #334155; line-height: 1.5;">
+            Ligue no <strong>número antigo</strong> do parente ou no telefone oficial do verso do seu cartão bancário.
+          </p>
+        </div>
+
+        <!-- Passo 3 -->
+        <div class="slide-card" style="border-bottom: 6px solid #059669; text-align: center; padding: 2rem 1.5rem;">
+          <div style="width: 60px; height: 60px; background: #d1fae5; color: #059669; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; font-weight: 900; margin: 0 auto 1rem;">
+            3
+          </div>
+          <h3 style="font-family: var(--font-heading); font-size: 1.6rem; color: #065f46; margin-bottom: 0.75rem;">
+            🗣️ PEÇA AJUDA!
+          </h3>
+          <p style="font-size: calc(1.05rem * var(--slide-font-scale)); color: #334155; line-height: 1.5;">
+            Fale com alguém de sua <strong>confiança</strong> (filho, vizinho, amigo) antes de fazer qualquer Pix ou transferência.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SLIDE 6: CAIU EM GOLPE? O QUE FAZER (13:00 a 14:15)
+         ==================================================================== -->
+    <section class="slide" id="slide-6" data-slide="6" data-time="13:00 a 14m15">
+      <div class="slide-pill-badge">PLANO DE AÇÃO IMEDIATA</div>
+      <h2 class="slide-title">Aconteceu? Mantenha a calma e aja rápido!</h2>
+      <p class="slide-subtitle">
+        Não sinta vergonha. A culpa é do golpista! Siga esta ordem exata de providências:
+      </p>
+
+      <div class="slide-grid-4">
+        <!-- Passo 1 -->
+        <div class="slide-card">
+          <div class="slide-card-header">
+            <span class="slide-card-icon">📞</span>
+            <h3 class="slide-card-title">1. Avise o Banco</h3>
+          </div>
+          <p class="slide-card-desc">
+            Ligue no telefone atrás do cartão e peça o bloqueio imediato do Pix e de senhas.
+          </p>
+        </div>
+
+        <!-- Passo 2 -->
+        <div class="slide-card">
+          <div class="slide-card-header">
+            <span class="slide-card-icon">🚫</span>
+            <h3 class="slide-card-title">2. Bloqueie o Número</h3>
+          </div>
+          <p class="slide-card-desc">
+            Não converse mais com o golpista no WhatsApp. Guarde os prints e bloqueie o contato.
+          </p>
+        </div>
+
+        <!-- Passo 3 -->
+        <div class="slide-card">
+          <div class="slide-card-header">
+            <span class="slide-card-icon">🚓</span>
+            <h3 class="slide-card-title">3. Registre o B.O.</h3>
+          </div>
+          <p class="slide-card-desc">
+            Vá à delegacia com uma pessoa de confiança ou registre o Boletim online.
+          </p>
+        </div>
+
+        <!-- Passo 4 -->
+        <div class="slide-card">
+          <div class="slide-card-header">
+            <span class="slide-card-icon">👨‍👩‍👧</span>
+            <h3 class="slide-card-title">4. Avise a Família</h3>
+          </div>
+          <p class="slide-card-desc">
+            Conte para os parentes para ninguém cair na mesma mentira nem enviar mais dinheiro.
+          </p>
+        </div>
+      </div>
+
+      <!-- Telefones de Emergência -->
+      <div style="margin-top: 1.5rem; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25); border-radius: 12px; padding: 1rem 1.5rem; display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap; gap: 1rem;">
+        <div style="font-family: var(--font-heading); font-size: calc(1.1rem * var(--slide-font-scale)); font-weight: 700;">
+          🚨 Telefones Importantes:
+        </div>
+        <div style="font-size: calc(1.05rem * var(--slide-font-scale));">
+          Polícia Militar: <strong style="color: #fde047;">190</strong>
+        </div>
+        <div style="font-size: calc(1.05rem * var(--slide-font-scale));">
+          Disque Denúncia: <strong style="color: #fde047;">181</strong>
+        </div>
+        <div style="font-size: calc(1.05rem * var(--slide-font-scale));">
+          Central do Banco: <strong style="color: #fde047;">Atrás do seu cartão físico</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SLIDE 7: ENCERRAMENTO & LEVE A CARTILHA (14:15 a 15:00)
+         ==================================================================== -->
+    <section class="slide" id="slide-7" data-slide="7" data-time="14m15 a 15:00">
+      <div class="cover-slide-content">
+        <div class="cover-left">
+          <span class="cover-badge-large">LEVE COM VOCÊ</span>
+          <h2 class="cover-hero-title">Guarde este guia perto do telefone!</h2>
+          <p class="cover-hero-desc">
+            A melhor proteção contra os golpes é a <strong>informação compartilhada</strong>. 
+            Leve o folheto impresso para casa, mostre para seus amigos, vizinhos e familiares!
+          </p>
+
+          <div style="background: rgba(16, 185, 129, 0.15); border: 2px solid #10b981; border-radius: 16px; padding: 1.25rem; margin-bottom: 1.5rem;">
+            <h4 style="font-family: var(--font-heading); color: #6ee7b7; font-size: 1.2rem; margin-bottom: 0.4rem;">
+              ✨ Recado para levar no coração:
+            </h4>
+            <p style="color: #f1f5f9; font-size: calc(1.05rem * var(--slide-font-scale));">
+              "Na dúvida: <strong>PARE</strong>, <strong>CONFIRA</strong> e <strong>PEÇA AJUDA</strong>. Você tem o direito de desligar qualquer ligação e pensar com calma!"
+            </p>
+          </div>
+
+          <div style="display: flex; gap: 1rem; align-items: center;">
+            <a href="index.html" class="btn-nav" style="text-decoration: none; background: #f59e0b; color: #0f172a;">
+              📄 Abrir Cartilha Completa & PDF
+            </a>
+            <span style="color: #94a3b8; font-size: 0.9rem;">
+              Obrigado pela atenção de todos! 👏
+            </span>
+          </div>
+        </div>
+
+        <div class="cover-right">
+          <div class="cover-image-card" style="border: 4px solid #f59e0b;">
+            <img src="assets/cover-illustration.jpg" alt="Cartilha de Proteção Digital">
+            <p style="color: #0f172a; font-size: 1.05rem; font-weight: 800;">
+              Distribuição Gratuita
+            </p>
+            <span style="font-size: 0.85rem; color: #475569;">Imprima e compartilhe</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================================
+       RODAPÉ DE NAVEGAÇÃO DOS SLIDES
+       ====================================================================== -->
+  <footer class="pres-footer">
+    <div class="slide-counter">
+      Slide <strong id="currentSlideNum">1</strong> de <span id="totalSlidesNum">7</span>
+      <span style="margin-left: 0.75rem; color: #cbd5e1; font-weight: 500;" id="slideTimingPill">(0 a 2 min)</span>
+    </div>
+
+    <div class="dots-nav" id="dotsContainer" aria-label="Navegação por bolinhas">
+      <!-- Inserido dinamicamente via JS -->
+    </div>
+
+    <div class="nav-buttons">
+      <div class="shortcuts-hint" title="Você também pode navegar pelas setas do teclado">
+        <span>Teclas: <span class="kbd">◀</span> <span class="kbd">▶</span> ou <span class="kbd">Espaço</span></span>
+      </div>
+
+      <button id="btnPrevSlide" class="btn-nav" disabled>
+        <span>◀ Anterior</span>
+      </button>
+
+      <button id="btnNextSlide" class="btn-nav">
+        <span>Próximo ▶</span>
+      </button>
+    </div>
+  </footer>
+
+  <!-- ======================================================================
+       PAINEL LATERAL: NOTAS DO APRESENTADOR & ROTEIRO DE FALA (MODO APRESENTADOR)
+       ====================================================================== -->
+  <aside id="presenterDrawer" class="presenter-drawer" aria-label="Notas do Palestrante">
+    <div class="drawer-header">
+      <h3><span>🎤</span> Roteiro do Palestrante</h3>
+      <button id="btnCloseDrawer" class="drawer-close" aria-label="Fechar painel de notas">&times;</button>
+    </div>
+
+    <div class="drawer-body" id="notesContent">
+      <!-- O conteúdo é preenchido dinamicamente de acordo com o slide atual -->
+    </div>
+  </aside>
+
+  <!-- ======================================================================
+       SCRIPT DA APRESENTAÇÃO
+       ====================================================================== -->
+  <script>
+    // --- Dados do Roteiro de Fala por Slide (15 minutos cronometrados) ---
+    const slideNotes = {
+      1: {
+        tempo: "00:00 a 02:00 (2 minutos)",
+        objetivo: "Acolher a plateia, quebrar o gelo com empatia e tirar o medo da tecnologia.",
+        pergunta: "Quem aqui já recebeu uma mensagem no WhatsApp de alguém dizendo que era conhecido, ou uma ligação estranha dizendo que o cartão foi usado?",
+        roteiro: "Olá a todos! É uma alegria imensa estar aqui com vocês. O celular é uma ferramenta maravilhosa para a gente ver fotos dos netos, mandar mensagens e resolver a vida. Mas vocês já devem ter percebido que de vez em quando chegam umas mensagens esquisitas. Nos próximos 15 minutos, de forma muito simples e direta, vamos aprender a criar um 'escudo' para você e sua família nunca mais caírem em armadilhas. Vamos juntos?",
+        dica: "Fale devagar, sorridente e com voz firme. Aguarde alguns levantarem a mão na pergunta. Isso gera conexão imediata e remove a vergonha."
+      },
+      2: {
+        tempo: "02:00 a 04:30 (2,5 minutos)",
+        objetivo: "Desmistificar a vergonha. Tirar o estigma de que 'idoso é ingênuo'.",
+        pergunta: "Vocês já perceberam que o golpista SEMPRE tem muita pressa?",
+        roteiro: "A primeira coisa que quero que vocês guardem: se alguém aqui já caiu em golpe ou conhece alguém que caiu, não sinta vergonha. O criminoso não é amador: ele passa 12 horas por dia estudando truques psicológicos. E qual é o truque número 1 deles? A PRESSA. Eles inventam que seu filho está no hospital, que seu benefício vai ser cancelado em 10 minutos ou que sua conta está sendo roubada. Por que fazem isso? Para você agir no susto, com o coração acelerado, sem tempo de consultar ninguém. A regra básica é: sentiu pressa do outro lado da linha? Desligue na hora!",
+        dica: "Enfatize: 'Desligar o telefone não é grosseria nem falta de educação. É autodefesa!'"
+      },
+      3: {
+        tempo: "04:30 a 08:30 (4 minutos)",
+        objetivo: "Explicar os 4 golpes do dia a dia contando historinhas rápidas.",
+        pergunta: "Alguém já recebeu mensagem de filho ou neto com 'número novo' pedindo dinheiro?",
+        roteiro: "Vamos conhecer os 4 golpes mais manjados do Brasil: \n1º) O Falso Parente no WhatsApp: pegam a foto do seu neto no Facebook, mandam mensagem de um número desconhecido dizendo 'Benção, vó! Troquei de celular, paga um boleto urgente pra mim'. O que fazer? Ligue no número ANTIGO dele! \n2º) A Falsa Central do Banco: toca uma gravação perfeita, com musiquinha de banco, dizendo que compraram uma TV nas Casas Bahia no seu nome e pede para digitar a senha. Desligue! O banco nunca faz isso. \n3º) O Falso INSS: SMS dizendo que sua aposentadoria foi suspensa por falta de prova de vida. Nunca clique no link azul. Vá direto à agência física. \n4º) Prêmios e Encomendas: aviso de que uma caixa do Correios está retida. Não clique!",
+        dica: "Imite o tom do golpista em tom bem-humorado. O humor ajuda os idosos a memorizarem as situações."
+      },
+      4: {
+        tempo: "08:30 a 10:30 (2 minutos)",
+        objetivo: "Fixar as regras absolutas do que o Banco e o INSS NUNCA fazem.",
+        pergunta: "Vocês sabiam que o banco NUNCA manda motoqueiro na sua casa?",
+        roteiro: "Gravem isso como um mandamento sagrado: o banco e o INSS NUNCA pedem sua senha nem código SMS por telefone. Se a pessoa souber seu CPF, seu nome e seu endereço, não se impressione! Esses dados vazam na internet. Se alguém pedir sua senha, é golpe! E tem mais: NUNCA mandam motoboy buscar cartão na sua casa para 'destruir', e NUNCA pedem para você fazer um Pix para 'cancelar' compra suspeita. Dinheiro enviado não cancela nada!",
+        dica: "Peça para eles repetirem juntos se a dinâmica permitir: 'Banco não pede senha!'"
+      },
+      5: {
+        tempo: "10:30 a 13:00 (2,5 minutos)",
+        objetivo: "Fixar a Regra de Ouro em 3 passos fáceis de memorizar.",
+        pergunta: "O que a gente faz quando o coração aperta e dá dúvida?",
+        roteiro: "Agora, o remédio infalível. Quando você receber qualquer ligação ou mensagem estranha, lembre-se destes 3 passos: \nPasso 1: PARE! Respire fundo, não clique e desligue a chamada na hora. \nPasso 2: CONFIRA! Pegue seu cartão no bolso, olhe o número escrito no verso dele e ligue lá. Ou ligue para o parente no telefone que você já tinha salvo. \nPasso 3: PEÇA AJUDA! Antes de transferir um único centavo, chame um filho, um neto, uma amiga ou um vizinho e mostre a mensagem. Duas cabeças pensam melhor do que uma!",
+        dica: "Use as mãos para contar: 1-PARE, 2-CONFIRA, 3-PEÇA AJUDA. A gesticulação fixa a memória visual."
+      },
+      6: {
+        tempo: "13:00 a 14:15 (1 minuto e 15 segundos)",
+        objetivo: "Orientar com clareza o que fazer se o golpe acontecer.",
+        pergunta: "E se a gente ou alguém querido já caiu, o que fazer agora?",
+        roteiro: "Se acontecer com você ou com um amigo, calma! A vergonha só ajuda o bandido a continuar impune. Faça o seguinte imediatamente: \n1. Ligue no seu banco no número do verso do cartão e peça para bloquear o Pix e cartões. \n2. Bloqueie o golpista no WhatsApp. \n3. Faça um Boletim de Ocorrência na polícia (pode chamar alguém de confiança para ajudar). \n4. Avise sua família. Muitas vezes os bancos devolvem valores quando a contestação é feita logo após o golpe!",
+        dica: "Mantenha o tom seguro e acolhedor: o objetivo é tirar a sensação de desamparo."
+      },
+      7: {
+        tempo: "14:15 a 15:00 (45 segundos)",
+        objetivo: "Encerramento com presente: distribuir a cartilha impressa e estimular a multiplicação da informação.",
+        pergunta: "Onde vocês vão guardar o folheto impresso quando chegarem em casa?",
+        roteiro: "Para fechar nossa conversa: todos vocês estão recebendo este folheto impresso dobrável. Minha recomendação de ouro: guardem esse folheto bem do lado do telefone fixo ou no sofá da sala! E sempre que tiverem dúvida, olhem para ele. Mais importante: compartilhem com as amigas e a família. Quem avisa, amigo é! Muito obrigado a todos pela atenção e fiquem em segurança!",
+        dica: "Abra para 2 ou 3 perguntas rápidas se o evento tiver tempo adicional."
+      }
+    };
+
+    // --- Estado da Apresentação ---
+    let currentSlide = 1;
+    const totalSlides = 7;
+    let timerSeconds = 15 * 60; // 15 minutos = 900s
+    let timerInterval = null;
+    let isTimerRunning = false;
+
+    // --- Elementos do DOM ---
+    const slides = document.querySelectorAll('.slide');
+    const progressBar = document.getElementById('progressBar');
+    const currentSlideNumEl = document.getElementById('currentSlideNum');
+    const totalSlidesNumEl = document.getElementById('totalSlidesNum');
+    const slideTimingPillEl = document.getElementById('slideTimingPill');
+    const dotsContainer = document.getElementById('dotsContainer');
+    const btnPrev = document.getElementById('btnPrevSlide');
+    const btnNext = document.getElementById('btnNextSlide');
+
+    const timerBadge = document.getElementById('timerBadge');
+    const timerDisplay = document.getElementById('timerDisplay');
+    const btnToggleTimer = document.getElementById('btnToggleTimer');
+    const btnResetTimer = document.getElementById('btnResetTimer');
+
+    const presenterDrawer = document.getElementById('presenterDrawer');
+    const btnToggleNotes = document.getElementById('btnToggleNotes');
+    const btnCloseDrawer = document.getElementById('btnCloseDrawer');
+    const notesContent = document.getElementById('notesContent');
+
+    const btnFullscreen = document.getElementById('btnFullscreen');
+    const btnPresFontSize = document.getElementById('btnPresFontSize');
+    const btnPresContrast = document.getElementById('btnPresContrast');
+
+    // Inicializar Dots de Navegação
+    for (let i = 1; i <= totalSlides; i++) {
+      const dot = document.createElement('button');
+      dot.classList.add('dot-btn');
+      if (i === 1) dot.classList.add('active');
+      dot.title = `Ir para o Slide ${i}`;
+      dot.addEventListener('click', () => goToSlide(i));
+      dotsContainer.appendChild(dot);
+    }
+    const dots = document.querySelectorAll('.dot-btn');
+
+    // --- Função para Atualizar Slides ---
+    function updateSlide() {
+      slides.forEach((s, idx) => {
+        if (idx + 1 === currentSlide) {
+          s.classList.add('active');
+        } else {
+          s.classList.remove('active');
+        }
+      });
+
+      // Atualizar contador e pills
+      currentSlideNumEl.textContent = currentSlide;
+      const timing = slides[currentSlide - 1].getAttribute('data-time') || '';
+      slideTimingPillEl.textContent = `(${timing})`;
+
+      // Atualizar Barra de Progresso
+      const progressPercent = (currentSlide / totalSlides) * 100;
+      progressBar.style.width = `${progressPercent}%`;
+
+      // Atualizar Dots
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx + 1 === currentSlide);
+      });
+
+      // Atualizar Botões Prev / Next
+      btnPrev.disabled = currentSlide === 1;
+      if (currentSlide === totalSlides) {
+        btnNext.innerHTML = '<span>Finalizar 👏</span>';
+      } else {
+        btnNext.innerHTML = '<span>Próximo ▶</span>';
+      }
+
+      // Atualizar Notas do Apresentador
+      updateNotesView();
+    }
+
+    function goToSlide(slideNum) {
+      if (slideNum < 1 || slideNum > totalSlides) return;
+      currentSlide = slideNum;
+      updateSlide();
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        currentSlide++;
+        updateSlide();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        currentSlide--;
+        updateSlide();
+      }
+    }
+
+    btnNext.addEventListener('click', nextSlide);
+    btnPrev.addEventListener('click', prevSlide);
+
+    // --- Atualizar Conteúdo das Notas do Apresentador ---
+    function updateNotesView() {
+      const note = slideNotes[currentSlide];
+      if (!note) return;
+
+      notesContent.innerHTML = `
+        <div class="note-section">
+          <span class="note-label">⏱️ Tempo Estimado:</span>
+          <strong>${note.tempo}</strong>
+        </div>
+
+        <div class="note-section">
+          <span class="note-label">🎯 Objetivo Deste Slide:</span>
+          <p>${note.objetivo}</p>
+        </div>
+
+        <div class="note-section ask">
+          <span class="note-label" style="color: #b45309;">🙋 Interação com a Plateia:</span>
+          <p><strong>"${note.pergunta}"</strong></p>
+        </div>
+
+        <div class="note-section">
+          <span class="note-label">🗣️ Roteiro de Fala Sugerido:</span>
+          <div class="note-spoken">${note.roteiro.replace(/\n/g, '<br><br>')}</div>
+        </div>
+
+        <div class="note-section tip">
+          <span class="note-label" style="color: #047857;">💡 Dica de Ouro com Idosos:</span>
+          <p>${note.dica}</p>
+        </div>
+      `;
+    }
+
+    // --- Painel de Notas (Gaveta Retrátil) ---
+    function toggleNotes() {
+      presenterDrawer.classList.toggle('open');
+      btnToggleNotes.classList.toggle('active');
+    }
+
+    btnToggleNotes.addEventListener('click', toggleNotes);
+    btnCloseDrawer.addEventListener('click', toggleNotes);
+
+    // --- Cronômetro de 15 Minutos ---
+    function formatTime(totalSecs) {
+      const m = Math.floor(totalSecs / 60);
+      const s = totalSecs % 60;
+      return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    }
+
+    function updateTimerDisplay() {
+      timerDisplay.textContent = formatTime(timerSeconds);
+
+      // Alertas visuais
+      if (timerSeconds <= 120 && timerSeconds > 0) {
+        timerBadge.classList.add('warning');
+        timerBadge.classList.remove('danger');
+      } else if (timerSeconds <= 0) {
+        timerBadge.classList.add('danger');
+        timerBadge.classList.remove('warning');
+        timerDisplay.textContent = "00:00 (Fim!)";
+      } else {
+        timerBadge.classList.remove('warning', 'danger');
+      }
+    }
+
+    function startTimer() {
+      if (isTimerRunning) return;
+      isTimerRunning = true;
+      btnToggleTimer.textContent = '⏸';
+      timerInterval = setInterval(() => {
+        if (timerSeconds > 0) {
+          timerSeconds--;
+          updateTimerDisplay();
+        } else {
+          clearInterval(timerInterval);
+          isTimerRunning = false;
+          btnToggleTimer.textContent = '▶';
+        }
+      }, 1000);
+    }
+
+    function pauseTimer() {
+      clearInterval(timerInterval);
+      isTimerRunning = false;
+      btnToggleTimer.textContent = '▶';
+    }
+
+    btnToggleTimer.addEventListener('click', () => {
+      if (isTimerRunning) {
+        pauseTimer();
+      } else {
+        startTimer();
+      }
+    });
+
+    btnResetTimer.addEventListener('click', () => {
+      pauseTimer();
+      timerSeconds = 15 * 60;
+      updateTimerDisplay();
+    });
+
+    // --- Atalhos de Teclado ---
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'n' || e.key === 'N') {
+        e.preventDefault();
+        toggleNotes();
+      } else if (e.key === 'f' || e.key === 'F') {
+        e.preventDefault();
+        toggleFullscreen();
+      } else if (e.key === 'Home') {
+        e.preventDefault();
+        goToSlide(1);
+      } else if (e.key === 'End') {
+        e.preventDefault();
+        goToSlide(totalSlides);
+      }
+    });
+
+    // --- Tela Cheia (Fullscreen) ---
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {
+          console.warn('Erro ao entrar em tela cheia:', err);
+        });
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+    btnFullscreen.addEventListener('click', toggleFullscreen);
+
+    // --- Tamanho de Fonte ---
+    const fontSizes = ['', 'font-large', 'font-xlarge'];
+    let currentFontIdx = 0;
+    btnPresFontSize.addEventListener('click', () => {
+      document.body.classList.remove(fontSizes[currentFontIdx]);
+      currentFontIdx = (currentFontIdx + 1) % fontSizes.length;
+      if (fontSizes[currentFontIdx]) {
+        document.body.classList.add(fontSizes[currentFontIdx]);
+      }
+    });
+
+    // --- Alto Contraste ---
+    btnPresContrast.addEventListener('click', () => {
+      document.body.classList.toggle('high-contrast');
+    });
+
+    // Inicialização
+    updateSlide();
+  </script>
+
+</body>
+
+</html>

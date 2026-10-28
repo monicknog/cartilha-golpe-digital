@@ -1,0 +1,1539 @@
+/* ==========================================================================
+   CARTILHA DE PROTEÇÃO CONTRA GOLPES NO CELULAR
+   Design System, Folheto Tríptico A4 & Estilos de Impressão PDF
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* Cores Principais */
+  --color-primary: #1e3a8a;
+  --color-primary-dark: #0f2347;
+  --color-primary-light: #eff6ff;
+  --color-cover-bg: #0d223f;
+  --color-cover-gradient: linear-gradient(160deg, #0d223f 0%, #163663 55%, #0a1b32 100%);
+  
+  /* Cores Semânticas / Alertas */
+  --color-danger: #dc2626;
+  --color-danger-bg: #fef2f2;
+  --color-danger-border: #fca5a5;
+  --color-danger-text: #991b1b;
+
+  --color-warning: #d97706;
+  --color-warning-bg: #fffbeb;
+  --color-warning-border: #fde68a;
+  --color-warning-text: #92400e;
+
+  --color-success: #059669;
+  --color-success-bg: #ecfdf5;
+  --color-success-border: #a7f3d0;
+  --color-success-text: #065f46;
+
+  --color-info: #0284c7;
+  --color-info-bg: #f0f9ff;
+  --color-info-border: #bae6fd;
+  --color-info-text: #0369a1;
+
+  /* Neutros */
+  --color-bg-app: #f1f5f9;
+  --color-card-bg: #ffffff;
+  --color-text-main: #0f172a;
+  --color-text-muted: #475569;
+  --color-border: #e2e8f0;
+  --color-border-dark: #cbd5e1;
+
+  /* Tipografia */
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-size-base: 15px;
+
+  /* Sombras */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-sheet: 0 20px 25px -5px rgba(15, 23, 42, 0.15), 0 8px 10px -6px rgba(15, 23, 42, 0.1);
+
+  /* Dimensões A4 Paisagem (Landscape) */
+  --a4-width: 297mm;
+  --a4-height: 210mm;
+}
+
+/* Modos de Acessibilidade */
+body.font-large {
+  --font-size-base: 17px;
+}
+body.font-xlarge {
+  --font-size-base: 19px;
+}
+
+body.high-contrast {
+  --color-bg-app: #000000;
+  --color-card-bg: #121212;
+  --color-text-main: #ffffff;
+  --color-text-muted: #e2e8f0;
+  --color-border: #334155;
+  --color-primary-light: #1e293b;
+  --color-danger-bg: #450a0a;
+  --color-danger-text: #fecaca;
+  --color-warning-bg: #451a03;
+  --color-warning-text: #fde68a;
+  --color-success-bg: #064e3b;
+  --color-success-text: #a7f3d0;
+  --color-info-bg: #082f49;
+  --color-info-text: #bae6fd;
+}
+
+/* Reset Básico */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--font-size-base);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text-main);
+  background-color: var(--color-bg-app);
+  line-height: 1.45;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ==========================================================================
+   BARRA SUPERIOR DE FERRAMENTAS / NAVBAR
+   ========================================================================== */
+.top-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(13, 34, 63, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  padding: 0.65rem 1.25rem;
+  box-shadow: var(--shadow-md);
+}
+
+.toolbar-container {
+  max-width: 1380px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.toolbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.brand-icon {
+  width: 32px;
+  height: 32px;
+  background: #f59e0b;
+  color: #0f172a;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.brand-title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+}
+
+.brand-subtitle {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  display: block;
+}
+
+.toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+/* Grupos de Botões */
+.btn-group {
+  display: inline-flex;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 3px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.btn-toggle {
+  background: transparent;
+  color: #cbd5e1;
+  border: none;
+  padding: 0.4rem 0.75rem;
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.2s ease;
+}
+
+.btn-toggle:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.btn-toggle.active {
+  background: #ffffff;
+  color: #0f2347;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Botões de Ação Primária */
+.btn {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.btn-pdf {
+  background: #dc2626;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(220, 38, 38, 0.35);
+}
+.btn-pdf:hover {
+  background: #b91c1c;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(220, 38, 38, 0.4);
+}
+
+.btn-print {
+  background: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.35);
+}
+.btn-print:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.4);
+}
+
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.btn-ghost.speaking {
+  background: #10b981;
+  color: #ffffff;
+  animation: pulse-ring 1.5s infinite;
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* ==========================================================================
+   CONTEÚDO PRINCIPAL
+   ========================================================================== */
+.main-wrapper {
+  flex: 1;
+  padding: 1.5rem 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Dica / Alerta de Impressão */
+.print-tip-bar {
+  max-width: 1120px;
+  width: 100%;
+  margin-bottom: 1.25rem;
+  background: #ffffff;
+  border-left: 4px solid #2563eb;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  color: #334155;
+  gap: 1rem;
+}
+
+.print-tip-bar strong {
+  color: #0f172a;
+}
+
+.close-tip {
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  color: #64748b;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   MODO 1: FOLHETO TRÍPTICO A4 SANFONADO (A4 LANDSCAPE)
+   ========================================================================== */
+.trifold-view-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  width: 100%;
+}
+
+.sheet-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: var(--a4-width);
+  margin-bottom: 0.5rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #475569;
+}
+
+.sheet-badge {
+  background: #e2e8f0;
+  color: #1e293b;
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Folha A4 em Tela */
+.a4-sheet {
+  width: var(--a4-width);
+  height: var(--a4-height);
+  min-height: var(--a4-height);
+  max-height: var(--a4-height);
+  background: #ffffff;
+  border-radius: 4px;
+  box-shadow: var(--shadow-sheet);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  position: relative;
+  overflow: hidden;
+  page-break-after: always;
+  break-after: page;
+}
+
+/* Linhas-guia tracejadas de dobra */
+.a4-sheet::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 33.333%;
+  width: 0;
+  border-left: 1px dashed rgba(100, 116, 139, 0.4);
+  z-index: 50;
+  pointer-events: none;
+}
+
+.a4-sheet::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 66.666%;
+  width: 0;
+  border-left: 1px dashed rgba(100, 116, 139, 0.4);
+  z-index: 50;
+  pointer-events: none;
+}
+
+/* Cada Painel / Aba do Folheto */
+.panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 14mm 10mm 10mm;
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  height: 100%;
+}
+
+.panel-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-footer {
+  margin-top: auto;
+  padding-top: 6mm;
+  font-size: 7.5pt;
+  color: #64748b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #f1f5f9;
+}
+
+/* ==========================================================================
+   PAINÉIS ESPECÍFICOS - PÁGINA 1 (EXTERNA)
+   ========================================================================== */
+
+/* Painel 1.1 - Em Caso de Dúvida */
+.panel-doubt {
+  background: #fdfefe;
+}
+
+.panel-doubt .panel-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.section-badge-blue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-heading);
+  font-size: 11pt;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin-bottom: 3mm;
+  border-bottom: 2px solid #2563eb;
+  padding-bottom: 1.5mm;
+  width: 100%;
+}
+
+.doubt-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  flex: 1;
+  margin: 2mm 0 4mm;
+}
+
+.doubt-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 3mm;
+  font-size: 9pt;
+  color: #1e293b;
+  line-height: 1.35;
+  background: #f8fafc;
+  padding: 3.5mm 4mm;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+.doubt-num {
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 8pt;
+  font-weight: 700;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.keep-booklet-box {
+  margin-top: 0;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  padding: 4.5mm 4.5mm;
+  text-align: center;
+}
+
+.keep-booklet-box h4 {
+  font-family: var(--font-heading);
+  font-size: 10pt;
+  font-weight: 700;
+  color: #1e40af;
+  margin-bottom: 2mm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.keep-booklet-box p {
+  font-size: 8.5pt;
+  color: #334155;
+  line-height: 1.35;
+}
+
+/* Painel 1.2 - Regra de Ouro (Centro / Verso) */
+.panel-golden-rule {
+  background: #ffffff;
+}
+
+.panel-golden-rule .panel-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.attention-banner {
+  background: #fee2e2;
+  border: 1.5px solid #ef4444;
+  border-radius: 8px;
+  padding: 3mm 4mm;
+  display: flex;
+  align-items: center;
+  gap: 2.5mm;
+  margin-bottom: 0;
+}
+
+.attention-banner .alert-icon {
+  font-size: 14pt;
+  color: #dc2626;
+  flex-shrink: 0;
+}
+
+.attention-banner p {
+  font-family: var(--font-heading);
+  font-size: 8.2pt;
+  font-weight: 800;
+  color: #b91c1c;
+  line-height: 1.25;
+}
+
+.golden-title {
+  display: flex;
+  align-items: center;
+  gap: 2.5mm;
+  font-family: var(--font-heading);
+  font-size: 10.2pt;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 1.5mm 0 1mm;
+  white-space: nowrap;
+}
+
+.golden-title h2 {
+  font-size: 10.2pt;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.golden-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5mm;
+}
+
+.golden-step-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 3mm;
+  padding: 3mm 3.5mm;
+  border-radius: 8px;
+  border: 1.5px solid;
+}
+
+.golden-step-card.step-red {
+  background: #fff5f5;
+  border-color: #f87171;
+}
+.golden-step-card.step-amber {
+  background: #fffbeb;
+  border-color: #fbbf24;
+}
+.golden-step-card.step-green {
+  background: #ecfdf5;
+  border-color: #34d399;
+}
+
+.step-badge-circle {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 9.5pt;
+  font-weight: 800;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.step-red .step-badge-circle { background: #ef4444; }
+.step-amber .step-badge-circle { background: #d97706; }
+.step-green .step-badge-circle { background: #10b981; }
+
+.step-card-body h4 {
+  font-family: var(--font-heading);
+  font-size: 9pt;
+  font-weight: 800;
+  margin-bottom: 0.8mm;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.step-red h4 { color: #b91c1c; }
+.step-amber h4 { color: #b45309; }
+.step-green h4 { color: #047857; }
+
+.step-card-body p {
+  font-size: 7.8pt;
+  color: #334155;
+  line-height: 1.25;
+}
+
+.step-action-hint {
+  display: block;
+  font-size: 7pt;
+  font-weight: 600;
+  color: #64748b;
+  margin-top: 0.8mm;
+  line-height: 1.2;
+}
+
+.golden-tip-box {
+  background: #fefce8;
+  border: 1.5px solid #facc15;
+  border-radius: 6px;
+  padding: 2.2mm 3.2mm;
+  font-size: 7.8pt;
+  color: #854d0e;
+  line-height: 1.28;
+  text-align: center;
+  margin-top: 0.5mm;
+}
+
+/* Painel 1.3 - Capa Principal (Direita / Dobra frontal) */
+.panel-cover {
+  background: var(--color-cover-gradient);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10mm 8mm 8mm;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.panel-cover .panel-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1mm 0 3mm;
+}
+
+.cover-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #f59e0b;
+  color: #0d223f;
+  font-family: var(--font-heading);
+  font-size: 8.5pt;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2.2mm 8mm;
+  border-radius: 9999px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+  margin: 0;
+}
+
+.cover-illustration {
+  width: 135px;
+  height: 135px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cover-illustration::before {
+  content: '';
+  position: absolute;
+  width: 155px;
+  height: 155px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.4) 0%, rgba(13, 34, 63, 0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.cover-illustration img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 25px rgba(59, 130, 246, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  position: relative;
+  z-index: 2;
+}
+
+.cover-title {
+  font-family: var(--font-heading);
+  font-size: 17.5pt;
+  font-weight: 800;
+  line-height: 1.22;
+  color: #ffffff;
+  letter-spacing: -0.015em;
+  text-align: center;
+  margin: 0;
+  width: 100%;
+}
+
+.cover-title span {
+  display: inline-block;
+  color: #ffffff;
+}
+
+.cover-alert-banner {
+  width: 100%;
+  background: #ef4444;
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 3.5mm 3mm;
+  font-family: var(--font-heading);
+  font-size: 8.5pt;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.35);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.cover-reminder-box {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.09);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+  padding: 4mm 4mm;
+  font-size: 8pt;
+  color: #f1f5f9;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* ==========================================================================
+   PAINÉIS ESPECÍFICOS - PÁGINA 2 (INTERNA / ABERTA)
+   ========================================================================== */
+
+/* Painel 2.1 - 4 Golpes Mais Comuns */
+.panel-scams {
+  background: #ffffff;
+}
+
+.section-header-line {
+  display: flex;
+  align-items: center;
+  gap: 3mm;
+  font-family: var(--font-heading);
+  font-size: 11pt;
+  font-weight: 800;
+  color: #0f172a;
+  border-bottom: 2px solid #0f2347;
+  padding-bottom: 2mm;
+  margin-bottom: 3.5mm;
+}
+
+.scams-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.8mm;
+}
+
+.scam-item-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 2.8mm 3.5mm;
+}
+
+.scam-header {
+  font-family: var(--font-heading);
+  font-size: 8.8pt;
+  font-weight: 700;
+  color: #0f2347;
+  margin-bottom: 1.2mm;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.scam-desc {
+  font-size: 7.8pt;
+  color: #475569;
+  line-height: 1.28;
+  margin-bottom: 1.8mm;
+}
+
+.scam-action {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 4px;
+  padding: 1.5mm 3mm;
+  font-family: var(--font-heading);
+  font-size: 7.8pt;
+  font-weight: 700;
+  color: #1d4ed8;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Painel 2.2 - O Banco e o INSS Nunca Fazem */
+.panel-rules {
+  background: #ffffff;
+}
+
+.rules-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4mm;
+}
+
+.rule-box {
+  border-radius: 8px;
+  padding: 3.5mm 4mm;
+  border: 1.5px solid;
+}
+
+.rule-box.box-never {
+  background: #fffdfd;
+  border-color: #f87171;
+}
+
+.rule-box.box-do {
+  background: #f7fee7;
+  border-color: #86efac;
+}
+
+.rule-box-title {
+  font-family: var(--font-heading);
+  font-size: 8.8pt;
+  font-weight: 800;
+  margin-bottom: 2.2mm;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  letter-spacing: 0.01em;
+}
+
+.box-never .rule-box-title {
+  color: #b91c1c;
+}
+
+.box-do .rule-box-title {
+  color: #15803d;
+}
+
+.rule-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2.2mm;
+}
+
+.rule-list li {
+  font-size: 8pt;
+  color: #1e293b;
+  line-height: 1.32;
+  display: flex;
+  align-items: flex-start;
+  gap: 2mm;
+}
+
+.rule-icon {
+  font-size: 8pt;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Painel 2.3 - Caiu em Golpe? O Que Fazer */
+.panel-recovery {
+  background: #ffffff;
+}
+
+.calm-notice-box {
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+  border-radius: 6px;
+  padding: 3mm 4mm;
+  margin-bottom: 3.5mm;
+}
+
+.calm-notice-box strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 8.2pt;
+  font-weight: 800;
+  color: #166534;
+  margin-bottom: 1mm;
+}
+
+.calm-notice-box p {
+  font-size: 7.8pt;
+  color: #374151;
+  line-height: 1.28;
+}
+
+.recovery-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.6mm;
+}
+
+.recovery-step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 2.8mm;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  padding: 2.5mm 3.2mm;
+  border-radius: 6px;
+}
+
+.recovery-step-num {
+  width: 22px;
+  height: 22px;
+  background: #0f2347;
+  color: #ffffff;
+  border-radius: 50%;
+  font-family: var(--font-heading);
+  font-size: 8pt;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.recovery-step-content h5 {
+  font-family: var(--font-heading);
+  font-size: 8.2pt;
+  font-weight: 800;
+  color: #b91c1c;
+  margin-bottom: 0.8mm;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.recovery-step-content p {
+  font-size: 7.5pt;
+  color: #334155;
+  line-height: 1.25;
+}
+
+.police-box {
+  margin-top: 3.5mm;
+  background: #fef2f2;
+  border: 1.5px solid #ef4444;
+  border-radius: 6px;
+  padding: 2.5mm 3.2mm;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 8.2pt;
+  font-weight: 800;
+  color: #b91c1c;
+}
+
+.police-box a {
+  color: #b91c1c;
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   MODO 2: CARTILHA WEB INTERATIVA (MOBILE & DESKTOP FLUÍDO)
+   ========================================================================== */
+.digital-view-container {
+  max-width: 960px;
+  width: 100%;
+  display: none; /* Ativado via JS com classe .active-view */
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.active-view {
+  display: flex !important;
+}
+
+/* Hero Digital */
+.digital-hero {
+  background: var(--color-cover-gradient);
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  box-shadow: var(--shadow-lg);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 2rem;
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.hero-tag {
+  display: inline-block;
+  background: #f59e0b;
+  color: #0d223f;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  width: fit-content;
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.hero-urgent-banner {
+  background: #ef4444;
+  color: #ffffff;
+  padding: 0.75rem 1.25rem;
+  border-radius: 10px;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.hero-image-wrap {
+  width: 160px;
+  height: 160px;
+  flex-shrink: 0;
+}
+
+.hero-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Seção de Busca / Filtro Rápido */
+.search-filter-box {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.search-icon {
+  font-size: 1.25rem;
+  color: #64748b;
+}
+
+.search-input {
+  border: none;
+  font-size: 1rem;
+  font-family: var(--font-body);
+  width: 100%;
+  outline: none;
+  color: var(--color-text-main);
+  background: transparent;
+}
+
+/* Cards Grandes Digitais */
+.digital-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 1.75rem 2rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.digital-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.card-title-lg {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Grid de Golpes no Formato Digital */
+.digital-scams-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.digital-scam-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.digital-scam-box h4 {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f2347;
+}
+
+.digital-scam-box p {
+  font-size: 0.92rem;
+  color: #475569;
+  line-height: 1.4;
+}
+
+.digital-scam-badge {
+  background: #dbeafe;
+  color: #1e40af;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.45rem 0.75rem;
+  border-radius: 6px;
+}
+
+/* Comparativo Digital (Nunca Fazem vs O que fazer) */
+.digital-rules-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.digital-rule-col {
+  padding: 1.25rem;
+  border-radius: 10px;
+  border: 2px solid;
+}
+
+.col-danger {
+  background: #fef2f2;
+  border-color: #fca5a5;
+}
+
+.col-success {
+  background: #f0fdf4;
+  border-color: #86efac;
+}
+
+.digital-rule-col h4 {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.col-danger h4 { color: #b91c1c; }
+.col-success h4 { color: #166534; }
+
+.digital-rule-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.digital-rule-col li {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #1e293b;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+/* Botões Rápidos de Emergência */
+.emergency-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.emergency-btn-call {
+  background: #dc2626;
+  color: #ffffff;
+  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 10px rgba(220, 38, 38, 0.3);
+}
+
+.emergency-btn-call:hover {
+  background: #b91c1c;
+  transform: translateY(-2px);
+}
+
+.emergency-btn-call span {
+  font-size: 0.8rem;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+/* Simulador / Checklist Interativo */
+.simulator-box {
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #ffffff;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  font-size: 0.95rem;
+  user-select: none;
+  transition: background 0.15s ease;
+}
+
+.check-item:hover {
+  background: #f1f5f9;
+}
+
+.check-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.simulator-result {
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: none;
+}
+
+/* Modal de Ajuda / Download */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 2000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal-card {
+  background: #ffffff;
+  border-radius: 16px;
+  max-width: 520px;
+  width: 100%;
+  padding: 2rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: relative;
+}
+
+.modal-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0f2347;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.modal-card p {
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: #64748b;
+  cursor: pointer;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+/* ==========================================================================
+   RODAPÉ GERAL
+   ========================================================================== */
+.site-footer {
+  background: #0f2347;
+  color: #94a3b8;
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: 0.85rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.site-footer a {
+  color: #f59e0b;
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   ESTILOS DE IMPRESSÃO / SALVAR EM PDF (CRÍTICO)
+   ========================================================================== */
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 0;
+  }
+
+  *, *::before, *::after {
+    text-shadow: none !important;
+    box-shadow: none !important;
+  }
+
+  html, body {
+    width: 297mm !important;
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Ocultar barra superior, dicas e controles */
+  .top-toolbar,
+  .print-tip-bar,
+  .sheet-label,
+  .modal-overlay,
+  .site-footer,
+  .btn,
+  .no-print {
+    display: none !important;
+  }
+
+  .main-wrapper {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 297mm !important;
+  }
+
+  /* Garantir que o container tríptico esteja sempre visível e limpo para impressão */
+  .trifold-view-container {
+    display: block !important;
+    gap: 0 !important;
+    width: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .digital-view-container {
+    display: none !important;
+  }
+
+  .sheet-section {
+    page-break-after: always !important;
+    break-after: page !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .sheet-section:last-child {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  .a4-sheet {
+    width: 297mm !important;
+    height: 210mm !important;
+    min-height: 210mm !important;
+    max-height: 210mm !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    page-break-after: always !important;
+    break-after: page !important;
+  }
+
+  .sheet-section:last-child .a4-sheet {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  /* Linhas de dobra bem sutis */
+  .a4-sheet::before,
+  .a4-sheet::after {
+    border-left: 1px dotted #cbd5e1 !important;
+    opacity: 0.5 !important;
+  }
+
+  .panel-cover {
+    background: #0d223f !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE (Telas menores)
+   ========================================================================== */
+@media (max-width: 1160px) {
+  /* Escala o container tríptico para caber na tela sem quebrar a proporção A4 */
+  .trifold-view-container {
+    overflow-x: auto;
+    padding-bottom: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .sheet-label {
+    min-width: var(--a4-width);
+  }
+}
+
+@media (max-width: 768px) {
+  .digital-hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 1.75rem 1.25rem;
+  }
+
+  .hero-tag {
+    align-self: center;
+  }
+
+  .hero-image-wrap {
+    margin: 0 auto;
+  }
+
+  .digital-rules-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .toolbar-container {
+    justify-content: center;
+  }
+
+  .toolbar-brand {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .toolbar-actions {
+    width: 100%;
+    justify-content: center;
+  }
+}

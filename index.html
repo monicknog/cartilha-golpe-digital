@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Guia Informativo e Cartilha de Proteção contra Golpes no Celular. Aprenda a reconhecer golpes comuns e saiba como se proteger com dicas práticas e telefones de emergência.">
+  <meta name="theme-color" content="#0d223f">
+  <title>Cartilha: Proteção Contra Golpes no Celular | Guia Informativo</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Biblioteca html2pdf para geração de PDF em alta resolução no cliente -->
+  <script src="assets/html2pdf.bundle.min.js"></script>
+</head>
+
+<body>
+
+  <!-- ======================================================================
+       BARRA SUPERIOR DE FERRAMENTAS E ACESSIBILIDADE
+       ====================================================================== -->
+  <header class="top-toolbar no-print">
+    <div class="toolbar-container">
+
+      <!-- Marca / Título -->
+      <div class="toolbar-brand">
+        <div class="brand-icon" aria-hidden="true">🛡️</div>
+        <div>
+          <span class="brand-title">Cartilha de Proteção contra Golpes</span>
+          <span class="brand-subtitle">Guia Informativo e Educativo • A4 Dobrável</span>
+        </div>
+      </div>
+
+      <!-- Controles de Modo de Visualização -->
+      <div class="btn-group" role="group" aria-label="Modo de visualização">
+        <button id="btnViewTrifold" class="btn-toggle active"
+          title="Visualizar layout original de folheto sanfonado A4">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 16H5V5h7v14zm7 0h-5V5h5v14z" />
+          </svg>
+          Folheto A4 Dobrável
+        </button>
+        <button id="btnViewDigital" class="btn-toggle" title="Visualizar cartilha web em leitura contínua e interativa">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z" />
+          </svg>
+          Leitura Digital Web
+        </button>
+      </div>
+
+      <!-- Ações: Download PDF, Impressão e Acessibilidade -->
+      <div class="toolbar-actions">
+        <!-- Apresentação para Palestra (15 min) -->
+        <a href="apresentacao.html" class="btn btn-ghost"
+          title="Abrir apresentação de slides interativa para palestra de 15 minutos">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h7v2H8v2h8v-2h-2v-2h7c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z" />
+          </svg>
+          Apresentação (15 min)
+        </a>
+
+        <!-- Salvar / Baixar PDF -->
+        <button id="btnDownloadPdf" class="btn btn-pdf" title="Baixar arquivo PDF de alta resolução imediatamente">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z" />
+          </svg>
+          Salvar em PDF
+        </button>
+
+        <!-- Diálogo de Impressão -->
+        <button id="btnPrintNative" class="btn btn-print" title="Abrir janela de impressão do navegador">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z" />
+          </svg>
+          Imprimir Folheto
+        </button>
+
+        <!-- Leitor de Áudio -->
+        <button id="btnSpeak" class="btn btn-ghost" title="Ouvir orientações da cartilha em voz alta">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
+          </svg>
+          Ouvir Cartilha
+        </button>
+
+        <!-- Acessibilidade: Tamanho de Fonte -->
+        <button id="btnFontSize" class="btn btn-ghost" title="Aumentar tamanho das letras para facilitar leitura">
+          <span style="font-weight: 800; font-size: 0.95rem;">A+</span>
+        </button>
+
+        <!-- Acessibilidade: Alto Contraste -->
+        <button id="btnContrast" class="btn btn-ghost" title="Alternar modo de alto contraste para melhor visibilidade">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14v12c3.31 0 6-2.69 6-6s-2.69-6-6-6z" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ======================================================================
+       CONTEÚDO PRINCIPAL
+       ====================================================================== -->
+  <main class="main-wrapper">
+
+    <!-- Dica Amigável para Salvar em PDF / Impressão -->
+    <div id="printTipBar" class="print-tip-bar no-print">
+      <div>
+        💡 <strong>Dica de Impressão e PDF:</strong> Para gerar um folheto perfeito em papel, use <strong>A4 Paisagem
+          (Horizontal)</strong> e marque a opção <strong>"Gráficos de segundo plano"</strong> nas configurações da sua
+        impressora.
+      </div>
+      <button id="closeTipBtn" class="close-tip" title="Fechar dica">&times;</button>
+    </div>
+
+    <!-- ====================================================================
+         CONTAINER 1: FOLHETO SANFONADO A4 (FRENTE E VERSO)
+         Idêntico ao arquivo PDF original em formato dobrável
+         ==================================================================== -->
+    <div id="trifoldPrintTarget">
+      <div id="trifoldContainer" class="trifold-view-container active-view">
+
+        <!-- =================== PÁGINA 1: EXTERNA / VERSO =================== -->
+        <div class="sheet-section">
+          <div class="sheet-label no-print">
+            <span>📄 FOLHA 1 (EXTERNA) — Verso & Dobras do Folheto</span>
+            <span class="sheet-badge">Formato A4 Paisagem (297 x 210 mm)</span>
+          </div>
+
+          <div class="a4-sheet" id="sheetPage1">
+
+            <!-- Painel 1 (Esquerda): Em Caso de Dúvida -->
+            <section class="panel panel-doubt" aria-label="Em Caso de Dúvida">
+              <div class="panel-content">
+                <div class="section-badge-blue">
+                  <span aria-hidden="true">📌</span>
+                  <h2>Em Caso de Dúvida</h2>
+                </div>
+
+                <ul class="doubt-list">
+                  <li class="doubt-item">
+                    <span class="doubt-num">1</span>
+                    <span><strong>Desligue a chamada na hora</strong> se sentir pressão ou pressa.</span>
+                  </li>
+                  <li class="doubt-item">
+                    <span class="doubt-num">2</span>
+                    <span><strong>Não clique em links</strong> que receber por mensagem (WhatsApp, SMS ou
+                      e-mail).</span>
+                  </li>
+                  <li class="doubt-item">
+                    <span class="doubt-num">3</span>
+                    <span><strong>Fale com um conhecido</strong> antes de fazer quaisquer transferências ou Pix.</span>
+                  </li>
+                </ul>
+
+                <div class="keep-booklet-box">
+                  <h4><span aria-hidden="true">🤝</span> Guarde este folheto com você!</h4>
+                  <p>Deixe perto do telefone ou compartilhe com amigos e familiares para que todos fiquem protegidos.
+                  </p>
+                </div>
+              </div>
+
+              <footer class="panel-footer">
+                <span>Prevenção contra Golpes</span>
+                <span>Guia Informativo</span>
+              </footer>
+            </section>
+
+            <!-- Painel 2 (Centro): A Regra de Ouro (3 Passos) -->
+            <section class="panel panel-golden-rule" aria-label="A Regra de Ouro">
+              <div class="panel-content">
+                <div class="attention-banner">
+                  <span class="alert-icon" aria-hidden="true">🛑</span>
+                  <p>ATENÇÃO: Se sentirem pressa ou pedirem Pix e senhas, pare na hora!</p>
+                </div>
+
+                <div class="golden-title">
+                  <span class="step-num-dark">1</span>
+                  <h2>A Regra de Ouro (3 Passos)</h2>
+                </div>
+
+                <div class="golden-steps">
+                  <!-- Passo 1 -->
+                  <div class="golden-step-card step-red">
+                    <div class="step-badge-circle">1</div>
+                    <div class="step-card-body">
+                      <h4><span aria-hidden="true">✋</span> PARE!</h4>
+                      <p>Não aja por impulso nem com pressa. <strong>Desligue a chamada</strong> imediatamente.</p>
+                      <span class="step-action-hint">Criminosos usam urgência para impedir você de pensar.</span>
+                    </div>
+                  </div>
+
+                  <!-- Passo 2 -->
+                  <div class="golden-step-card step-amber">
+                    <div class="step-badge-circle">2</div>
+                    <div class="step-card-body">
+                      <h4><span aria-hidden="true">🔍</span> CONFIRA!</h4>
+                      <p>Ligue no <strong>número antigo</strong> do parente ou no telefone escrito no verso do cartão.</p>
+                      <span class="step-action-hint">Nunca retorne para o mesmo número que ligou para você.</span>
+                    </div>
+                  </div>
+
+                  <!-- Passo 3 -->
+                  <div class="golden-step-card step-green">
+                    <div class="step-badge-circle">3</div>
+                    <div class="step-card-body">
+                      <h4><span aria-hidden="true">🗣️</span> PEÇA AJUDA!</h4>
+                      <p>Fale com alguém de sua <strong>confiança</strong> antes de enviar qualquer quantia em dinheiro.</p>
+                      <span class="step-action-hint">Mostre a mensagem a um amigo ou familiar próximo.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="golden-tip-box">
+                  💡 <strong>Lembre-se:</strong> Quem tem pressa pelo seu dinheiro é o criminoso!
+                </div>
+              </div>
+
+              <footer class="panel-footer">
+                <span>Prevenção contra Golpes • Guia Informativo</span>
+                <span>Página 1</span>
+              </footer>
+            </section>
+
+            <!-- Painel 3 (Direita): Capa Principal do Folheto -->
+            <section class="panel panel-cover" aria-label="Capa do Guia Informativo">
+              <div class="panel-content">
+                <div class="cover-badge">GUIA INFORMATIVO</div>
+
+                <div class="cover-illustration">
+                  <img src="assets/cover-illustration.jpg" alt="Escudo de proteção digital e smartphone seguro"
+                    width="145" height="145">
+                </div>
+
+                <h1 class="cover-title">
+                  Proteção contra<br>
+                  <span>golpes no celular</span>
+                </h1>
+
+                <div class="cover-alert-banner">
+                  <span aria-hidden="true">🚨</span>
+                  <span>NUNCA TOME DECISÕES COM PRESSA!</span>
+                </div>
+
+                <div class="cover-reminder-box">
+                  <p>🤝 Guarde este folheto com você e consulte sempre que tiver qualquer dúvida ou desconfiança.</p>
+                </div>
+              </div>
+
+              <footer class="panel-footer" style="border-top-color: rgba(255,255,255,0.15); color: #94a3b8;">
+                <span>Segurança no Celular</span>
+                <span>Distribuição Gratuita</span>
+              </footer>
+            </section>
+
+          </div>
+        </div>
+
+        <!-- =================== PÁGINA 2: INTERNA / FRENTE ABERTA =================== -->
+        <div class="sheet-section">
+          <div class="sheet-label no-print">
+            <span>📄 FOLHA 2 (INTERNA) — Conteúdo Aberto do Folheto</span>
+            <span class="sheet-badge">Formato A4 Paisagem (297 x 210 mm)</span>
+          </div>
+
+          <div class="a4-sheet" id="sheetPage2">
+
+            <!-- Painel 4 (Esquerda): Os 4 Golpes Mais Comuns -->
+            <section class="panel panel-scams" aria-label="Os 4 Golpes Mais Comuns">
+              <div class="panel-content">
+                <div class="section-header-line">
+                  <span class="step-num-dark">2</span>
+                  <h2>Os 4 Golpes Mais Comuns</h2>
+                </div>
+
+                <div class="scams-list">
+                  <!-- Golpe 1 -->
+                  <div class="scam-item-card">
+                    <div class="scam-header">
+                      <span aria-hidden="true">👤</span>
+                      <span>1. Falso Parente no WhatsApp</span>
+                    </div>
+                    <p class="scam-desc">Usam foto de parente dizendo que mudaram de número e pedem Pix urgente.</p>
+                    <div class="scam-action">
+                      <span aria-hidden="true">👉</span> Ligue no número ANTIGO do parente!
+                    </div>
+                  </div>
+
+                  <!-- Golpe 2 -->
+                  <div class="scam-item-card">
+                    <div class="scam-header">
+                      <span aria-hidden="true">🏦</span>
+                      <span>2. Falsa Central do Banco</span>
+                    </div>
+                    <p class="scam-desc">Dizem que a conta foi invadida e pedem senha, código ou transferência Pix.</p>
+                    <div class="scam-action">
+                      <span aria-hidden="true">👉</span> Desligue! O banco NUNCA pede senha.
+                    </div>
+                  </div>
+
+                  <!-- Golpe 3 -->
+                  <div class="scam-item-card">
+                    <div class="scam-header">
+                      <span aria-hidden="true">📑</span>
+                      <span>3. Falso INSS / Prova de Vida</span>
+                    </div>
+                    <p class="scam-desc">Ameaçam cortar aposentadoria ou benefício se você não clicar em link.</p>
+                    <div class="scam-action">
+                      <span aria-hidden="true">👉</span> Vá direto à agência ou ao posto oficial.
+                    </div>
+                  </div>
+
+                  <!-- Golpe 4 -->
+                  <div class="scam-item-card">
+                    <div class="scam-header">
+                      <span aria-hidden="true">🎁</span>
+                      <span>4. Prêmios Falsos e Links Azuis</span>
+                    </div>
+                    <p class="scam-desc">Mensagens com ofertas milagrosas, sorteios ou encomendas falsas.</p>
+                    <div class="scam-action">
+                      <span aria-hidden="true">👉</span> Nunca toque em links de desconhecidos!
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <footer class="panel-footer">
+                <span>Prevenção contra Golpes • Guia Informativo</span>
+                <span>Página 2</span>
+              </footer>
+            </section>
+
+            <!-- Painel 5 (Centro): O Banco e o INSS Nunca Fazem -->
+            <section class="panel panel-rules" aria-label="O Banco e o INSS Nunca Fazem">
+              <div class="panel-content">
+                <div class="section-header-line">
+                  <span class="step-num-dark">3</span>
+                  <h2>O Banco e o INSS Nunca Fazem</h2>
+                </div>
+
+                <div class="rules-container">
+                  <!-- Caixa: Nunca Fazem -->
+                  <div class="rule-box box-never">
+                    <div class="rule-box-title">
+                      <span aria-hidden="true">🚫</span> O QUE ELES NUNCA FAZEM:
+                    </div>
+                    <ul class="rule-list">
+                      <li>
+                        <span class="rule-icon" aria-hidden="true">❌</span>
+                        <span><strong>NUNCA</strong> pedem senha nem código por ligação.</span>
+                      </li>
+                      <li>
+                        <span class="rule-icon" aria-hidden="true">❌</span>
+                        <span><strong>NUNCA</strong> mandam motoqueiro buscar cartão em casa.</span>
+                      </li>
+                      <li>
+                        <span class="rule-icon" aria-hidden="true">❌</span>
+                        <span><strong>NUNCA</strong> pedem Pix para cancelar compras suspeitas.</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <!-- Caixa: O que você deve fazer -->
+                  <div class="rule-box box-do">
+                    <div class="rule-box-title">
+                      <span aria-hidden="true">✅</span> O QUE VOCÊ DEVE FAZER:
+                    </div>
+                    <ul class="rule-list">
+                      <li>
+                        <span class="rule-icon" aria-hidden="true">✔️</span>
+                        <span><strong>Desligue na hora</strong> se a pessoa demonstrar pressa ou urgência.</span>
+                      </li>
+                      <li>
+                        <span class="rule-icon" aria-hidden="true">✔️</span>
+                        <span><strong>Ligue no número</strong> escrito atrás do seu cartão.</span>
+                      </li>
+                      <li>
+                        <span class="rule-icon" aria-hidden="true">✔️</span>
+                        <span>Em caso de dúvida, <strong>vá direto ao posto oficial</strong>.</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <footer class="panel-footer">
+                <span>Prevenção contra Golpes • Guia Informativo</span>
+                <span>Página 3</span>
+              </footer>
+            </section>
+
+            <!-- Painel 6 (Direita): Caiu em Golpe? O Que Fazer -->
+            <section class="panel panel-recovery" aria-label="Caiu em Golpe? O Que Fazer">
+              <div class="panel-content">
+                <div class="section-header-line">
+                  <span class="step-num-dark">4</span>
+                  <h2>Caiu em Golpe? O Que Fazer</h2>
+                </div>
+
+                <div class="calm-notice-box">
+                  <strong>🧘‍♂️ Mantenha a calma: Não sinta vergonha. A culpa é do golpista!</strong>
+                  <p>Siga esta ordem exata de passos para se proteger:</p>
+                </div>
+
+                <div class="recovery-steps-list">
+                  <!-- Passo 1 -->
+                  <div class="recovery-step-item">
+                    <div class="recovery-step-num">1</div>
+                    <div class="recovery-step-content">
+                      <h5><span aria-hidden="true">📞</span> AVISE SEU BANCO NA HORA</h5>
+                      <p>Ligue no número atrás do seu cartão e peça o bloqueio imediato.</p>
+                    </div>
+                  </div>
+
+                  <!-- Passo 2 -->
+                  <div class="recovery-step-item">
+                    <div class="recovery-step-num">2</div>
+                    <div class="recovery-step-content">
+                      <h5><span aria-hidden="true">🚫</span> BLOQUEIE O NÚMERO</h5>
+                      <p>Corte o contato no WhatsApp imediatamente e não responda mais.</p>
+                    </div>
+                  </div>
+
+                  <!-- Passo 3 -->
+                  <div class="recovery-step-item">
+                    <div class="recovery-step-num">3</div>
+                    <div class="recovery-step-content">
+                      <h5><span aria-hidden="true">🚓</span> REGISTRE O B.O. NA POLÍCIA</h5>
+                      <p>Vá à delegacia (ou faça boletim online) com alguém de sua confiança.</p>
+                    </div>
+                  </div>
+
+                  <!-- Passo 4 -->
+                  <div class="recovery-step-item">
+                    <div class="recovery-step-num">4</div>
+                    <div class="recovery-step-content">
+                      <h5><span aria-hidden="true">👨‍👩‍👧</span> AVISE SUA FAMÍLIA</h5>
+                      <p>Conte aos parentes para ninguém enviar dinheiro nem cair na mesma armadilha.</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="police-box">
+                  🚨 Polícia Militar: <a href="tel:190"><strong>190</strong></a> &nbsp;|&nbsp; Disque Denúncia: <a
+                    href="tel:181"><strong>181</strong></a>
+                </div>
+              </div>
+
+              <footer class="panel-footer">
+                <span>Prevenção contra Golpes • Guia Informativo</span>
+                <span>Página 4</span>
+              </footer>
+            </section>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         CONTAINER 2: MODO LEITURA DIGITAL WEB (MOBILE & INTERATIVO)
+         Ideal para leitura em tela, celulares, busca e testes
+         ==================================================================== -->
+    <div id="digitalContainer" class="digital-view-container no-print">
+
+      <!-- Hero Digital -->
+      <section class="digital-hero">
+        <div class="hero-text">
+          <span class="hero-tag">GUIA INFORMATIVO DIGITAL</span>
+          <h1 class="hero-title">
+            Proteção contra<br>
+            <span>golpes no celular</span>
+          </h1>
+
+          <div class="hero-urgent-banner">
+            <span aria-hidden="true">🚨</span>
+            <span>NUNCA TOME DECISÕES COM PRESSA!</span>
+          </div>
+
+          <p style="color: #cbd5e1; font-size: 0.95rem;">
+            Os golpistas usam o medo e a urgência para fazer você agir sem pensar. Este guia foi feito para proteger
+            você, seus familiares e suas economias.
+          </p>
+        </div>
+
+        <div class="hero-image-wrap">
+          <img src="assets/cover-illustration.jpg" alt="Ilustração moderna de smartphone seguro com escudo">
+        </div>
+      </section>
+
+      <!-- Barra de Busca Rápida -->
+      <div class="search-filter-box">
+        <span class="search-icon" aria-hidden="true">🔍</span>
+        <input type="text" id="digitalSearchInput" class="search-input"
+          placeholder="Pesquisar por assunto: 'WhatsApp', 'Pix', 'INSS', 'Senha'..." aria-label="Buscar na cartilha">
+      </div>
+
+      <!-- Simulador Rápido / Detector de Risco -->
+      <section class="digital-card" style="border-left: 5px solid #ef4444;">
+        <h3 class="card-title-lg" style="color: #b91c1c;">
+          <span aria-hidden="true">⚡</span> Teste Rápido: Você está em perigo agora?
+        </h3>
+        <p style="color: #475569; font-size: 0.95rem;">
+          Marque se você estiver vivenciando alguma das situações abaixo:
+        </p>
+
+        <div class="simulator-box">
+          <label class="check-item">
+            <input type="checkbox" id="chkUrgency">
+            <span>A pessoa do outro lado está dizendo que é <strong>urgente</strong> ou que você vai perder algo?</span>
+          </label>
+
+          <label class="check-item">
+            <input type="checkbox" id="chkPix">
+            <span>Estão pedindo para você transferir <strong>Pix</strong>, digitar senha ou passar código SMS?</span>
+          </label>
+
+          <label class="check-item">
+            <input type="checkbox" id="chkLink">
+            <span>Enviaram um <strong>link</strong> para você clicar e fazer "atualização" ou cancelamento?</span>
+          </label>
+
+          <div id="simResult" class="simulator-result"></div>
+        </div>
+      </section>
+
+      <!-- Seção 1: Regra de Ouro -->
+      <section class="digital-card">
+        <h3 class="card-title-lg">
+          <span aria-hidden="true">🛡️</span> 1. A Regra de Ouro (3 Passos de Proteção)
+        </h3>
+
+        <div class="attention-banner" style="margin-bottom: 0;">
+          <span class="alert-icon" aria-hidden="true">🛑</span>
+          <p>ATENÇÃO: Se sentirem pressa ou pedirem Pix e senhas, pare na hora!</p>
+        </div>
+
+        <div class="golden-steps">
+          <div class="golden-step-card step-red" style="padding: 1rem 1.25rem;">
+            <div class="step-badge-circle" style="width: 32px; height: 32px; font-size: 1.1rem;">1</div>
+            <div class="step-card-body">
+              <h4 style="font-size: 1.15rem;"><span aria-hidden="true">✋</span> PARE!</h4>
+              <p style="font-size: 0.95rem;">Não aja por impulso nem com pressa. Desligue a chamada imediatamente.</p>
+            </div>
+          </div>
+
+          <div class="golden-step-card step-amber" style="padding: 1rem 1.25rem;">
+            <div class="step-badge-circle" style="width: 32px; height: 32px; font-size: 1.1rem;">2</div>
+            <div class="step-card-body">
+              <h4 style="font-size: 1.15rem;"><span aria-hidden="true">🔍</span> CONFIRA!</h4>
+              <p style="font-size: 0.95rem;">Ligue no número antigo do parente ou no telefone escrito no verso do seu
+                cartão.</p>
+            </div>
+          </div>
+
+          <div class="golden-step-card step-green" style="padding: 1rem 1.25rem;">
+            <div class="step-badge-circle" style="width: 32px; height: 32px; font-size: 1.1rem;">3</div>
+            <div class="step-card-body">
+              <h4 style="font-size: 1.15rem;"><span aria-hidden="true">🗣️</span> PEÇA AJUDA!</h4>
+              <p style="font-size: 0.95rem;">Fale com alguém de sua confiança antes de transferir qualquer valor
+                financeiro.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção 2: Os 4 Golpes Mais Comuns -->
+      <section class="digital-card">
+        <h3 class="card-title-lg">
+          <span aria-hidden="true">⚠️</span> 2. Os 4 Golpes Mais Comuns no Brasil
+        </h3>
+
+        <div class="digital-scams-grid">
+          <!-- Golpe 1 -->
+          <div class="digital-scam-box">
+            <div>
+              <h4>👤 1. Falso Parente no WhatsApp</h4>
+              <p>Criminosos utilizam a foto de um filho ou parente dizendo que trocaram de número e precisam de dinheiro
+                com urgência para pagar uma conta.</p>
+            </div>
+            <div class="digital-scam-badge">
+              👉 Ligue no número ANTIGO do parente!
+            </div>
+          </div>
+
+          <!-- Golpe 2 -->
+          <div class="digital-scam-box">
+            <div>
+              <h4>🏦 2. Falsa Central do Banco</h4>
+              <p>Uma gravação finge ser do seu banco informando compra suspeita e pede para você digitar sua senha ou
+                fazer um Pix para cancelamento.</p>
+            </div>
+            <div class="digital-scam-badge">
+              👉 Desligue! O banco NUNCA pede senha.
+            </div>
+          </div>
+
+          <!-- Golpe 3 -->
+          <div class="digital-scam-box">
+            <div>
+              <h4>📑 3. Falso INSS / Prova de Vida</h4>
+              <p>Enviam SMS ou WhatsApp avisando que seu benefício previdenciário será bloqueado se você não clicar num
+                link para recadastramento.</p>
+            </div>
+            <div class="digital-scam-badge">
+              👉 Vá direto à agência ou ao posto oficial.
+            </div>
+          </div>
+
+          <!-- Golpe 4 -->
+          <div class="digital-scam-box">
+            <div>
+              <h4>🎁 4. Prêmios Falsos e Links Azuis</h4>
+              <p>Mensagens prometendo brindes, restituição do Imposto de Renda ou encomendas presas no Correios com link
+                para pagamento de taxas.</p>
+            </div>
+            <div class="digital-scam-badge">
+              👉 Nunca toque em links de desconhecidos!
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção 3: Regras Vitais (Nunca Fazem vs O que fazer) -->
+      <section class="digital-card">
+        <h3 class="card-title-lg">
+          <span aria-hidden="true">📋</span> 3. O Banco e o INSS Nunca Fazem
+        </h3>
+
+        <div class="digital-rules-grid">
+          <!-- O que nunca fazem -->
+          <div class="digital-rule-col col-danger">
+            <h4><span aria-hidden="true">🚫</span> O QUE ELES NUNCA FAZEM:</h4>
+            <ul>
+              <li>
+                <span aria-hidden="true">❌</span>
+                <span><strong>NUNCA pedem senha nem código por ligação.</strong> Nem por SMS ou WhatsApp.</span>
+              </li>
+              <li>
+                <span aria-hidden="true">❌</span>
+                <span><strong>NUNCA mandam motoqueiro buscar cartão em casa</strong> sob pretexto de perícia ou
+                  clonagem.</span>
+              </li>
+              <li>
+                <span aria-hidden="true">❌</span>
+                <span><strong>NUNCA pedem Pix para cancelar compras suspeitas.</strong> Dinheiro enviado não cancela
+                  nada!</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- O que você deve fazer -->
+          <div class="digital-rule-col col-success">
+            <h4><span aria-hidden="true">✅</span> O QUE VOCÊ DEVE FAZER:</h4>
+            <ul>
+              <li>
+                <span aria-hidden="true">✔️</span>
+                <span><strong>Desligue na hora</strong> se a pessoa demonstrar pressa ou agressividade.</span>
+              </li>
+              <li>
+                <span aria-hidden="true">✔️</span>
+                <span><strong>Ligue no número escrito atrás do seu cartão</strong> bancário usando outro aparelho se
+                  puder.</span>
+              </li>
+              <li>
+                <span aria-hidden="true">✔️</span>
+                <span>Em caso de qualquer dúvida, <strong>vá direto ao posto oficial</strong> ou à agência
+                  física.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção 4: O Que Fazer se Cair em Golpe -->
+      <section class="digital-card">
+        <h3 class="card-title-lg">
+          <span aria-hidden="true">🚨</span> 4. Caiu em Golpe? O Que Fazer Imediatamente
+        </h3>
+
+        <div class="calm-notice-box" style="padding: 1rem 1.25rem;">
+          <strong style="font-size: 1.05rem;">🧘‍♂️ Mantenha a calma: Não sinta vergonha. A culpa é do
+            golpista!</strong>
+          <p style="font-size: 0.95rem;">Golpistas são profissionais treinados para enganar. Não hesite em agir
+            rapidamente seguindo estes 4 passos:</p>
+        </div>
+
+        <div class="recovery-steps-list">
+          <div class="recovery-step-item" style="padding: 1rem 1.25rem;">
+            <div class="recovery-step-num" style="width: 28px; height: 28px; font-size: 0.95rem;">1</div>
+            <div class="recovery-step-content">
+              <h5 style="font-size: 1rem;"><span aria-hidden="true">📞</span> AVISE SEU BANCO NA HORA</h5>
+              <p style="font-size: 0.95rem;">Ligue no número oficial atrás do seu cartão e solicite o bloqueio imediato
+                do Pix, cartões e aplicativo.</p>
+            </div>
+          </div>
+
+          <div class="recovery-step-item" style="padding: 1rem 1.25rem;">
+            <div class="recovery-step-num" style="width: 28px; height: 28px; font-size: 0.95rem;">2</div>
+            <div class="recovery-step-content">
+              <h5 style="font-size: 1rem;"><span aria-hidden="true">🚫</span> BLOQUEIE O NÚMERO</h5>
+              <p style="font-size: 0.95rem;">Corte o contato no WhatsApp imediatamente e tire capturas de tela (prints)
+                das conversas.</p>
+            </div>
+          </div>
+
+          <div class="recovery-step-item" style="padding: 1rem 1.25rem;">
+            <div class="recovery-step-num" style="width: 28px; height: 28px; font-size: 0.95rem;">3</div>
+            <div class="recovery-step-content">
+              <h5 style="font-size: 1rem;"><span aria-hidden="true">🚓</span> REGISTRE O B.O. NA POLÍCIA</h5>
+              <p style="font-size: 0.95rem;">Vá à delegacia acompanhado de alguém de confiança ou registre o Boletim de
+                Ocorrência pela Delegacia Eletrônica.</p>
+            </div>
+          </div>
+
+          <div class="recovery-step-item" style="padding: 1rem 1.25rem;">
+            <div class="recovery-step-num" style="width: 28px; height: 28px; font-size: 0.95rem;">4</div>
+            <div class="recovery-step-content">
+              <h5 style="font-size: 1rem;"><span aria-hidden="true">👨‍👩‍👧</span> AVISE SUA FAMÍLIA</h5>
+              <p style="font-size: 0.95rem;">Comunique familiares próximos para evitar que usem sua conta ou informações
+                para enganar seus parentes.</p>
+            </div>
+          </div>
+        </div>
+
+        <h4 style="font-family: var(--font-heading); margin-top: 1rem; color: #0f2347;">Discagem Rápida de Emergência:
+        </h4>
+        <div class="emergency-grid">
+          <a href="tel:190" class="emergency-btn-call">
+            📞 LIGAR 190
+            <span>Polícia Militar (Casos Imediatos)</span>
+          </a>
+          <a href="tel:181" class="emergency-btn-call" style="background: #b91c1c;">
+            🛡️ LIGAR 181
+            <span>Disque Denúncia Anônimo</span>
+          </a>
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- ======================================================================
+       MODAL DE INFORMAÇÕES DE IMPRESSÃO
+       ====================================================================== -->
+  <div id="printModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="printModalTitle">
+    <div class="modal-card">
+      <button id="closePrintModal" class="modal-close-btn" aria-label="Fechar janela">&times;</button>
+      <h3 id="printModalTitle"><span aria-hidden="true">🖨️</span> Como Salvar em PDF ou Imprimir</h3>
+
+      <p>Para obter o melhor resultado no formato original de folheto dobrável:</p>
+
+      <ul style="padding-left: 1.25rem; color: #334155; font-size: 0.92rem; line-height: 1.6;">
+        <li><strong>Destino / Impressora:</strong> Escolha <em>"Salvar como PDF"</em> (ou sua impressora física).</li>
+        <li><strong>Layout:</strong> Selecione <strong>Paisagem (Horizontal)</strong>.</li>
+        <li><strong>Tamanho do papel:</strong> <strong>A4</strong>.</li>
+        <li><strong>Mais definições:</strong> Marque a caixa <strong>"Gráficos de segundo plano"</strong> para que as
+          cores fiquem perfeitas.</li>
+        <li><strong>Margens:</strong> Deixe em <strong>Nenhuma</strong> ou <strong>Padrão</strong>.</li>
+      </ul>
+
+      <div class="modal-actions">
+        <button id="confirmPrintBtn" class="btn btn-print" style="padding: 0.6rem 1.25rem; font-size: 0.95rem;">
+          Continuar para Impressão / PDF
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       MODAL DE PROGRESSO DO PDF
+       ====================================================================== -->
+  <div id="pdfProgressModal" class="modal-overlay" role="status" aria-live="polite">
+    <div class="modal-card" style="text-align: center; max-width: 420px; align-items: center;">
+      <div style="font-size: 2.5rem; margin-bottom: 0.5rem;" aria-hidden="true">⏳</div>
+      <h3 style="font-size: 1.2rem;">Gerando Arquivo PDF</h3>
+      <p id="pdfProgressText">Preparando páginas do folheto...</p>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       RODAPÉ INFORMATIVO
+       ====================================================================== -->
+  <footer class="site-footer no-print">
+    <p><strong>Guia Informativo de Proteção contra Golpes no Celular</strong></p>
+    <p style="margin-top: 0.35rem; font-size: 0.8rem;">
+      Material educativo e de utilidade pública para combate a fraudes e proteção cidadã.
+    </p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
