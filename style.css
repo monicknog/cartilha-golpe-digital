@@ -448,7 +448,7 @@ body {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 2.2mm;
+  gap: 3mm;
 }
 
 .doubt-item {
@@ -457,9 +457,9 @@ body {
   gap: 2.8mm;
   font-size: 8.2pt;
   color: #1e293b;
-  line-height: 1.3;
+  line-height: 1.32;
   background: #f8fafc;
-  padding: 2.5mm 3.2mm;
+  padding: 2.8mm 3.5mm;
   border-radius: 6px;
   border: 1px solid #e2e8f0;
 }
@@ -480,11 +480,12 @@ body {
 }
 
 .keep-booklet-box {
-  margin-top: 1.5mm;
+  margin-top: auto;
+  margin-bottom: 3mm;
   background: #eff6ff;
-  border: 1px solid #bfdbfe;
+  border: 1.5px solid #bfdbfe;
   border-radius: 8px;
-  padding: 3.5mm 4mm;
+  padding: 4mm 4.5mm;
   text-align: center;
 }
 
