@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Banner oficial para Stories do Instagram e Status do WhatsApp: Palestra de Proteção Contra Golpes no Celular na UBS Alarico Leite.">
+  <meta name="theme-color" content="#0d223f">
+  <title>Banner Stories: Palestra na UBS Alarico Leite</title>
+
+  <!-- Fontes do Projeto -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       ESTILOS DO GERADOR DE BANNER PARA INSTAGRAM STORIES (9:16)
+       ========================================================================== */
+    :root {
+      --color-primary-dark: #0d223f;
+      --color-primary-navy: #163663;
+      --color-accent: #f59e0b;
+      --color-accent-light: #fef08a;
+      --color-danger: #dc2626;
+      --color-success: #059669;
+
+      --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: #081325;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    /* Barra Superior de Ações */
+    .top-bar {
+      width: 100%;
+      max-width: 900px;
+      background: rgba(13, 34, 63, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 14px;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .top-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .top-brand-icon {
+      font-size: 1.5rem;
+    }
+
+    .top-brand-text h1 {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .top-brand-text p {
+      font-size: 0.78rem;
+      color: #94a3b8;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-action {
+      background: #f59e0b;
+      color: #0f172a;
+      border: none;
+      padding: 0.55rem 1.1rem;
+      border-radius: 8px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-action:hover {
+      background: #fbbf24;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.12);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.22);
+      color: #ffffff;
+      box-shadow: none;
+    }
+
+    /* Container de Visualização e Edição */
+    .content-layout {
+      width: 100%;
+      max-width: 1000px;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      align-items: flex-start;
+      flex-wrap: wrap;
+    }
+
+    /* ==========================================================================
+       O BANNER DOS STORIES (PROPORÇÃO 9:16 - 1080 x 1920)
+       ========================================================================== */
+    .story-wrapper {
+      position: relative;
+      width: 380px;
+      max-width: 95vw;
+      height: 675px; /* Exatamente 9:16 (380 x 675.5) */
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      border: 4px solid #1e3a8a;
+      flex-shrink: 0;
+    }
+
+    .story-canvas-dom {
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 15%, #193e72 0%, #0d223f 55%, #071526 100%);
+      color: #ffffff;
+      padding: 1.75rem 1.4rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    /* Detalhes Decorativos de Fundo */
+    .bg-circle-1 {
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.25) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .bg-circle-2 {
+      position: absolute;
+      bottom: -60px;
+      left: -60px;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.3) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    /* Topo do Banner */
+    .story-top-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #f59e0b;
+      color: #0f172a;
+      padding: 0.35rem 0.85rem;
+      border-radius: 20px;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+      align-self: center;
+    }
+
+    .story-header {
+      text-align: center;
+      margin-top: 0.6rem;
+    }
+
+    .story-icon-wrap {
+      width: 58px;
+      height: 58px;
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 0.65rem;
+      box-shadow: 0 8px 18px rgba(245, 158, 11, 0.35);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .story-title {
+      font-family: var(--font-heading);
+      font-size: 1.55rem;
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 0.4rem;
+    }
+
+    .story-title span {
+      color: #60a5fa;
+    }
+
+    .story-subtitle {
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      line-height: 1.35;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    /* Badge para Idosos e Famílias */
+    .story-target-badge {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 10px;
+      padding: 0.4rem 0.75rem;
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #fef08a;
+      margin: 0.6rem 0;
+    }
+
+    /* Cartões com Informações da Palestra */
+    .story-details-card {
+      background: rgba(255, 255, 255, 0.96);
+      color: #0f172a;
+      border-radius: 16px;
+      padding: 0.95rem 1rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .story-info-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .story-info-icon {
+      width: 36px;
+      height: 36px;
+      background: #eff6ff;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+      border: 1px solid #bfdbfe;
+    }
+
+    .story-info-text {
+      flex: 1;
+    }
+
+    .story-info-label {
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748b;
+      display: block;
+    }
+
+    .story-info-value {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 800;
+      color: #0f2347;
+      line-height: 1.2;
+    }
+
+    .story-info-value.highlight-loc {
+      color: #1e3a8a;
+      font-size: 1.05rem;
+    }
+
+    /* Bônus / Cartilha Gratuita */
+    .story-free-gift {
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      border-radius: 10px;
+      padding: 0.5rem 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #065f46;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+
+    /* Rodapé do Story */
+    .story-footer {
+      text-align: center;
+      margin-top: 0.5rem;
+    }
+
+    .story-golden-rule-pill {
+      background: rgba(220, 38, 38, 0.2);
+      border: 1px solid rgba(239, 68, 68, 0.5);
+      border-radius: 20px;
+      padding: 0.35rem 0.85rem;
+      color: #fca5a5;
+      font-size: 0.75rem;
+      font-weight: 700;
+      display: inline-block;
+      margin-bottom: 0.4rem;
+    }
+
+    .story-call-action {
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      color: #94a3b8;
+    }
+
+    .story-call-action strong {
+      color: #ffffff;
+    }
+
+    /* Painel Lateral com Editor e Legenda Pronta */
+    .side-panel {
+      flex: 1;
+      min-width: 300px;
+      max-width: 450px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .panel-card {
+      background: #0f223f;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      padding: 1.25rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    }
+
+    .panel-card h2 {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #f59e0b;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 0.75rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      color: #cbd5e1;
+      margin-bottom: 0.25rem;
+      font-weight: 600;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.55rem 0.75rem;
+      background: #081325;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 8px;
+      color: #ffffff;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #f59e0b;
+    }
+
+    .caption-box {
+      background: #081325;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      padding: 0.85rem;
+      font-size: 0.84rem;
+      line-height: 1.5;
+      color: #e2e8f0;
+      max-height: 180px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      user-select: all;
+    }
+
+    /* Modal de Feedback ao Copiar */
+    .toast-msg {
+      position: fixed;
+      bottom: 2rem;
+      background: #059669;
+      color: #ffffff;
+      padding: 0.75rem 1.5rem;
+      border-radius: 30px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.95rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      display: none;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 999;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ======================================================================
+       BARRA SUPERIOR DE AÇÕES
+       ====================================================================== -->
+  <header class="top-bar">
+    <div class="top-brand">
+      <span class="top-brand-icon">📱</span>
+      <div class="top-brand-text">
+        <h1>Divulgação nos Stories: Palestra na UBS Alarico Leite</h1>
+        <p>Formato Oficial 9:16 para Instagram Stories e Status do WhatsApp</p>
+      </div>
+    </div>
+
+    <div class="top-actions">
+      <!-- Botão Baixar Imagem PNG -->
+      <button id="btnDownloadStoryPng" class="btn-action" title="Baixar imagem em altíssima definição (1080x1920) para o Story">
+        <span>📥 Baixar Imagem PNG</span>
+      </button>
+
+      <!-- Botão Copiar Legenda -->
+      <button id="btnCopyCaption" class="btn-action btn-secondary" title="Copiar texto pronto para colar na postagem">
+        <span>📋 Copiar Legenda</span>
+      </button>
+
+      <!-- Atalho Apresentação -->
+      <a href="apresentacao.html" class="btn-action btn-secondary" title="Abrir slides da palestra">
+        <span>🖥️ Slides</span>
+      </a>
+
+      <!-- Atalho Cartilha -->
+      <a href="index.html" class="btn-action btn-secondary" title="Abrir cartilha">
+        <span>📖 Cartilha</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ======================================================================
+       CONTEÚDO PRINCIPAL (BANNER + EDITOR LATERAL)
+       ====================================================================== -->
+  <main class="content-layout">
+
+    <!-- BANNER INTERATIVO COM PROPORÇÃO 9:16 -->
+    <div class="story-wrapper" id="storyWrapper">
+      <div class="story-canvas-dom" id="storyDom">
+
+        <!-- Círculos decorativos de iluminação -->
+        <div class="bg-circle-1"></div>
+        <div class="bg-circle-2"></div>
+
+        <!-- Topo: Selo Chamativo -->
+        <div class="story-top-badge">
+          <span>📢 PALESTRA GRATUITA</span>
+        </div>
+
+        <!-- Cabeçalho Principal -->
+        <div class="story-header">
+          <div class="story-icon-wrap">
+            🛡️
+          </div>
+          <h2 class="story-title">
+            Proteção Contra<br><span>Golpes no Celular</span>
+          </h2>
+          <p class="story-subtitle">
+            Aprenda a reconhecer mensagens falsas no WhatsApp e ligações suspeitas do banco.
+          </p>
+        </div>
+
+        <!-- Alvo / Público -->
+        <div class="story-target-badge">
+          🤝 Encontro especial para <strong>idosos, aposentados e familiares</strong>
+        </div>
+
+        <!-- Cartão com Informações do Encontro -->
+        <div class="story-details-card">
+          <!-- Data -->
+          <div class="story-info-item">
+            <div class="story-info-icon">📅</div>
+            <div class="story-info-text">
+              <span class="story-info-label">Data do Encontro:</span>
+              <div class="story-info-value" id="cardDate">10 de Novembro</div>
+            </div>
+          </div>
+
+          <!-- Horário -->
+          <div class="story-info-item">
+            <div class="story-info-icon">⏰</div>
+            <div class="story-info-text">
+              <span class="story-info-label">Horário:</span>
+              <div class="story-info-value" id="cardTime">14h00 <span style="font-size: 0.8rem; font-weight: normal; color: #64748b;">(Duração rápida: 15 min)</span></div>
+            </div>
+          </div>
+
+          <!-- Local -->
+          <div class="story-info-item">
+            <div class="story-info-icon">📍</div>
+            <div class="story-info-text">
+              <span class="story-info-label">Local:</span>
+              <div class="story-info-value highlight-loc" id="cardLocation">UBS Alarico Leite</div>
+            </div>
+          </div>
+
+          <!-- Bônus -->
+          <div class="story-free-gift">
+            <span style="font-size: 1.15rem;">🎁</span>
+            <span>Entrega gratuita da <strong>Cartilha Impressa</strong> para todos!</span>
+          </div>
+        </div>
+
+        <!-- Rodapé do Banner -->
+        <div class="story-footer">
+          <div class="story-golden-rule-pill">
+            🛑 "Na dúvida: Pare, Confira e Peça Ajuda!"
+          </div>
+          <p class="story-call-action">
+            Venha participar e traga sua família! <strong>Entrada Franca.</strong>
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- PAINEL LATERAL: CUSTOMIZADOR & LEGENDA PRONTA -->
+    <aside class="side-panel">
+      <!-- Painel de Edição -->
+      <div class="panel-card">
+        <h2><span>✏️</span> Ajustar Informações do Banner</h2>
+
+        <div class="form-group">
+          <label for="inputDate">Data:</label>
+          <input type="text" id="inputDate" value="10 de Novembro">
+        </div>
+
+        <div class="form-group">
+          <label for="inputTime">Horário:</label>
+          <input type="text" id="inputTime" value="14h00">
+        </div>
+
+        <div class="form-group">
+          <label for="inputLocation">Local:</label>
+          <input type="text" id="inputLocation" value="UBS Alarico Leite">
+        </div>
+      </div>
+
+      <!-- Painel da Legenda Pronta -->
+      <div class="panel-card">
+        <h2><span>📝</span> Legenda Pronta para Redes Sociais</h2>
+        <p style="font-size: 0.8rem; color: #cbd5e1; margin-bottom: 0.6rem;">
+          Copie e cole na descrição do post, grupo de WhatsApp ou mensagem da UBS:
+        </p>
+
+        <div class="caption-box" id="captionText">🛡️ PALESTRA GRATUITA: PROTEÇÃO CONTRA GOLPES NO CELULAR!
+
+Você ou sua família já receberam mensagens estranhas no WhatsApp pedindo dinheiro ou ligações falsas do banco?
+
+Venha participar de um bate-papo rápido e acolhedor (apenas 15 minutos) para aprender como se proteger de forma simples e sem medo!
+
+📅 Data: 10 de Novembro
+⏰ Horário: 14h00
+📍 Local: UBS Alarico Leite
+🎁 Todos os participantes receberão uma Cartilha Impressa de brinde!
+
+Entrada totalmente gratuita! Convide seus pais, avós e vizinhos. Quem tem informação se protege melhor! 🤝❤️
+
+#SegurancaDigital #MelhorIdade #UBSAlaricoLeite #PrevençãoDeGolpes #SaudeEBemEstar #PalestraGratuita</div>
+
+        <button id="btnCopyCaptionSide" class="btn-action" style="width: 100%; margin-top: 0.75rem; justify-content: center;">
+          📋 Copiar Texto Completo
+        </button>
+      </div>
+
+      <!-- Pré-visualização da imagem gerada -->
+      <div class="panel-card" style="text-align: center;">
+        <h2><span>🖼️</span> Arte Alternativa Ilustrada</h2>
+        <p style="font-size: 0.8rem; color: #cbd5e1; margin-bottom: 0.75rem;">
+          Você também tem à disposição a imagem artística 9:16 gerada para o evento:
+        </p>
+        <a href="assets/banner-stories.jpg" download="banner-stories-ilustrado.jpg" class="btn-action btn-secondary" style="font-size: 0.82rem; padding: 0.45rem 0.9rem;">
+          📷 Baixar Arte Ilustrada (JPG)
+        </a>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- Notificação Toast -->
+  <div class="toast-msg" id="toastMsg">
+    <span>✅</span> <span id="toastText">Texto copiado para a área de transferência!</span>
+  </div>
+
+  <!-- Canvas Invisível para Renderização em Alta Resolução (1080 x 1920) -->
+  <canvas id="exportCanvas" width="1080" height="1920" style="display: none;"></canvas>
+
+  <script>
+    // --- 1. Sincronização em Tempo Real dos Campos ---
+    const inputDate = document.getElementById('inputDate');
+    const inputTime = document.getElementById('inputTime');
+    const inputLocation = document.getElementById('inputLocation');
+
+    const cardDate = document.getElementById('cardDate');
+    const cardTime = document.getElementById('cardTime');
+    const cardLocation = document.getElementById('cardLocation');
+    const captionText = document.getElementById('captionText');
+
+    function updateCard() {
+      const d = inputDate.value.trim() || '10 de Novembro';
+      const t = inputTime.value.trim() || '14h00';
+      const loc = inputLocation.value.trim() || 'UBS Alarico Leite';
+
+      cardDate.textContent = d;
+      cardTime.innerHTML = `${t} <span style="font-size: 0.8rem; font-weight: normal; color: #64748b;">(Duração rápida: 15 min)</span>`;
+      cardLocation.textContent = loc;
+
+      // Atualizar legenda
+      captionText.textContent = `🛡️ PALESTRA GRATUITA: PROTEÇÃO CONTRA GOLPES NO CELULAR!
+
+Você ou sua família já receberam mensagens estranhas no WhatsApp pedindo dinheiro ou ligações falsas do banco?
+
+Venha participar de um bate-papo rápido e acolhedor (apenas 15 minutos) para aprender como se proteger de forma simples e sem medo!
+
+📅 Data: ${d}
+⏰ Horário: ${t}
+📍 Local: ${loc}
+🎁 Todos os participantes receberão uma Cartilha Impressa de brinde!
+
+Entrada totalmente gratuita! Convide seus pais, avós e vizinhos. Quem tem informação se protege melhor! 🤝❤️
+
+#SegurancaDigital #MelhorIdade #UBSAlaricoLeite #PrevençãoDeGolpes #SaudeEBemEstar #PalestraGratuita`;
+    }
+
+    inputDate.addEventListener('input', updateCard);
+    inputTime.addEventListener('input', updateCard);
+    inputLocation.addEventListener('input', updateCard);
+
+    // --- 2. Copiar Legenda ---
+    const toastMsg = document.getElementById('toastMsg');
+    const toastText = document.getElementById('toastText');
+
+    function showToast(msg) {
+      toastText.textContent = msg;
+      toastMsg.style.display = 'flex';
+      setTimeout(() => {
+        toastMsg.style.display = 'none';
+      }, 3000);
+    }
+
+    function copyCaption() {
+      navigator.clipboard.writeText(captionText.textContent).then(() => {
+        showToast('Legenda copiada! Agora é só colar no Instagram ou WhatsApp.');
+      }).catch(err => {
+        console.error('Erro ao copiar texto:', err);
+      });
+    }
+
+    document.getElementById('btnCopyCaption').addEventListener('click', copyCaption);
+    document.getElementById('btnCopyCaptionSide').addEventListener('click', copyCaption);
+
+    // --- 3. Gerar e Baixar Imagem PNG em 1080 x 1920 (Canvas de Alta Resolução) ---
+    const btnDownloadStoryPng = document.getElementById('btnDownloadStoryPng');
+    const canvas = document.getElementById('exportCanvas');
+    const ctx = canvas.getContext('2d');
+
+    btnDownloadStoryPng.addEventListener('click', () => {
+      // 1. Fundo Gradiente Elegante
+      const bgGrad = ctx.createRadialGradient(540, 300, 50, 540, 960, 1000);
+      bgGrad.addColorStop(0, '#193e72');
+      bgGrad.addColorStop(0.55, '#0d223f');
+      bgGrad.addColorStop(1, '#071526');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, 1080, 1920);
+
+      // Círculos Decorativos de Fundo
+      const circGrad1 = ctx.createRadialGradient(950, 100, 20, 950, 100, 300);
+      circGrad1.addColorStop(0, 'rgba(245, 158, 11, 0.28)');
+      circGrad1.addColorStop(1, 'transparent');
+      ctx.fillStyle = circGrad1;
+      ctx.beginPath();
+      ctx.arc(950, 100, 300, 0, Math.PI * 2);
+      ctx.fill();
+
+      const circGrad2 = ctx.createRadialGradient(100, 1800, 20, 100, 1800, 350);
+      circGrad2.addColorStop(0, 'rgba(37, 99, 235, 0.35)');
+      circGrad2.addColorStop(1, 'transparent');
+      ctx.fillStyle = circGrad2;
+      ctx.beginPath();
+      ctx.arc(100, 1800, 350, 0, Math.PI * 2);
+      ctx.fill();
+
+      // 2. Selo do Topo
+      ctx.fillStyle = '#f59e0b';
+      roundRect(ctx, 330, 120, 420, 65, 32, true, false);
+      ctx.fillStyle = '#0f172a';
+      ctx.font = 'bold 30px "Outfit", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('📢 PALESTRA GRATUITA', 540, 164);
+
+      // 3. Ícone do Escudo Central
+      ctx.fillStyle = '#f59e0b';
+      roundRect(ctx, 455, 230, 170, 170, 48, true, false);
+      ctx.font = '85px sans-serif';
+      ctx.fillText('🛡️', 540, 345);
+
+      // 4. Título Principal
+      ctx.fillStyle = '#ffffff';
+      ctx.font = '900 78px "Outfit", sans-serif';
+      ctx.fillText('Proteção Contra', 540, 480);
+      ctx.fillStyle = '#60a5fa';
+      ctx.fillText('Golpes no Celular', 540, 565);
+
+      // 5. Subtítulo
+      ctx.fillStyle = '#cbd5e1';
+      ctx.font = '500 36px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText('Aprenda a reconhecer mensagens falsas no', 540, 640);
+      ctx.fillText('WhatsApp e ligações suspeitas do banco.', 540, 690);
+
+      // 6. Faixa Especial Idosos & Família
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
+      ctx.lineWidth = 3;
+      roundRect(ctx, 120, 750, 840, 90, 24, true, true);
+      ctx.fillStyle = '#fef08a';
+      ctx.font = '600 34px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText('🤝 Encontro especial para idosos e familiares', 540, 807);
+
+      // 7. Cartão Principal de Informações (Branco)
+      ctx.fillStyle = '#ffffff';
+      roundRect(ctx, 100, 880, 880, 660, 40, true, false);
+
+      // Sombra simulada suave
+      ctx.strokeStyle = 'rgba(203, 213, 225, 0.6)';
+      ctx.lineWidth = 2;
+      roundRect(ctx, 100, 880, 880, 660, 40, false, true);
+
+      // Item 1: Data
+      drawInfoRow(ctx, '📅', 'DATA DO ENCONTRO:', inputDate.value.trim() || '10 de Novembro', 930);
+
+      // Divisória 1
+      ctx.strokeStyle = '#e2e8f0';
+      ctx.beginPath();
+      ctx.moveTo(150, 1060);
+      ctx.lineTo(930, 1060);
+      ctx.stroke();
+
+      // Item 2: Horário
+      drawInfoRow(ctx, '⏰', 'HORÁRIO:', `${inputTime.value.trim() || '14h00'} (Apenas 15 minutos de palestra)`, 1100);
+
+      // Divisória 2
+      ctx.strokeStyle = '#e2e8f0';
+      ctx.beginPath();
+      ctx.moveTo(150, 1230);
+      ctx.lineTo(930, 1230);
+      ctx.stroke();
+
+      // Item 3: Local
+      drawInfoRow(ctx, '📍', 'LOCAL:', inputLocation.value.trim() || 'UBS Alarico Leite', 1270, '#1e3a8a');
+
+      // Faixa de Cartilha Gratuita dentro do cartão
+      ctx.fillStyle = '#ecfdf5';
+      ctx.strokeStyle = '#a7f3d0';
+      ctx.lineWidth = 2;
+      roundRect(ctx, 140, 1430, 800, 80, 20, true, true);
+      ctx.fillStyle = '#065f46';
+      ctx.font = 'bold 31px "Plus Jakarta Sans", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('🎁 Entrega gratuita da Cartilha Impressa para todos!', 540, 1482);
+
+      // 8. Selo de Regra de Ouro no Rodapé
+      ctx.fillStyle = 'rgba(220, 38, 38, 0.22)';
+      ctx.strokeStyle = 'rgba(239, 68, 68, 0.6)';
+      ctx.lineWidth = 2;
+      roundRect(ctx, 160, 1590, 760, 80, 40, true, true);
+      ctx.fillStyle = '#fca5a5';
+      ctx.font = 'bold 32px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText('🛑 "Na dúvida: Pare, Confira e Peça Ajuda!"', 540, 1642);
+
+      // 9. Chamada Final
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '500 34px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText('Venha participar e traga sua família!', 540, 1730);
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 42px "Outfit", sans-serif';
+      ctx.fillText('ENTRADA TOTALMENTE FRANCA', 540, 1785);
+
+      // 10. Salvar como Arquivo PNG
+      const link = document.createElement('a');
+      link.download = 'story-palestra-ubs-alarico-leite.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+
+      showToast('Imagem para Instagram Story baixada com sucesso! 📱');
+    });
+
+    // Helper: Desenhar Linha de Informações no Canvas
+    function drawInfoRow(ctx, icon, label, value, startY, valColor = '#0f2347') {
+      // Quadrado do ícone
+      ctx.fillStyle = '#eff6ff';
+      ctx.strokeStyle = '#bfdbfe';
+      ctx.lineWidth = 2;
+      roundRect(ctx, 150, startY, 90, 90, 22, true, true);
+      ctx.font = '48px sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(icon, 195, startY + 64);
+
+      // Textos
+      ctx.textAlign = 'left';
+      ctx.fillStyle = '#64748b';
+      ctx.font = 'bold 24px "Plus Jakarta Sans", sans-serif';
+      ctx.fillText(label, 270, startY + 36);
+
+      ctx.fillStyle = valColor;
+      ctx.font = 'bold 44px "Outfit", sans-serif';
+      ctx.fillText(value, 270, startY + 82);
+    }
+
+    // Helper: Desenhar Retângulo Arredondado
+    function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
+      ctx.beginPath();
+      ctx.moveTo(x + radius, y);
+      ctx.lineTo(x + width - radius, y);
+      ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+      ctx.lineTo(x + width, y + height - radius);
+      ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+      ctx.lineTo(x + radius, y + height);
+      ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+      ctx.lineTo(x, y + radius);
+      ctx.quadraticCurveTo(x, y, x + radius, y);
+      ctx.closePath();
+      if (fill) ctx.fill();
+      if (stroke) ctx.stroke();
+    }
+  </script>
+
+</body>
+
+</html>
