@@ -115,9 +115,7 @@
     <!-- Dica Amigável para Salvar em PDF / Impressão -->
     <div id="printTipBar" class="print-tip-bar no-print">
       <div>
-        💡 <strong>Dica de Impressão e PDF:</strong> Para gerar um folheto perfeito em papel, use <strong>A4 Paisagem
-          (Horizontal)</strong> e marque a opção <strong>"Gráficos de segundo plano"</strong> nas configurações da sua
-        impressora.
+        💡 <strong>Dica para Impressão Frente e Verso:</strong> Use <strong>A4 Paisagem (Horizontal)</strong>. Na sua impressora, marque <strong>"Imprimir nos dois lados"</strong> e selecione <strong>"Virar na borda menor"</strong> (Flip on short edge) com <strong>"Gráficos de segundo plano"</strong> ativados.
       </div>
       <button id="closeTipBtn" class="close-tip" title="Fechar dica">&times;</button>
     </div>
@@ -132,149 +130,13 @@
         <!-- =================== PÁGINA 1: EXTERNA / VERSO =================== -->
         <div class="sheet-section">
           <div class="sheet-label no-print">
-            <span>📄 FOLHA 1 (EXTERNA) — Verso & Dobras do Folheto</span>
-            <span class="sheet-badge">Formato A4 Paisagem (297 x 210 mm)</span>
+            <span>📄 FOLHA 1 (LADO EXTERNO) — [Esquerda: Pág. 2] • [Centro: Verso] • [Direita: Capa]</span>
+            <span class="sheet-badge">Ordem Externa • A4 Paisagem (297 x 210 mm)</span>
           </div>
 
           <div class="a4-sheet" id="sheetPage1">
 
-            <!-- Painel 1 (Esquerda): Em Caso de Dúvida -->
-            <section class="panel panel-doubt" aria-label="Em Caso de Dúvida">
-              <div class="panel-content">
-                <div class="section-badge-blue">
-                  <span aria-hidden="true">📌</span>
-                  <h2>Em Caso de Dúvida</h2>
-                </div>
-
-                <ul class="doubt-list">
-                  <li class="doubt-item">
-                    <span class="doubt-num">1</span>
-                    <span><strong>Desligue a chamada na hora</strong> se sentir pressão ou pressa.</span>
-                  </li>
-                  <li class="doubt-item">
-                    <span class="doubt-num">2</span>
-                    <span><strong>Não clique em links</strong> que receber por mensagem (WhatsApp, SMS ou
-                      e-mail).</span>
-                  </li>
-                  <li class="doubt-item">
-                    <span class="doubt-num">3</span>
-                    <span><strong>Fale com um conhecido</strong> antes de fazer quaisquer transferências ou Pix.</span>
-                  </li>
-                </ul>
-
-                <div class="keep-booklet-box">
-                  <h4><span aria-hidden="true">🤝</span> Guarde este folheto com você!</h4>
-                  <p>Deixe perto do telefone ou compartilhe com amigos e familiares para que todos fiquem protegidos.
-                  </p>
-                </div>
-              </div>
-
-              <footer class="panel-footer">
-                <span>Prevenção contra Golpes</span>
-                <span>Guia Informativo</span>
-              </footer>
-            </section>
-
-            <!-- Painel 2 (Centro): A Regra de Ouro (3 Passos) -->
-            <section class="panel panel-golden-rule" aria-label="A Regra de Ouro">
-              <div class="panel-content">
-                <div class="attention-banner">
-                  <span class="alert-icon" aria-hidden="true">🛑</span>
-                  <p>ATENÇÃO: Se sentirem pressa ou pedirem Pix e senhas, pare na hora!</p>
-                </div>
-
-                <div class="golden-title">
-                  <span class="step-num-dark">1</span>
-                  <h2>A Regra de Ouro (3 Passos)</h2>
-                </div>
-
-                <div class="golden-steps">
-                  <!-- Passo 1 -->
-                  <div class="golden-step-card step-red">
-                    <div class="step-badge-circle">1</div>
-                    <div class="step-card-body">
-                      <h4><span aria-hidden="true">✋</span> PARE!</h4>
-                      <p>Não aja por impulso nem com pressa. <strong>Desligue a chamada</strong> imediatamente.</p>
-                      <span class="step-action-hint">Criminosos usam urgência para impedir você de pensar.</span>
-                    </div>
-                  </div>
-
-                  <!-- Passo 2 -->
-                  <div class="golden-step-card step-amber">
-                    <div class="step-badge-circle">2</div>
-                    <div class="step-card-body">
-                      <h4><span aria-hidden="true">🔍</span> CONFIRA!</h4>
-                      <p>Ligue no <strong>número antigo</strong> do parente ou no telefone escrito no verso do cartão.</p>
-                      <span class="step-action-hint">Nunca retorne para o mesmo número que ligou para você.</span>
-                    </div>
-                  </div>
-
-                  <!-- Passo 3 -->
-                  <div class="golden-step-card step-green">
-                    <div class="step-badge-circle">3</div>
-                    <div class="step-card-body">
-                      <h4><span aria-hidden="true">🗣️</span> PEÇA AJUDA!</h4>
-                      <p>Fale com alguém de sua <strong>confiança</strong> antes de enviar qualquer quantia em dinheiro.</p>
-                      <span class="step-action-hint">Mostre a mensagem a um amigo ou familiar próximo.</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="golden-tip-box">
-                  💡 <strong>Lembre-se:</strong> Quem tem pressa pelo seu dinheiro é o criminoso!
-                </div>
-              </div>
-
-              <footer class="panel-footer">
-                <span>Prevenção contra Golpes • Guia Informativo</span>
-                <span>Página 1</span>
-              </footer>
-            </section>
-
-            <!-- Painel 3 (Direita): Capa Principal do Folheto -->
-            <section class="panel panel-cover" aria-label="Capa do Guia Informativo">
-              <div class="panel-content">
-                <div class="cover-badge">GUIA INFORMATIVO</div>
-
-                <div class="cover-illustration">
-                  <img src="assets/cover-illustration.jpg" alt="Escudo de proteção digital e smartphone seguro"
-                    width="145" height="145">
-                </div>
-
-                <h1 class="cover-title">
-                  Proteção contra<br>
-                  <span>golpes no celular</span>
-                </h1>
-
-                <div class="cover-alert-banner">
-                  <span aria-hidden="true">🚨</span>
-                  <span>NUNCA TOME DECISÕES COM PRESSA!</span>
-                </div>
-
-                <div class="cover-reminder-box">
-                  <p>🤝 Guarde este folheto com você e consulte sempre que tiver qualquer dúvida ou desconfiança.</p>
-                </div>
-              </div>
-
-              <footer class="panel-footer" style="border-top-color: rgba(255,255,255,0.15); color: #94a3b8;">
-                <span>Segurança no Celular</span>
-                <span>Distribuição Gratuita</span>
-              </footer>
-            </section>
-
-          </div>
-        </div>
-
-        <!-- =================== PÁGINA 2: INTERNA / FRENTE ABERTA =================== -->
-        <div class="sheet-section">
-          <div class="sheet-label no-print">
-            <span>📄 FOLHA 2 (INTERNA) — Conteúdo Aberto do Folheto</span>
-            <span class="sheet-badge">Formato A4 Paisagem (297 x 210 mm)</span>
-          </div>
-
-          <div class="a4-sheet" id="sheetPage2">
-
-            <!-- Painel 4 (Esquerda): Os 4 Golpes Mais Comuns -->
+            <!-- Painel 1 (Esquerda): Página 2 - Os 4 Golpes Mais Comuns -->
             <section class="panel panel-scams" aria-label="Os 4 Golpes Mais Comuns">
               <div class="panel-content">
                 <div class="section-header-line">
@@ -336,6 +198,151 @@
               <footer class="panel-footer">
                 <span>Prevenção contra Golpes • Guia Informativo</span>
                 <span>Página 2</span>
+              </footer>
+            </section>
+
+            <!-- Painel 2 (Centro): Verso / Contracapa - Em Caso de Dúvida -->
+            <section class="panel panel-doubt" aria-label="Verso: Em Caso de Dúvida">
+              <div class="panel-content">
+                <div class="section-badge-blue">
+                  <span aria-hidden="true">📌</span>
+                  <h2>Em Caso de Dúvida</h2>
+                </div>
+
+                <ul class="doubt-list">
+                  <li class="doubt-item">
+                    <span class="doubt-num">1</span>
+                    <span><strong>Desligue a chamada na hora</strong> se sentir pressão ou pressa.</span>
+                  </li>
+                  <li class="doubt-item">
+                    <span class="doubt-num">2</span>
+                    <span><strong>Não clique em links</strong> que receber por mensagem (WhatsApp, SMS ou
+                      e-mail).</span>
+                  </li>
+                  <li class="doubt-item">
+                    <span class="doubt-num">3</span>
+                    <span><strong>Fale com um conhecido</strong> antes de fazer quaisquer transferências ou Pix.</span>
+                  </li>
+                </ul>
+
+                <div class="keep-booklet-box">
+                  <h4><span aria-hidden="true">🤝</span> Guarde este folheto com você!</h4>
+                  <p>Deixe perto do telefone ou compartilhe com amigos e familiares para que todos fiquem protegidos.
+                  </p>
+                </div>
+              </div>
+
+              <footer class="panel-footer">
+                <span>Prevenção contra Golpes</span>
+                <span>Contracapa / Verso</span>
+              </footer>
+            </section>
+
+            <!-- Painel 3 (Direita): Capa Principal do Folheto -->
+            <section class="panel panel-cover" aria-label="Capa do Guia Informativo">
+              <div class="panel-content">
+                <div class="cover-badge">GUIA INFORMATIVO</div>
+
+                <div class="cover-illustration">
+                  <img src="assets/cover-illustration.jpg" alt="Escudo de proteção digital e smartphone seguro"
+                    width="145" height="145">
+                </div>
+
+                <h1 class="cover-title">
+                  Proteção contra<br>
+                  <span>golpes no celular</span>
+                </h1>
+
+                <div class="cover-alert-banner">
+                  <span aria-hidden="true">🚨</span>
+                  <span>NUNCA TOME DECISÕES COM PRESSA!</span>
+                </div>
+
+                <div class="cover-reminder-box">
+                  <p>🤝 Guarde este folheto com você e consulte sempre que tiver qualquer dúvida ou desconfiança.</p>
+                </div>
+              </div>
+
+              <footer class="panel-footer" style="border-top-color: rgba(255,255,255,0.15); color: #94a3b8;">
+                <span>Segurança no Celular</span>
+                <span>Distribuição Gratuita</span>
+              </footer>
+            </section>
+
+          </div>
+        </div>
+
+        <!-- =================== PÁGINA 2: INTERNA / FRENTE ABERTA =================== -->
+        <div class="sheet-section">
+          <div class="sheet-label no-print">
+            <span>📄 FOLHA 2 (LADO INTERNO ABERTO) — [Esquerda: Pág. 1] • [Centro: Pág. 3] • [Direita: Pág. 4]</span>
+            <span class="sheet-badge">Ordem Interna • A4 Paisagem (297 x 210 mm)</span>
+          </div>
+
+          <div class="a4-sheet" id="sheetPage2">
+
+            <!-- Painel 4 (Esquerda): Página 1 - A Regra de Ouro (3 Passos) -->
+            <section class="panel panel-golden-rule" aria-label="A Regra de Ouro">
+              <div class="panel-content">
+                <div class="section-header-line">
+                  <span class="step-num-dark">1</span>
+                  <h2>A Regra de Ouro (3 Passos)</h2>
+                </div>
+
+                <div class="attention-banner">
+                  <span class="alert-icon" aria-hidden="true">🛑</span>
+                  <p>ATENÇÃO: Se sentirem pressa ou pedirem Pix e senhas, pare na hora!</p>
+                </div>
+
+                <div class="golden-steps">
+                  <!-- Passo 1 -->
+                  <div class="golden-step-card">
+                    <div class="scam-header" style="color: #b91c1c;">
+                      <span class="step-badge-mini badge-red">1</span>
+                      <span aria-hidden="true">✋</span>
+                      <span>1. PARE! Desligue a chamada</span>
+                    </div>
+                    <p class="scam-desc">Não aja por impulso nem com pressa. Desligue a chamada imediatamente.</p>
+                    <div class="scam-action action-red">
+                      <span aria-hidden="true">👉</span> Criminosos usam urgência para você não pensar!
+                    </div>
+                  </div>
+
+                  <!-- Passo 2 -->
+                  <div class="golden-step-card">
+                    <div class="scam-header" style="color: #b45309;">
+                      <span class="step-badge-mini badge-amber">2</span>
+                      <span aria-hidden="true">🔍</span>
+                      <span>2. CONFIRA! Ligue no oficial</span>
+                    </div>
+                    <p class="scam-desc">Ligue no número antigo do parente ou no telefone escrito no verso do cartão.</p>
+                    <div class="scam-action action-amber">
+                      <span aria-hidden="true">👉</span> Nunca retorne para o número que acabou de te ligar!
+                    </div>
+                  </div>
+
+                  <!-- Passo 3 -->
+                  <div class="golden-step-card">
+                    <div class="scam-header" style="color: #047857;">
+                      <span class="step-badge-mini badge-green">3</span>
+                      <span aria-hidden="true">🗣️</span>
+                      <span>3. PEÇA AJUDA! Fale com alguém</span>
+                    </div>
+                    <p class="scam-desc">Fale com alguém de sua confiança antes de transferir qualquer valor ou Pix.</p>
+                    <div class="scam-action action-green">
+                      <span aria-hidden="true">👉</span> Mostre a mensagem para um amigo ou vá ao banco!
+                    </div>
+                  </div>
+                </div>
+
+                <div class="golden-tip-box">
+                  💡 <strong>Lembre-se:</strong> Quem tem pressa pelo seu dinheiro é o criminoso!
+                </div>
+              </div>
+
+              <footer class="panel-footer">
+                <span>Prevenção contra Golpes • Guia Informativo</span>
+                <span>Página 1</span>
               </footer>
             </section>
 
@@ -765,9 +772,9 @@
         <li><strong>Destino / Impressora:</strong> Escolha <em>"Salvar como PDF"</em> (ou sua impressora física).</li>
         <li><strong>Layout:</strong> Selecione <strong>Paisagem (Horizontal)</strong>.</li>
         <li><strong>Tamanho do papel:</strong> <strong>A4</strong>.</li>
-        <li><strong>Mais definições:</strong> Marque a caixa <strong>"Gráficos de segundo plano"</strong> para que as
-          cores fiquem perfeitas.</li>
-        <li><strong>Margens:</strong> Deixe em <strong>Nenhuma</strong> ou <strong>Padrão</strong>.</li>
+        <li><strong>Frente e Verso (Duplex):</strong> Marque <strong>"Imprimir nos dois lados"</strong> e selecione <strong>"Virar na borda menor"</strong> (Flip on short edge).</li>
+        <li><strong>Mais definições:</strong> Marque a caixa <strong>"Gráficos de segundo plano"</strong> para que as cores fiquem perfeitas.</li>
+        <li><strong>Ordem das Dobras:</strong> Ao dobrar o papel, a <em>Capa</em> fica na frente, ao abrir vê-se a <em>Página 1</em>, e ao abrir totalmente revelam-se em sequência as <em>Páginas 2, 3 e 4</em>!</li>
       </ul>
 
       <div class="modal-actions">
